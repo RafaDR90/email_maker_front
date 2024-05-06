@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import router from './src/Router';
 
 export default createStore({
     state: {
@@ -27,6 +28,7 @@ export default createStore({
                     if (response.status === 200) {
                         const data = await response.json();
                         commit('setAuthUser', data);
+                        router.push('/');
                     } else {
                         localStorage.removeItem('token');
                     }

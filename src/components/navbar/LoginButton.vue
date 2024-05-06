@@ -1,8 +1,17 @@
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const loginView = () => {
+  router.push('/login');
+}
+</script>
+
 <template>
   <div class="dropdown">
     <button class="dropbtn">
       <div class="flex content-center items-center justify-center w-full">
-        <p>Login</p>
+        <p @click="loginView">Iniciar sesión</p>
       </div>
     </button>
 
@@ -16,5 +25,3 @@
     </div>
   </div>
 </template>
-
-      

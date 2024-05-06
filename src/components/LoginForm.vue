@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 const email = ref('');
 const password = ref('');
@@ -27,7 +30,7 @@ const submitForm = async () => {
 
     const data = await response.json();
     localStorage.setItem('token', data.token);
-    router.push('/');
+    await store.dispatch('checkToken');
   } catch (error) {
     console.error('Error:', error);
     error.value = 'Error al iniciar sesión';
@@ -36,18 +39,43 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <div>
-      <form @submit.prevent="submitForm">
-        <div>
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" v-model="email" required>
+  <div class="size-full bg-indigo-200 flex place-content-center place-items-center">
+    <div class="loginContainer">
+      
+      <!-- Email -->
+      <input id="email" class="custom-input" type="email" v-model="email" placeholder="Correo electrónico" />
+      <div class="py-2" />
+      <!-- Contraseña -->
+      <input id="password" class="custom-input" type="password" v-model="password" placeholder="Contraseña" />
+      <!--Error-->
+      <p class="text-red-500">{{ error }}</p>
+      <div class="py-2" />
+      
+      <button @click="submitForm" class="py-2 bg-indigo-600 text-indigo-50 font-bold rounded-sm md:min-w-96">
+        Iniciar sesión
+      </button>
+      <div class="py-2" />
+      <div class="rounded-md bg-indigo-100 px-6 w-[22rem] py-4 text-sm flex flex-col">
+        <div class="flex place-content-between">
+          <p>¿Has olvidado tu contraseña?</p>
+          <p class="textLink">¡Pincha aquí!</p>
         </div>
-        <div>
-          <label for="password">Contraseña:</label>
-          <input type="password" id="password" v-model="password" required>
+        <hr class="w-full my-2 border" />
+        <div class="flex place-content-between">
+          <p>¿Todavía no tienes cuenta?</p>
+          <p class="textLink">Registrarse</p>
         </div>
-        <div v-if="error" class=" text-red-400 text-xs">{{ error }}</div>
-        <button type="submit">Iniciar sesión</button>
-      </form>
+      </div>
     </div>
-  </template>
+  </div>
+</template>
+
+<style scoped>
+.loginContainer {
+  @apply flex flex-col p-12 my-12 rounded-2xl h-fit max-w-[57rem] bg-indigo-50 z-50 shadow-md place-content-center place-items-center;
+}
+
+.custom-input {
+  @apply md:min-w-96 sm:overflow-auto;
+}
+</style>
