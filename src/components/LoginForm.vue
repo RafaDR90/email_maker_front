@@ -39,7 +39,7 @@ const submitForm = async () => {
 </script>
 
 <template>
-  <div class="size-full bg-indigo-200 flex place-content-center place-items-center">
+  <div class=" w-full min-h-[calc(100vh-4rem)] background flex place-content-center place-items-center h-full">
     <div class="loginContainer">
       
       <!-- Email -->

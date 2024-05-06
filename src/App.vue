@@ -13,8 +13,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <Navbar  />
-  <main>
+  <header class=" w-full h-16 ">
+    <Navbar />
+  </header>
+  <main class="w-full min-h-[calc(100vh-4rem)] bg-red-200">
     <router-view />
   </main>
 </template>

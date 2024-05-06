@@ -12,7 +12,7 @@ const store = useStore();
 </script>
 
 <template>
-  <section class="navBar">
+  <nav class="navBar">
     <div
       class="sm:ms-4 md:ms-8 w-14 px-2 my-auto filter hover:drop-shadow-xl hover:drop-shadow-indigo-500 dark:brightness-200 dark:invert mx-3"
     >
@@ -25,7 +25,7 @@ const store = useStore();
     
     <Dropdown v-if="store.state.AuthUser" />
     <LoginButton v-else />
-  </section>
+  </nav>
 </template>
 
 <style scoped>
