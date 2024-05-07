@@ -2,13 +2,8 @@
 import Dropdown from "./AccountDropdown.vue";
 import LoginButton from "./LoginButton.vue";
 import Logo from "../../assets/img/logo.png";
-import { defineProps } from "vue";
 import { useStore } from "vuex";
 const store = useStore();
-
-
-
-
 </script>
 
 <template>

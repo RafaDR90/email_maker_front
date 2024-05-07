@@ -1,10 +1,13 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 const router = useRouter();
 
 const loginView = () => {
-  router.push('/login');
-}
+  router.push("/login");
+};
+const registerView = () => {
+  router.push("/register");
+};
 </script>
 
 <template>
@@ -16,12 +19,15 @@ const loginView = () => {
     </button>
 
     <div class="dropdown-content">
-      <a class="text-sm">
-        <p>¿No tienes cuenta?</p>
-        <p class="underline text-indigo-800 dark:text-indigo-300">
+      <p class="text-sm cursor-default">
+        ¿No tienes cuenta?
+        <a
+          @click="registerView"
+          class="underline text-indigo-800 dark:text-indigo-300 cursor-pointer"
+        >
           Regístrate aquí
-        </p>
-      </a>
+        </a>
+      </p>
     </div>
   </div>
 </template>

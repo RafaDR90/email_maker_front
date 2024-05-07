@@ -11,20 +11,24 @@ const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 const nombre = ref('');
+const errorNum = ref(0);
 
 const router = useRouter();
 
 const registrarse = async () => {
   if (!email.value || !password.value || !nombre.value || !confirmPassword.value) {
     error.value = 'Por favor, rellena todos los campos';
+    errorNum.value=(1);
     return;
   }
   if (password.value.length < 6) {
     error.value = 'La contraseña debe tener al menos 6 caracteres';
+    errorNum.value=(2);
     return;
   }
   if (password.value !== confirmPassword.value) {
     error.value = 'Las contraseñas no coinciden';
+    errorNum.value=(2);
     return;
   }
 
@@ -50,6 +54,8 @@ const registrarse = async () => {
     }
     const responseData = await response.json();
     if(responseData.err){
+      
+    errorNum.value=(3);
       error.value = responseData.err;
       return;
     }
@@ -68,16 +74,16 @@ const registrarse = async () => {
     <div class="loginContainer">
       <h1 class=" mb-10 text-2xl font-bold">Registrarse</h1>
       <!-- Nombre -->
-      <input type="text" class="custom-input" v-model="nombre" placeholder="Nombre">
+      <input type="text" :class="errorNum === 1 ? 'custom-input-error' : 'custom-input'" v-model="nombre" placeholder="Nombre">
       <div class="py-2" />
       <!-- Email -->
-      <input id="email" class="custom-input" type="email" v-model="email" placeholder="Correo electrónico" />
+      <input id="email" :class="errorNum === 1 || errorNum===3 ? 'custom-input-error' : 'custom-input'" type="email" v-model="email" placeholder="Correo electrónico" />
       <div class="py-2" />
       <!-- Contraseña -->
-      <input id="password" class="custom-input" type="password" v-model="password" placeholder="Contraseña" />
+      <input id="password" :class="errorNum === 1 || errorNum ===2 ? 'custom-input-error' : 'custom-input'" type="password" v-model="password" placeholder="Contraseña" />
       <div class="py-2" />
       <!-- Confirmar contraseña -->
-      <input id="confirmPassword" class="custom-input" type="password" v-model="confirmPassword" placeholder="Confirmar contraseña" />
+      <input id="confirmPassword"  :class="errorNum === 1 || errorNum ===2 ? 'custom-input-error' : 'custom-input'" type="password" v-model="confirmPassword" placeholder="Confirmar contraseña" />
       <div class="py-2" />
       <!--Error-->
       <p v-if="error" class="text-red-500">{{ error }}</p>

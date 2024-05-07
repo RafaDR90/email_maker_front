@@ -1,23 +1,26 @@
+
+  
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import newEmailIcon from "../assets/img/newButton.png";
-
-const fab1 = ref(null);
-const innerFabs = ref(null);
-
-onMounted(() => {
-  fab1.value = document.getElementById("fab1");
-  innerFabs.value = document.getElementsByClassName("inner-fabs")[0];
-});
 
 const newEmail = () => {
   console.log("New Email pulsado");
 };
+
+const showTooltip = ref(false);
 </script>
 
 <template>
   <div class="inner-fabs">
-    <div id="fab1" class="fab round" @click="newEmail">
+    <div
+      id="fab1"
+      class="fab round"
+      @click="newEmail"
+      @mouseover="showTooltip = true"
+      @mouseleave="showTooltip = false"
+    >
+      <div v-if="showTooltip" class="tooltip">Nuevo email</div>
       <div class="size-7">
         <img :src="newEmailIcon" />
       </div>
@@ -27,43 +30,33 @@ const newEmail = () => {
 
 <style scoped>
 .round {
-  border-radius: 100%;
+  @apply rounded-full;
 }
-
 .fab {
-  transition: all 300ms ease-in-out;
-  width: 72px;
-  height: 72px;
-  background-color: #8340ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 30px;
-  bottom: 15px;
-  user-select: none;
-  cursor: pointer;
-  color: white;
-  font-size: 2em;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16), 0px 3px 10px rgba(0, 0, 0, 0.16);
+  @apply z-50 transition-all duration-300 ease-[ease-in-out] w-[72px] h-[72px] bg-orange-600 hover:bg-orange-500 flex items-center justify-center fixed select-none cursor-pointer text-[white] text-[2em] shadow-[0px_3px_10px_rgba(0,0,0,0.16),0px_3px_10px_rgba(0,0,0,0.16)] right-[30px] hover:scale-110;
 }
 
-.fab:hover {
-  scale: 110%;
-  background-color: #6527d8;
+.inner-fabs {
+  opacity: 0; /* Inicialmente oculto */
+}
+
+.inner-fabs-enter {
+  @apply transition-opacity opacity-100 duration-500 ease-linear;
 }
 
 .inner-fabs .fab {
-  width: 60px;
-  height: 60px;
-  right: 24px;
-  bottom: 23px;
-  font-size: 1.5em;
-  will-change: bottom;
+  @apply w-[60px] h-[60px] right-6 bottom-[23px];
 }
 
-/* from 0 through ${number of inner fabs} */
 .inner-fabs.show .fab {
-  bottom: 80px;
+  @apply bottom-20;
+}
+
+.tooltip {
+  @apply absolute text-white text-xs bg-orange-950 py-1 px-3 rounded-md right-20 opacity-0 pointer-events-none transition-opacity duration-300;
+}
+
+.fab:hover .tooltip {
+  @apply opacity-100;
 }
 </style>
