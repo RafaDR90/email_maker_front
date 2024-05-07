@@ -17,7 +17,7 @@
 }
 
 .custom-input {
-  @apply md:min-w-96 sm:overflow-auto py-2 px-3 outline-indigo-600 caret-indigo-700 border border-indigo-900 rounded-md;
+  @apply w-full md:max-w-96 sm:overflow-auto py-2 px-3 outline outline-2 outline-indigo-950 focus:outline-indigo-600 caret-indigo-700 rounded-md;
 }
 .custom-input-error {
   @apply md:min-w-96 sm:overflow-auto py-2 px-3 outline outline-2 outline-red-600 caret-red-700 border border-red-900 rounded-md;
@@ -38,7 +38,7 @@
 
 /* Links inside the dropdown */
 .dropdown-content p {
-  @apply text-slate-950 px-3 py-4 no-underline block;
+  @apply text-slate-950 px-3 py-4 no-underline block z-50;
 }
 
 /* Change color of dropdown links on hover */
@@ -56,6 +56,10 @@
   @apply bg-indigo-900 shadow-2xl shadow-indigo-900;
 }
 
+.textLink {
+  @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
+}
+
 .background {
   @apply -z-10;
   background: linear-gradient(
@@ -68,10 +72,6 @@
   background-size: 3em 3em;
   background-color: #c7d2fe;
   opacity: 1;
-}
-
-.textLink {
-  @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
 }
 
 .alt-background {
