@@ -25,7 +25,6 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <div
     class="w-full h-full alt-background flex justify-center overflow-y-auto overflow-x-hidden"

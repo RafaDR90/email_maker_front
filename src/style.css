@@ -16,9 +16,13 @@
   }
 }
 
-/* Dropdown Button */
+.custom-input {
+  @apply md:min-w-96 sm:overflow-auto py-2 px-3 outline-indigo-600 caret-indigo-700 border border-indigo-900 rounded-md;
+}
+
+/* Dropdown Button y LoginButton */
 .dropbtn {
-  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full;
+  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer;
 }
 
 .dropdown {
@@ -26,16 +30,16 @@
 }
 
 .dropdown-content {
-  @apply absolute z-40 bg-indigo-100 dark:bg-indigo-900 dark:text-slate-50 min-h-fit shadow-sm z-10 hidden w-full;
+  @apply absolute z-40 bg-indigo-100 dark:bg-indigo-900 dark:text-slate-50 min-h-fit shadow-sm z-10 hidden w-full cursor-pointer;
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content p {
   @apply text-slate-950 px-3 py-4 no-underline block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+.dropdown-content p:hover {
   @apply bg-indigo-300;
 }
 
@@ -67,10 +71,10 @@
   @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
 }
 
-
 .alt-background {
   @apply -z-10;
-  background: linear-gradient(135deg, #4f46e480 50%, transparent 0),linear-gradient(-135deg, #4f46e480 50%, transparent 0);
+  background: linear-gradient(135deg, #4f46e480 50%, transparent 0),
+    linear-gradient(-135deg, #4f46e480 50%, transparent 0);
   background-size: 3em 3em;
   background-color: #c7d2fe;
   opacity: 1;

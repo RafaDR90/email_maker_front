@@ -40,3 +40,7 @@ const closeSession = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+
+</style>

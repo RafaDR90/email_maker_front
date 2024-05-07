@@ -41,8 +41,7 @@ console.log(response)
 <template>
   <div class=" w-full min-h-[calc(100vh-4rem)] background flex place-content-center place-items-center h-full">
     <div class="loginContainer">
-      <h1 class=" mb-10 text-2xl font-bold">Inicia sesion</h1>
-      
+      <h1 class=" mb-7 text-2xl font-bold">Inicia sesion</h1>
       <!-- Email -->
       <input id="email" class="custom-input" type="email" v-model="email" placeholder="Correo electrónico" />
       <div class="py-2" />
@@ -52,7 +51,7 @@ console.log(response)
       <p v-if="error" class="text-red-500">{{ error }}</p>
       <div class="py-2" />
       
-      <button @click="submitForm" class="py-2 bg-indigo-600 text-indigo-50 font-bold rounded-sm md:min-w-96">
+      <button @click="submitForm" class="py-2 bg-indigo-600 text-indigo-50 font-bold rounded-md md:min-w-96">
         Iniciar sesión
       </button>
       <div class="py-2" />
@@ -73,10 +72,8 @@ console.log(response)
 
 <style scoped>
 .loginContainer {
-  @apply flex flex-col p-12 my-12 rounded-2xl h-fit max-w-[57rem] bg-indigo-50 z-50 shadow-md place-content-center place-items-center;
+  @apply flex flex-col p-11 my-12 rounded-2xl h-fit max-w-[57rem] bg-indigo-50 z-50 shadow-md place-content-center place-items-center;
 }
 
-.custom-input {
-  @apply md:min-w-96 sm:overflow-auto;
-}
+
 </style>
