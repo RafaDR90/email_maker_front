@@ -50,6 +50,11 @@
 }
 
 .background {
+  .textLink {
+    @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
+  }
+
+.background {
   @apply -z-10;
   background: linear-gradient(
       45deg,
