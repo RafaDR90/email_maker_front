@@ -56,12 +56,35 @@ onMounted(() => {
       </div>
     </div>
     <!-- Floating Action Button -->
-    <FAB v-if="!isButtonVisible"></FAB>
+    <FAB
+      v-if="!isButtonVisible"
+      :class="{ 'show-animation': !isButtonVisible }"
+    ></FAB>
   </div>
 </template>
 
 
 <style scoped>
+/* Agrega la animación de aparición */
+.show-animation {
+  z-index: 40;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; /* Mantener el estado final después de que termine la animación */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .divider {
   @apply bg-gradient-to-r from-slate-400 w-72 min-w-7 h-[2px];
 }
