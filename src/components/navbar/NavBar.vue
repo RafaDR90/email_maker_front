@@ -30,7 +30,7 @@ const store = useStore();
 
 <style scoped>
 .navBar {
-  @apply size-full min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end;
+  @apply size-full min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end z-50 shadow-sm shadow-indigo-950;
 }
 
 .navBarButton {
