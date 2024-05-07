@@ -27,9 +27,8 @@ const submitForm = async () => {
       error.value = "Usuario o contraseña incorrectos";
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    console.log(response);
+    
     const data = await response.json();
-
     if (!data.token) {
       error.value = "Usuario o contraseña incorrectos";
     }
