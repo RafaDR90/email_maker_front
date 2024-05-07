@@ -71,7 +71,7 @@ onMounted(() => {
 }
 
 .item {
-  @apply size-40 text-slate-600 bg-slate-300 flex content-center justify-center items-center;
+  @apply size-40 transition-all duration-150 ease-in-out text-slate-600 bg-slate-300 flex content-center justify-center items-center;
 }
 .item:hover {
   @apply scale-110 z-40 shadow-md shadow-orange-300;
