@@ -67,22 +67,10 @@
   @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
 }
 
+
 .alt-background {
   @apply -z-10;
-  background: repeating-linear-gradient(
-      90deg,
-      #3730a3 0,
-      #3730a3 5%,
-      transparent 0,
-      transparent 50%
-    ),
-    repeating-linear-gradient(
-      180deg,
-      #3730a3 0,
-      #3730a3 5%,
-      transparent 0,
-      transparent 50%
-    );
+  background: linear-gradient(135deg, #4f46e480 50%, transparent 0),linear-gradient(-135deg, #4f46e480 50%, transparent 0);
   background-size: 3em 3em;
   background-color: #c7d2fe;
   opacity: 1;
