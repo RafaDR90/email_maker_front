@@ -5,11 +5,6 @@ import newEmailIcon from "../assets/img/newButton.png";
 const fab1 = ref(null);
 const innerFabs = ref(null);
 
-onMounted(() => {
-  fab1.value = document.getElementById("fab1");
-  innerFabs.value = document.getElementsByClassName("inner-fabs")[0];
-});
-
 const newEmail = () => {
   console.log("New Email pulsado");
 };
@@ -31,6 +26,7 @@ const newEmail = () => {
 }
 
 .fab {
+  z-index: 50;
   transition: all 300ms ease-in-out;
   width: 72px;
   height: 72px;
@@ -38,9 +34,8 @@ const newEmail = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed; /* Cambiar a posición fija */
   right: 30px;
-  bottom: 15px;
   user-select: none;
   cursor: pointer;
   color: white;
