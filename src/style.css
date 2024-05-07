@@ -78,6 +78,7 @@
   @apply text-indigo-700 underline cursor-pointer hover:text-indigo-950 hover:shadow-indigo-950;
 }
 
+
 .alt-background {
   @apply -z-10;
   background: linear-gradient(135deg, #4f46e480 50%, transparent 0),
