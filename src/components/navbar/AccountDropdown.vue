@@ -1,6 +1,5 @@
 <script setup>
 import iconoPerfil from "../../assets/img/usuario.png";
-import { defineProps } from "vue";
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 

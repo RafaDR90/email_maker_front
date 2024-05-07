@@ -85,7 +85,9 @@ onMounted(() => {
   }
 }
 
-
+.divider {
+  @apply bg-gradient-to-r from-slate-400 w-72 min-w-7 h-[2px];
+}
 
 .items-container {
   @apply grid gap-4 grid-flow-row sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7;
