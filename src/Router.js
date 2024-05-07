@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginForm from './components/LoginForm.vue';
 import DashboardLayout from './components/DashboardLayout.vue';
 import store from '../store.js';
+import RegisterForm from './components/register/RegisterView.vue';
 
 
 
@@ -19,6 +20,15 @@ const routes = [
     }
   },
   { path: '/login', component: LoginForm,
+    beforeEnter: (to, from, next) => {
+      if (store.state.AuthUser) {
+        next('/');
+      } else {
+        next();
+      }
+    }
+  },
+  { path: '/register', component: RegisterForm,
     beforeEnter: (to, from, next) => {
       if (store.state.AuthUser) {
         next('/');
