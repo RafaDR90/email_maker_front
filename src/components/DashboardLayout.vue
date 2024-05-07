@@ -1,6 +1,10 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import newEmailIcon from "../assets/img/newButton.png";
 import FAB from "../components/FloatingActionButton.vue";
+
+const router = useRouter();
+
 </script>
 
 
@@ -11,14 +15,15 @@ import FAB from "../components/FloatingActionButton.vue";
     >
       <!-- Botón Nuevo Email -->
     
-      <div
+      <button
+        @click="() => router.push('/nuevo')"
         class="flex cursor-pointer z-20 shadow-md rounded-lg bg-indigo-500 ps-2 md:pe-14 py-4 content-start justify-center items-center "
       >
         <div class="size-4 md:size-7 mx-3 ">
           <img :src="newEmailIcon" />
         </div>
         <p class="text-slate-50 font-semibold">Nuevo</p>
-      </div>
+      </button>
 
       
 
