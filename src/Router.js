@@ -7,7 +7,6 @@ import NewMail from './components/NewMail.vue';
 
 
 
-//hago un console.log de store.state cuando cambie
 const routes = [
   { 
     path: '/', 
