@@ -24,7 +24,6 @@ watch(url, (newVal) => {
   }, 1000);
 });
 
-
 const handleBgColorUpdate = (updatedColor) => {
   backgroundColor.value = updatedColor;
 };
@@ -44,7 +43,7 @@ const bannerMarginUpdate=(newVal)=>{
 
     <!-- Slider -->
     <h3>Margen inferior:</h3>
-    <Slider class="mb-4 " :bannerMargin="bannerMargin" @update:bannerMargin="bannerMarginUpdate" />
+    <Slider class="mb-4 " :value="bannerMargin" @update:value="bannerMarginUpdate" :step="1"/>
 
     <!-- Background -->
     <h3>Fondo:</h3>

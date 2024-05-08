@@ -1,30 +1,29 @@
 <script setup>
 import { ref, defineProps, watch } from "vue";
 
-const emit = defineEmits(["update:bannerMargin"]);
+const emit = defineEmits(["update:value"]);
 
 const props = defineProps({
   minValue: { type: Number, default: 0 },
   maxValue: { type: Number, default: 100 },
-  bannerMargin: Number,
+  value: { type: Number, default: 0 },
+  step: { type: Number, default: 1 },
 });
 
-const value = ref(props.bannerMargin);
+const value = ref(props.value);
 const minValue = ref(props.minValue);
 const maxValue = ref(props.maxValue);
+const step = ref(props.step);
 
 let timeoutId = null;
-watch(
-  value,
-  (newVal) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      emit("update:bannerMargin", newVal);
-    }, 1000);
+watch(value, (newVal) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
   }
-);
+  timeoutId = setTimeout(() => {
+    emit("update:value", newVal);
+  }, 1000);
+});
 </script>
 
 <template>
@@ -34,6 +33,7 @@ watch(
       :min="minValue"
       :max="maxValue"
       v-model="value"
+      :step="step"
       class="PB-range-slider"
       id="myRange"
     />
