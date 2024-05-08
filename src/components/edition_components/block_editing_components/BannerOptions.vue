@@ -1,10 +1,24 @@
 <script setup>
-import { ref } from "vue";
+import { ref,defineEmits, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import ColorPicker from "./mini_components/ColorPicker.vue";
 
+const emits = defineEmits(["update:colors", "update:url"]);
+
 const url = ref("");
 const backgroundColor = ref("#000000");
+
+//cuando url cambie ejecuto emit
+let timeoutId = null;
+watch(url, (newVal) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    emits("update:url", newVal);
+  }, 1000);
+});
+
 
 const handleBgColorUpdate = (updatedColor) => {
   backgroundColor.value = updatedColor;

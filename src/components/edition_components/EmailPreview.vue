@@ -1,16 +1,25 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import { defineProps, ref } from 'vue';
-
-const emit = defineEmits(['mas']);
+import { defineProps, onMounted, ref } from 'vue';
 
 //obtengo las props del componente
 const props = defineProps({
+    //banner
     selectedBanner: String,
     bannerMargin: Number,
+    bannerBackground: String,
+    //underBannerText
     underBannerText: String,
+    underBannerTextHeight: Number,
+    underBannerTextFontSize: Number,
+    //grid
+    gridColums: String
 });
 
+onMounted(() => {
+    const grid = document.querySelector('.dynamic-grid');
+    grid.style.gridTemplateColumns = `repeat(${props.gridColums}, 1fr)`;
+});
 
 </script>
 
@@ -19,20 +28,46 @@ const props = defineProps({
     <div class=" min-w-[649px] bg-green-300 min-h-full w-[50%] flex justify-center">
         <div id="emailContainer" class=" w-[649px] min-h-20 mt-20 bg-blue-400 flex flex-col">
             <div class="w-full">
-                <div v-if="!selectedBanner"
+                <div v-if="!selectedBanner" :style="{ backgroundColor: bannerBackground || '' }"
                     class="w-full h-80 bg-gray-100 border-4 border-gray-200 flex justify-center items-center">
                     <div class="flex flex-col justify-center items-center">
                         <img class="w-20 h-20" :src="Banner" alt="imagen banner">
                         <p class=" text-4xl text-gray-500">Inserte imagen</p>
                     </div>
                 </div>
-                <div v-else :style="{ paddingBottom: bannerMargin + 'px' }">
+                <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
                     <img class="w-full" :src="selectedBanner" alt="imagen banner">
                 </div>
             </div>
-            <div>
-                <p v-if="underBannerText" class="w-full text-center">{{ underBannerText }}</p>
+            <div class="w-full min-h-max flex justify-center items-center"
+                :style="{ minHeight: underBannerTextHeight === 0 ? 'max-content' : underBannerTextHeight + 'px' }">
+                <p v-if="underBannerText" :style="{ fontSize: underBannerTextFontSize + 'px' }">
+                    {{ underBannerText }}
+                </p>
+            </div>
+            <div class="grid gap-1 w-full border border-green-200 dynamic-grid">
+                <div class=" w-full h-60 bg-red-500 flex justify-center items-center">
+                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
+                </div>
+                <div class=" w-full h-60 bg-red-500 flex justify-center items-center">
+                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
+                </div>
+                <div class=" w-full h-60 bg-red-500 flex justify-center items-center">
+                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
+                </div>
+                <div class=" w-full h-60 bg-red-500 flex justify-center items-center">
+                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
+                </div>
+                <div class=" w-full h-60 bg-red-500 flex justify-center items-center">
+                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
+                </div>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.dynamic-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+</style>
