@@ -1,29 +1,3 @@
-<template>
-  <div id="colorPicker">
-    <div
-      v-for="(color, index) in colors"
-      :key="index"
-      class="flex place-content-center place-items-center"
-    >
-      <input
-        type="color"
-        :value="color"
-        class="h-12"
-        @input="updateColor(index, $event.target.value)"
-      />
-      <input
-        type="text"
-        :value="color"
-        class="custom-input h-10 min-w-[5.5rem] max-w-28"
-        @input="updateColor(index, $event.target.value)"
-      />
-    </div>
-    <div>
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, defineProps, defineEmits, watch } from "vue";
 
@@ -32,7 +6,7 @@ const props = defineProps({
   colorCount: Number,
 });
 
-const colors = ref(props.colors || ["#000000FF"]);
+const colors = ref(props.colors || ["#000000"]);
 
 const emits = defineEmits(["update:colors"]);
 
@@ -66,3 +40,29 @@ watch(
   }
 );
 </script>
+
+<template>
+  <div id="colorPicker">
+    <div
+      v-for="(color, index) in colors"
+      :key="index"
+      class="flex place-content-center place-items-center"
+    >
+      <input
+        type="color"
+        :value="color"
+        class="h-12 bg-transparent mx-1 w-20 "
+        @input="updateColor(index, $event.target.value)"
+      />
+      <input
+        type="text"
+        :value="color"
+        class="custom-input h-10 min-w-[5.5rem] max-w-28"
+        @input="updateColor(index, $event.target.value)"
+      />
+    </div>
+    <div>
+      <slot />
+    </div>
+  </div>
+</template>

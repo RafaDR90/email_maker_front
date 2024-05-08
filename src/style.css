@@ -25,7 +25,7 @@
 
 /* Dropdown Button y LoginButton */
 .dropbtn {
-  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer;
+  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer z-40 ;
 }
 
 .dropdown {
@@ -48,7 +48,7 @@
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  @apply block;
+  @apply block z-40;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
