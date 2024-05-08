@@ -1,14 +1,20 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineEmits, defineProps } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
 
+const emits = defineEmits(["update:fontWeight"]);
+const props = defineProps({
+  underBannerTextFontWeight: Number,
+}
+);
 const text = ref("");
 const selectedFont = ref("Roboto");
 const availableFonts = ref([]);
 const fontSize = ref(12);
 const textHeight = ref(30);
 const fontWeight = ref(400);
+
 // Función para obtener las fuentes disponibles desde CSS
 const getAvailableFonts = () => {
   const styleSheets = document.styleSheets;
@@ -47,7 +53,9 @@ const handleTextHeightSizeUpdate = (updatedHeight) => {
   textHeight.value = updatedHeight;
 };
 const handleFontWeightUpdate = (updatedWeight) => {
+  console.log(updatedWeight);
   fontWeight.value = updatedWeight;
+  emits("update:fontWeight", Number(updatedWeight));
 };
 </script>
 
@@ -87,8 +95,14 @@ const handleFontWeightUpdate = (updatedWeight) => {
 
     <!-- Intensidad de la fuente -->
     <h3>Intensidad de la fuente:</h3>
-    <Slider class="mb-4 " :maxValue="900" :step="100" @update:value="handleFontWeightUpdate"/>
-    
+    <Slider
+      class="mb-4"
+      :fontWeight="fontWeight"
+      :maxValue="900"
+      :step="100"
+      @update:value="handleFontWeightUpdate"
+    />
+
     <!-- Altura -->
     <h3>Altura:</h3>
     <NumberInput class="w-fit" @updateNumber="handleTextHeightSizeUpdate" />

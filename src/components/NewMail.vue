@@ -9,7 +9,7 @@ import { ref, watch } from "vue";
 ----------------------------*/
 const selectedBlock = ref("");
 const updateSelectedBlock = (block) => {
-    selectedBlock.value = block;
+  selectedBlock.value = block;
 };
 
 /*----------------------------
@@ -20,13 +20,16 @@ const bannerMargin = ref(0);
 const bannerBackground = ref("#ffffff");
 
 const updateBannerUrl = (newUrl) => {
-    banner.value = newUrl;
+  banner.value = newUrl;
 };
 
 const bannerMarginUpdate = (newMargin) => {
-    bannerMargin.value = newMargin;
+  bannerMargin.value = newMargin;
 };
-//hago un console.log cada vez que bannerMargin cambie
+const underBannerTextFontWeightUpdate = (newWeight) => {
+  console.log("NewEmail: ", newWeight);
+  underBannerTextFontWeight.value = newWeight;
+};
 
 /*----------------------------
             FIN BANNER
@@ -38,6 +41,7 @@ const bannerMarginUpdate = (newMargin) => {
 const underBannerText = ref("Hola mundo");
 const underBannerTextHeight = ref(43);
 const underBannerTextFontSize = ref(16);
+const underBannerTextFontWeight = ref(400);
 /*----------------------------
            FIN TEXTO
 ----------------------------*/
@@ -45,20 +49,36 @@ const underBannerTextFontSize = ref(16);
 /*----------------------------
          CARDS GRID
 ----------------------------*/
-const gridColums = ref('3');
+const gridColums = ref("3");
 /*----------------------------
        FIN CARDS GRID
 ----------------------------*/
-
-
 </script>
 
 <template>
-    <div class="w-full min-h-full flex">
-        <StyleEdit />
-        <EmailPreview :key="gridColums" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" :selectedBanner="banner" :bannerMargin="Number(bannerMargin)" :underBannerText="underBannerText"
-            :bannerBackground="bannerBackground" :underBannerTextHeight="underBannerTextHeight"
-            :underBannerTextFontSize="underBannerTextFontSize" :gridColums="gridColums" />
-        <BlockEdit :selectedBlock="selectedBlock" :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" />
-    </div>
+  <div class="w-full min-h-full flex">
+    <StyleEdit />
+    <EmailPreview
+      :key="gridColums"
+      @update:selectedBlock="updateSelectedBlock"
+      :selectedBlock="selectedBlock"
+      :selectedBanner="banner"
+      :bannerMargin="Number(bannerMargin)"
+      :underBannerText="underBannerText"
+      :bannerBackground="bannerBackground"
+      :underBannerTextHeight="underBannerTextHeight"
+      :underBannerTextFontSize="underBannerTextFontSize"
+      :underBannerTextFontWeight="underBannerTextFontWeight"
+      :gridColums="gridColums"
+    />
+    <BlockEdit
+      :selectedBlock="selectedBlock"
+      :bannerUrl="banner"
+      @update:bannerUrl="updateBannerUrl"
+      :bannerMargin="Number(bannerMargin)"
+      :underBannerTextFontSize="Number(underBannerTextFontWeight)"
+      @update:bannerMargin="bannerMarginUpdate"
+      @update:fontWeight="underBannerTextFontWeightUpdate"
+    />
+  </div>
 </template>
