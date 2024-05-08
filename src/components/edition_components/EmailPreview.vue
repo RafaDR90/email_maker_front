@@ -72,11 +72,10 @@ const updateSelectedBlock = (block) => {
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
         }"
       >
-        <p
+        <p class=" text-center"
           v-if="underBannerText"
           :style="{
             fontSize: underBannerTextFontSize + 'px',
-            fontWeight: underBannerTextFontWeight,
           }"
         >
           {{ underBannerText }}
