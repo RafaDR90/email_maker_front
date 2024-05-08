@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-
+import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
 
 const text = ref("");
@@ -87,8 +87,8 @@ const handleFontWeightUpdate = (updatedWeight) => {
 
     <!-- Intensidad de la fuente -->
     <h3>Intensidad de la fuente:</h3>
-    <NumberInput class="w-fit" @updateNumber="handleFontWeightUpdate" />
-
+    <Slider class="mb-4 " :maxValue="900" :step="100" @update:value="handleFontWeightUpdate"/>
+    
     <!-- Altura -->
     <h3>Altura:</h3>
     <NumberInput class="w-fit" @updateNumber="handleTextHeightSizeUpdate" />
