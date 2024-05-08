@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
+
 import NumberInput from "./mini_components/NumberInput.vue";
 
 const text = ref("");
-const selectedFont = ref("");
+const selectedFont = ref("Roboto");
 const availableFonts = ref([]);
-const fontSize=ref(12);
+const fontSize = ref(12);
+const textHeight = ref(30);
 
 // Función para obtener las fuentes disponibles desde CSS
 const getAvailableFonts = () => {
@@ -36,6 +38,14 @@ const getAvailableFonts = () => {
 onMounted(() => {
   getAvailableFonts();
 });
+
+const handleFontSizeUpdate = (updatedSize) => {
+  fontSize.value = updatedSize;
+};
+
+const handleTextHeightSizeUpdate = (updatedHeight) => {
+  textHeight.value = updatedHeight;
+};
 </script>
 
 <template>
@@ -66,15 +76,11 @@ onMounted(() => {
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>
-    <NumberInput />
+    <NumberInput class="w-fit" @updateNumber="handleFontSizeUpdate" />
 
     <!-- Altura -->
     <h3>Altura:</h3>
-    <input
-      class="custom-input text-sm mb-4"
-      placeholder="Introduce texto"
-      v-model="text"
-    />
+    <NumberInput class="w-fit" @updateNumber="handleTextHeightSizeUpdate" />
   </div>
 </template>
 

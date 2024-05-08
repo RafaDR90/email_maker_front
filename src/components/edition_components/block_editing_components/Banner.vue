@@ -34,7 +34,6 @@ const handleBgColorUpdate = (updatedColor) => {
 </template>
 
 <style scoped>
-
 .divider {
   @apply bg-slate-600 w-[91%] min-w-7 h-[1px] opacity-75 z-0;
 }
