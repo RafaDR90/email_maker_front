@@ -11,8 +11,6 @@ const emits = defineEmits([
   "update:fontSelected",
 ]);
 
-//calculo ancho de pantalla
-//const width = window.innerWidth;
 
 
 
