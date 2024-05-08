@@ -11,7 +11,7 @@ const props = defineProps({
 const emits = defineEmits(["update:colors", "update:url","update:bannerMargin"]);
 
 const url = ref("");
-const backgroundColor = ref("#000000");
+const backgroundColor = ref("#FFFFFF");
 
 //cuando url cambie ejecuto emit
 let timeoutId = null;
