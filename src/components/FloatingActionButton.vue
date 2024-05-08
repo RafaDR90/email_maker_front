@@ -45,7 +45,7 @@ const showTooltip = ref(false);
 }
 
 .inner-fabs .fab {
-  @apply w-[60px] h-[60px] right-6 bottom-[23px];
+  @apply w-[60px] h-[60px] right-0 bottom-[23px];
 }
 
 .inner-fabs.show .fab {

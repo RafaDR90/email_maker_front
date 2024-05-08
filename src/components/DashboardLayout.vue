@@ -27,7 +27,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-full h-full alt-background flex justify-center overflow-y-auto overflow-x-hidden "
+    class="w-full h-full alt-background flex justify-center overflow-y-auto overflow-x-hidden"
   >
     <div
       class="flex flex-col items-start my-5 bg-slate-200 dark:bg-slate-900 rounded-lg mx-20 px-10 py-10 pt-5 backdrop-opacity-90 z-0 shadow-md h-full"
@@ -36,7 +36,7 @@ onMounted(() => {
       <NewEmailButton />
       <br />
       <!-- Sección Mis Plantillas -->
-      <h2 class="font-bold">Mis plantillas</h2>
+      <h2 class="self-start">Mis plantillas</h2>
       <div class="divider" />
       <br />
       <div class="items-container">
@@ -46,7 +46,7 @@ onMounted(() => {
       </div>
       <br />
       <!-- Sección Otras Plantillas -->
-      <h2 class="font-bold">Otras plantillas</h2>
+      <h2 class="self-start">Otras plantillas</h2>
       <div class="divider" />
       <br />
       <div class="items-container">
@@ -86,7 +86,7 @@ onMounted(() => {
 }
 
 .divider {
-  @apply bg-gradient-to-r from-slate-400 w-72 min-w-7 h-[2px];
+  @apply bg-gradient-to-l self-start from-slate-400 w-72 min-w-7 h-[2px];
 }
 
 .items-container {

@@ -28,11 +28,7 @@ const bannerMarginUpdate = (newMargin) => {
 };
 
 const updateBannerBgColor = (newColor) => {
-    bannerBackground.value = newColor;
-};
-const underBannerTextFontWeightUpdate = (newWeight) => {
-  console.log("NewEmail: ", newWeight);
-  underBannerTextFontWeight.value = newWeight;
+  bannerBackground.value = newColor;
 };
 
 /*----------------------------
@@ -42,10 +38,30 @@ const underBannerTextFontWeightUpdate = (newWeight) => {
 /*----------------------------
             TEXTO
 ----------------------------*/
-const underBannerText = ref("Hola mundo");
+const underBannerText = ref("Título de la promoción");
+const defaultFont = getComputedStyle(document.documentElement).getPropertyValue('--default-font').trim();
+const underBannerSelectedFont = ref({defaultFont});
 const underBannerTextHeight = ref(43);
 const underBannerTextFontSize = ref(16);
 const underBannerTextFontWeight = ref(400);
+
+const underBannerTextFontWeightUpdate = (newWeight) => {
+  underBannerTextFontWeight.value = newWeight;
+};
+
+const underBannerTextFontSizeUpdate = (newSize) => {
+  underBannerTextFontSize.value = newSize;
+};
+
+const underBannerTextHeightUpdate = (newHeight) => {
+  underBannerTextHeight.value = newHeight;
+};
+const underBannerTextUpdate = (newText) => {
+  underBannerText.value = newText;
+};
+const underBannerFontUpdate = (newFont) => {
+    underBannerSelectedFont.value = newFont;
+};
 /*----------------------------
            FIN TEXTO
 ----------------------------*/
@@ -69,6 +85,7 @@ const gridColums = ref("3");
       :selectedBanner="banner"
       :bannerMargin="Number(bannerMargin)"
       :underBannerText="underBannerText"
+      :underBannerSelectedFont="underBannerSelectedFont"
       :bannerBackground="bannerBackground"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerTextFontSize="underBannerTextFontSize"
@@ -80,9 +97,16 @@ const gridColums = ref("3");
       :bannerUrl="banner"
       @update:bannerUrl="updateBannerUrl"
       :bannerMargin="Number(bannerMargin)"
+      :underBannerText="underBannerText"
+      :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="Number(underBannerTextFontWeight)"
       @update:bannerMargin="bannerMarginUpdate"
       @update:fontWeight="underBannerTextFontWeightUpdate"
-    @update:bannerBgColor="updateBannerBgColor" />
+      @update:fontSize="underBannerTextFontSizeUpdate"
+      @update:textHeight="underBannerTextHeightUpdate"
+      @update:underBannerText="underBannerTextUpdate"
+      @update:bannerBgColor="updateBannerBgColor"
+      @update:fontSelected="underBannerFontUpdate"
+    />
   </div>
 </template>

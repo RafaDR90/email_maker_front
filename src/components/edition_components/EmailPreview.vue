@@ -1,85 +1,124 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import { defineProps, onMounted, ref, nextTick, watch, defineEmits } from 'vue';
+import { defineProps, onMounted, ref, nextTick, watch, defineEmits } from "vue";
 
-const emit = defineEmits(['update:selectedBlock']);
+const emit = defineEmits(["update:selectedBlock"]);
 
 //obtengo las props del componente
 const props = defineProps({
-    //banner
-    selectedBanner: String,
-    bannerMargin: Number,
-    bannerBackground: String,
-    //underBannerText
-    underBannerText: String,
-    underBannerTextHeight: Number,
-    underBannerTextFontSize: Number,
-    underBannerTextFontWeight: Number,
-    //grid
-    gridColums: String
+  //banner
+  selectedBanner: String,
+  bannerMargin: Number,
+  bannerBackground: String,
+  //underBannerText
+  underBannerText: String,
+  underBannerSelectedFont: {
+    type: Object,
+    default: () => ({ fontFamily: "Roboto" }), // Establece un valor predeterminado con fontFamily 'Roboto'
+  },
+  underBannerTextHeight: Number,
+  underBannerTextFontSize: Number,
+  underBannerTextFontWeight: Number,
+  //grid
+  gridColums: String,
 });
 
-onMounted(async() => {
-    await nextTick();
-    const grid = document.querySelector('.dynamic-grid');
-    grid.style.gridTemplateColumns = `repeat(${props.gridColums}, 1fr)`;
+onMounted(async () => {
+  await nextTick();
+  const grid = document.querySelector(".dynamic-grid");
+  grid.style.gridTemplateColumns = `repeat(${props.gridColums}, 1fr)`;
 });
 
 const updateSelectedBlock = (block) => {
-    emit('update:selectedBlock', block);
+  emit("update:selectedBlock", block);
 };
-
 </script>
 
 
 <template>
-    <div class=" min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
-        <div id="emailContainer" class=" w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max  ">
-            <div @click="updateSelectedBlock('banner')" class="selectable-block">
-                <div v-if="!selectedBanner" :style="{ backgroundColor: bannerBackground || '', marginBottom: bannerMargin + 'px' }"
-                    class="w-full h-80 bg-gray-100 border-4 border-gray-200 flex justify-center items-center">
-                    <div class="flex flex-col justify-center items-center">
-                        <img class="w-20 h-20" :src="Banner" alt="imagen banner">
-                        <p class=" text-4xl text-gray-500">Inserte imagen</p>
-                    </div>
-                </div>
-                <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
-                    <img class="w-full" :src="selectedBanner" alt="imagen banner">
-                </div>
-            </div>
-            <div @click="updateSelectedBlock('underBannerText')"  class=" selectable-block min-h-max flex justify-center items-center"
-                :style="{ minHeight: underBannerTextHeight === 0 ? 'max-content' : underBannerTextHeight + 'px' }">
-                <p v-if="underBannerText" :style="{ fontSize: underBannerTextFontSize + 'px', fontWeight: underBannerTextFontWeight + 'px' }">
-                    {{ underBannerText }}
-                </p>
-            </div>
-            <div class="grid gap-1 w-full border border-green-200 dynamic-grid">
-                <div class=" selectable-block h-60 bg-red-500 flex justify-center items-center">
-                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
-                </div>
-                <div class=" selectable-block h-60 bg-red-500 flex justify-center items-center">
-                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
-                </div>
-                <div class=" selectable-block h-60 bg-red-500 flex justify-center items-center">
-                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
-                </div>
-                <div class=" selectable-block h-60 bg-red-500 flex justify-center items-center">
-                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
-                </div>
-                <div class=" selectable-block h-60 bg-red-500 flex justify-center items-center">
-                    <div class="bg-green-200 w-[80%] h-[90%]"></div>
-                </div>
-            </div>
+  <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
+    <div
+      id="emailContainer"
+      class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
+    >
+      <div @click="updateSelectedBlock('banner')" class="selectable-block">
+        <div
+          v-if="!selectedBanner"
+          :style="{
+            backgroundColor: bannerBackground || '',
+            marginBottom: bannerMargin + 'px',
+          }"
+          class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
+        >
+          <div class="flex flex-col justify-center items-center">
+            <img class="w-20 h-20" :src="Banner" alt="imagen banner" />
+            <p class="text-4xl text-gray-500">Inserte imagen</p>
+          </div>
         </div>
+        <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
+          <img class="w-full" :src="selectedBanner" alt="imagen banner" />
+        </div>
+      </div>
+      <div
+        @click="updateSelectedBlock('underBannerText')"
+        class="selectable-block min-h-max flex justify-center items-center"
+        :style="{
+          minHeight:
+            underBannerTextHeight === 0
+              ? 'max-content'
+              : underBannerTextHeight + 'px',
+          fontWeight: underBannerTextFontWeight,
+          textSize: underBannerTextFontSize,
+          fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
+        }"
+      >
+        <p
+          v-if="underBannerText"
+          :style="{
+            fontSize: underBannerTextFontSize + 'px',
+            fontWeight: underBannerTextFontWeight,
+          }"
+        >
+          {{ underBannerText }}
+        </p>
+      </div>
+      <div class="grid gap-1 w-full border border-green-200 dynamic-grid">
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
 .dynamic-grid {
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.selectable-block{
-    @apply w-full cursor-pointer hover:border-4 hover:border-orange-400;
+.selectable-block {
+  @apply w-full cursor-pointer hover:border-4 hover:border-orange-400;
 }
 </style>

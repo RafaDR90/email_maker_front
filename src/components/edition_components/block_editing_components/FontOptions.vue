@@ -3,16 +3,24 @@ import { ref, onMounted, defineEmits, defineProps } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
 
-const emits = defineEmits(["update:fontWeight"]);
+const emits = defineEmits([
+  "update:fontWeight",
+  "update:fontSize",
+  "update:textHeight",
+  "update:text",
+  "update:fontSelected",
+]);
+
 const props = defineProps({
   underBannerTextFontWeight: Number,
-}
-);
-const text = ref("");
-const selectedFont = ref("Roboto");
+  underBannerText: String,
+  underBannerSelectedFont: Object,
+});
+const text = ref(props.underBannerText);
+const selectedFont = ref(props.underBannerSelectedFont);
 const availableFonts = ref([]);
-const fontSize = ref(12);
-const textHeight = ref(30);
+const fontSize = ref(16);
+const textHeight = ref(43);
 const fontWeight = ref(400);
 
 // Función para obtener las fuentes disponibles desde CSS
@@ -28,7 +36,12 @@ const getAvailableFonts = () => {
 
       for (const rule of rules) {
         if (rule instanceof CSSFontFaceRule) {
-          fontFamilies.add(rule.style.fontFamily);
+          const fontFamily = rule.style.fontFamily;
+          const fontSrc = rule.style.src;
+          const fontWeight = rule.style.fontWeight;
+          const fontStyle = rule.style.fontStyle;
+
+          fontFamilies.add({ fontFamily, fontSrc, fontWeight, fontStyle });
         }
       }
     } catch (error) {
@@ -37,7 +50,9 @@ const getAvailableFonts = () => {
   }
 
   // Convertir el conjunto de fuentes a un array y ordenarlo alfabéticamente
-  availableFonts.value = Array.from(fontFamilies).sort();
+  availableFonts.value = Array.from(fontFamilies).sort((a, b) =>
+    a.fontFamily.localeCompare(b.fontFamily)
+  );
 };
 
 // Llamar a la función para obtener las fuentes disponibles cuando el componente está montado
@@ -46,16 +61,23 @@ onMounted(() => {
 });
 
 const handleFontSizeUpdate = (updatedSize) => {
-  fontSize.value = updatedSize;
+  emits("update:fontSize", Number(updatedSize));
 };
 
 const handleTextHeightSizeUpdate = (updatedHeight) => {
-  textHeight.value = updatedHeight;
+  emits("update:textHeight", Number(updatedHeight));
 };
 const handleFontWeightUpdate = (updatedWeight) => {
-  console.log(updatedWeight);
-  fontWeight.value = updatedWeight;
   emits("update:fontWeight", Number(updatedWeight));
+};
+
+function handleSelectedFont(selectedFont) {
+  emits("update:fontSelected", selectedFont);
+}
+
+const handleTextUpdate = (updatedText) => {
+  text.value = updatedText;
+  emits("update:text", updatedText);
 };
 </script>
 
@@ -69,6 +91,7 @@ const handleFontWeightUpdate = (updatedWeight) => {
       class="custom-input text-sm max-h-36 min-h-9"
       placeholder="Introduce texto"
       v-model="text"
+      @input="handleTextUpdate(text)"
     />
 
     <!-- Font selector -->
@@ -78,20 +101,25 @@ const handleFontWeightUpdate = (updatedWeight) => {
         id="fontSelect"
         class="custom-input text-sm"
         v-model="selectedFont"
+        @change="handleSelectedFont(selectedFont)"
       >
         <option
           v-for="(font, index) in availableFonts"
           :key="index"
           :value="font"
         >
-          {{ font }}
+          {{ font.fontFamily }}
         </option>
       </select>
     </div>
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>
-    <NumberInput class="w-fit" @updateNumber="handleFontSizeUpdate" />
+    <NumberInput
+      class="w-fit"
+      :value="fontSize"
+      @update:value="handleFontSizeUpdate"
+    />
 
     <!-- Intensidad de la fuente -->
     <h3>Intensidad de la fuente:</h3>
@@ -105,7 +133,11 @@ const handleFontWeightUpdate = (updatedWeight) => {
 
     <!-- Altura -->
     <h3>Altura:</h3>
-    <NumberInput class="w-fit" @updateNumber="handleTextHeightSizeUpdate" />
+    <NumberInput
+      class="w-fit"
+      :value="textHeight"
+      @update:value="handleTextHeightSizeUpdate"
+    />
   </div>
 </template>
 

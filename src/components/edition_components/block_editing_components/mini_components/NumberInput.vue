@@ -1,11 +1,18 @@
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref, defineEmits, defineProps } from "vue";
 
-const number = ref(0);
-const emits = defineEmits(['updateNumber']);
+const emits = defineEmits(["update:value"]);
 
-function emitUpdate() {
-  emits("updateNumber");
+const props = defineProps({
+  value: { type: Number, default: 16 },
+});
+
+const number = ref(props.value);
+
+function emitUpdate(newValue) {
+  // Si el valor es menor que 0, establecerlo a 0
+  number.value = Math.max(0, newValue);
+  emits("update:value", newValue);
 }
 </script>
 
@@ -15,7 +22,7 @@ function emitUpdate() {
       type="number"
       class="custom-input text-center"
       v-model="number"
-      @input="emitUpdate()"
+      @input="emitUpdate(number)"
     />
   </div>
 </template>

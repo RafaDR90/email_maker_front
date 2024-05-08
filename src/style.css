@@ -44,6 +44,10 @@
   }
 }
 
+:root {
+  --default-font: "Roboto", sans-serif;
+}
+
 .blockEditItem{
   @apply w-full h-fit flex flex-col place-items-start p-4;
 }
