@@ -44,6 +44,14 @@
   }
 }
 
+.blockEditItem{
+  @apply w-full h-fit flex flex-col place-items-start p-4;
+}
+
+h2{
+  @apply font-bold self-center;
+}
+
 h3 {
   @apply mt-4 mb-2 self-start text-sm font-semibold;
 }
@@ -55,6 +63,9 @@ h3 {
   @apply md:min-w-96 sm:overflow-auto py-2 px-3 outline outline-2 outline-red-600 caret-red-700 border border-red-900 rounded-md;
 }
 
+.divider {
+  @apply self-center bg-slate-600 w-[91%] min-w-7 h-[1px] opacity-75 z-0;
+}
 /* Dropdown Button y LoginButton */
 .dropbtn {
   @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer z-40 ;

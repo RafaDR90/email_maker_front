@@ -49,21 +49,21 @@ const handleTextHeightSizeUpdate = (updatedHeight) => {
 </script>
 
 <template>
-  <div class="size-full flex flex-col place-items-start p-4">
+  <div class="blockEditItem">
     <h2 class="font-bold">Texto</h2>
     <div class="divider" />
     <!-- Img URL -->
     <h3>Texto:</h3>
     <textarea
-      class="custom-input text-sm mb-4 max-h-36 min-h-9"
+      class="custom-input text-sm max-h-36 min-h-9"
       placeholder="Introduce texto"
       v-model="text"
     />
 
     <!-- Font selector -->
     <h3>Fuente:</h3>
-    <div class="min-w-full">
-      <select id="fontSelect" class="custom-input" v-model="selectedFont">
+    <div class="w-full ">
+      <select id="fontSelect" class="custom-input text-sm" v-model="selectedFont">
         <option
           v-for="(font, index) in availableFonts"
           :key="index"
@@ -76,11 +76,11 @@ const handleTextHeightSizeUpdate = (updatedHeight) => {
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>
-    <NumberInput class="w-fit" @updateNumber="handleFontSizeUpdate" />
+    <NumberInput class=" w-fit" @updateNumber="handleFontSizeUpdate" />
 
     <!-- Altura -->
     <h3>Altura:</h3>
-    <NumberInput class="w-fit" @updateNumber="handleTextHeightSizeUpdate" />
+    <NumberInput class="w-fit " @updateNumber="handleTextHeightSizeUpdate" />
   </div>
 </template>
 

@@ -2,7 +2,7 @@
 import { ref, defineEmits } from "vue";
 
 const number = ref(0);
-const emits = defineEmits("updateNumber");
+const emits = defineEmits(['updateNumber']);
 
 function emitUpdate() {
   emits("updateNumber");
@@ -10,7 +10,7 @@ function emitUpdate() {
 </script>
 
 <template>
-  <div class="size-full">
+  <div class="w-full">
     <input
       type="number"
       class="custom-input text-center"
