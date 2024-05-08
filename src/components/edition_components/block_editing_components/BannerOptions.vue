@@ -25,7 +25,7 @@ watch(url, (newVal) => {
 });
 
 const handleBgColorUpdate = (updatedColor) => {
-  backgroundColor.value = updatedColor;
+  emits("update:colors", updatedColor);
 };
 
 const bannerMarginUpdate=(newVal)=>{
@@ -48,8 +48,8 @@ const bannerMarginUpdate=(newVal)=>{
     <!-- Background -->
     <h3>Fondo:</h3>
     <ColorPicker
-      :colors="[backgroundColor]"
-      @update:colors="handleBgColorUpdate"
+      :color="[backgroundColor]"
+      @update:color="handleBgColorUpdate"
       class="mb-4 h-fit"
     />
   </div>

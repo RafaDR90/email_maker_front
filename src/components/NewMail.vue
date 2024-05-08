@@ -7,7 +7,7 @@ import { ref, watch } from "vue";
 /*----------------------------
             BLOCK EDIT
 ----------------------------*/
-const selectedBlock = ref("");
+const selectedBlock = ref("banner");
 const updateSelectedBlock = (block) => {
     selectedBlock.value = block;
 };
@@ -25,6 +25,10 @@ const updateBannerUrl = (newUrl) => {
 
 const bannerMarginUpdate = (newMargin) => {
     bannerMargin.value = newMargin;
+};
+
+const updateBannerBgColor = (newColor) => {
+    bannerBackground.value = newColor;
 };
 //hago un console.log cada vez que bannerMargin cambie
 
@@ -59,6 +63,6 @@ const gridColums = ref('3');
         <EmailPreview :key="gridColums" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" :selectedBanner="banner" :bannerMargin="Number(bannerMargin)" :underBannerText="underBannerText"
             :bannerBackground="bannerBackground" :underBannerTextHeight="underBannerTextHeight"
             :underBannerTextFontSize="underBannerTextFontSize" :gridColums="gridColums" />
-        <BlockEdit :selectedBlock="selectedBlock" :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" />
+        <BlockEdit :selectedBlock="selectedBlock" :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" @update:bannerBgColor="updateBannerBgColor" />
     </div>
 </template>
