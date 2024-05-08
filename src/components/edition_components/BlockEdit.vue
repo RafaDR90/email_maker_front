@@ -20,8 +20,10 @@ const props = defineProps({
   bannerUrl: String,
   bannerMargin: Number,
   underBannerText: String,
+  underBannerTextHeight: Number,
   underBannerSelectedFont: Object,
   underBannerTextFontSize: Number,
+  underBannerTextFontWeight: Number,
 });
 
 const handleUrlUpdate = (newUrl) => {
@@ -67,8 +69,10 @@ const updateUnderBannerText = (newText) => {
     <FontEditer
       v-else-if="selectedBlock == 'underBannerText'"
       :underBannerText="underBannerText"
+      :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="underBannerTextFontSize"
+      :underBannerTextFontWeight="underBannerTextFontWeight"
       @update:text="updateUnderBannerText"
       @update:fontWeight="fontWeightUpdate"
       @update:fontSize="fontSizeUpdate"
