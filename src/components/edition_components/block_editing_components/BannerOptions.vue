@@ -26,7 +26,7 @@ const handleBgColorUpdate = (updatedColor) => {
 </script>
 
 <template>
-  <div class="size-full flex flex-col place-items-center p-4">
+  <div class="size-full flex flex-col place-items-start p-4">
     <h2 class="font-bold">Banner</h2>
     <div class="divider" />
     <!-- Img URL -->
@@ -35,7 +35,7 @@ const handleBgColorUpdate = (updatedColor) => {
 
     <!-- Slider -->
     <h3>Margen inferior:</h3>
-    <Slider class="mb-4" />
+    <Slider class="mb-4 " />
 
     <!-- Background -->
     <h3>Fondo:</h3>
@@ -48,9 +48,7 @@ const handleBgColorUpdate = (updatedColor) => {
 </template>
 
 <style scoped>
-h3 {
-  @apply mt-4 mb-2 self-start text-sm font-semibold;
-}
+
 .divider {
   @apply bg-slate-600 w-[91%] min-w-7 h-[1px] opacity-75 z-0;
 }
