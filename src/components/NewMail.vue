@@ -43,7 +43,7 @@ const defaultFont = getComputedStyle(document.documentElement).getPropertyValue(
 const underBannerSelectedFont = ref({defaultFont});
 const underBannerTextHeight = ref(43);
 const underBannerTextFontSize = ref(16);
-const underBannerTextFontWeight = ref(400);
+const underBannerTextFontWeight = ref(200);
 
 const underBannerTextFontWeightUpdate = (newWeight) => {
   underBannerTextFontWeight.value = newWeight;
@@ -98,8 +98,10 @@ const gridColums = ref("3");
       @update:bannerUrl="updateBannerUrl"
       :bannerMargin="Number(bannerMargin)"
       :underBannerText="underBannerText"
+      :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
-      :underBannerTextFontSize="Number(underBannerTextFontWeight)"
+      :underBannerTextFontSize="Number(underBannerTextFontSize)"
+      :underBannerTextFontWeight="Number(underBannerTextFontWeight)"
       @update:bannerMargin="bannerMarginUpdate"
       @update:fontWeight="underBannerTextFontWeightUpdate"
       @update:fontSize="underBannerTextFontSizeUpdate"

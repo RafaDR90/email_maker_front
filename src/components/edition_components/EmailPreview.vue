@@ -76,7 +76,6 @@ const updateSelectedBlock = (block) => {
           v-if="underBannerText"
           :style="{
             fontSize: underBannerTextFontSize + 'px',
-            fontWeight: underBannerTextFontWeight,
           }"
         >
           {{ underBannerText }}

@@ -13,15 +13,17 @@ const emits = defineEmits([
 
 const props = defineProps({
   underBannerTextFontWeight: Number,
+  underBannerTextFontSize: Number,
   underBannerText: String,
+  underBannerTextHeight: Number,
   underBannerSelectedFont: Object,
 });
 const text = ref(props.underBannerText);
 const selectedFont = ref(props.underBannerSelectedFont);
 const availableFonts = ref([]);
-const fontSize = ref(16);
-const textHeight = ref(43);
-const fontWeight = ref(400);
+const fontSize = ref(props.underBannerTextFontSize || 16);
+const textHeight = ref(props.underBannerTextHeight || 43);
+const fontWeight = ref(props.underBannerTextFontWeight || 200);
 
 // Función para obtener las fuentes disponibles desde CSS
 const getAvailableFonts = () => {
@@ -125,7 +127,7 @@ const handleTextUpdate = (updatedText) => {
     <h3>Intensidad de la fuente:</h3>
     <Slider
       class="mb-4"
-      :fontWeight="fontWeight"
+      :value="fontWeight"
       :maxValue="900"
       :step="100"
       @update:value="handleFontWeightUpdate"
