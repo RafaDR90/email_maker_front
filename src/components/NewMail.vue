@@ -2,18 +2,24 @@
 import BlockEdit from "./edition_components/BlockEdit.vue";
 import StyleEdit from "./edition_components/StyleEdit.vue";
 import EmailPreview from "./edition_components/EmailPreview.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 /*----------------------------
             BANNER
 ----------------------------*/
 const banner = ref("");
-const bannerMargin = ref(22);
+const bannerMargin = ref(82);
 const bannerBackground = ref("#ffffff");
 
 const updateBannerUrl = (newUrl) => {
     banner.value = newUrl;
 };
+
+const bannerMarginUpdate = (newMargin) => {
+    bannerMargin.value = newMargin;
+};
+//hago un console.log cada vez que bannerMargin cambie
+
 /*----------------------------
             FIN BANNER
 ----------------------------*/
@@ -31,7 +37,7 @@ const underBannerTextFontSize = ref(16);
 /*----------------------------
          CARDS GRID
 ----------------------------*/
-const gridColums = ref(3);
+const gridColums = ref('3');
 /*----------------------------
        FIN CARDS GRID
 ----------------------------*/
@@ -42,9 +48,9 @@ const gridColums = ref(3);
 <template>
     <div class="w-full min-h-full flex">
         <StyleEdit />
-        <EmailPreview :key="gridColums" :selectedBanner="banner" :bannerMargin="bannerMargin" :underBannerText="underBannerText"
+        <EmailPreview :key="gridColums" :selectedBanner="banner" :bannerMargin="Number(bannerMargin)" :underBannerText="underBannerText"
             :bannerBackground="bannerBackground" :underBannerTextHeight="underBannerTextHeight"
             :underBannerTextFontSize="underBannerTextFontSize" :gridColums="gridColums" />
-        <BlockEdit :bannerUrl="banner" @update:bannerUrl="updateBannerUrl"  />
+        <BlockEdit :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" />
     </div>
 </template>

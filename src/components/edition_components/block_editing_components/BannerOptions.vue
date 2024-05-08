@@ -3,7 +3,12 @@ import { ref,defineEmits, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import ColorPicker from "./mini_components/ColorPicker.vue";
 
-const emits = defineEmits(["update:colors", "update:url"]);
+
+const props = defineProps({
+  bannerMargin:Number,
+});
+
+const emits = defineEmits(["update:colors", "update:url","update:bannerMargin"]);
 
 const url = ref("");
 const backgroundColor = ref("#000000");
@@ -23,6 +28,10 @@ watch(url, (newVal) => {
 const handleBgColorUpdate = (updatedColor) => {
   backgroundColor.value = updatedColor;
 };
+
+const bannerMarginUpdate=(newVal)=>{
+  emits("update:bannerMargin", newVal);
+}
 </script>
 
 <template>
@@ -35,7 +44,7 @@ const handleBgColorUpdate = (updatedColor) => {
 
     <!-- Slider -->
     <h3>Margen inferior:</h3>
-    <Slider class="mb-4 " />
+    <Slider class="mb-4 " :bannerMargin="bannerMargin" @update:bannerMargin="bannerMarginUpdate" />
 
     <!-- Background -->
     <h3>Fondo:</h3>

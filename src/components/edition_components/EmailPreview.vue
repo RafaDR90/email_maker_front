@@ -1,6 +1,6 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import { defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref, nextTick, watch } from 'vue';
 
 //obtengo las props del componente
 const props = defineProps({
@@ -16,19 +16,27 @@ const props = defineProps({
     gridColums: String
 });
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick();
     const grid = document.querySelector('.dynamic-grid');
     grid.style.gridTemplateColumns = `repeat(${props.gridColums}, 1fr)`;
+});
+
+const forceUpdate = ref(false);
+//console.log cuando cambie bannerMargin
+watch(() => props.bannerMargin, (newVal) => {
+    console.log(newVal);
+    forceUpdate.value = !forceUpdate.value;
 });
 
 </script>
 
 
 <template>
-    <div class=" min-w-[649px] bg-green-300 min-h-full w-[50%] flex justify-center">
+    <div class=" min-w-[649px] bg-gray-100 min-h-full w-[50%] flex justify-center">
         <div id="emailContainer" class=" w-[649px] min-h-20 mt-20 bg-blue-400 flex flex-col">
             <div class="w-full">
-                <div v-if="!selectedBanner" :style="{ backgroundColor: bannerBackground || '' }"
+                <div v-if="!selectedBanner" :style="{ backgroundColor: bannerBackground || '', marginBottom: bannerMargin + 'px' }"
                     class="w-full h-80 bg-gray-100 border-4 border-gray-200 flex justify-center items-center">
                     <div class="flex flex-col justify-center items-center">
                         <img class="w-20 h-20" :src="Banner" alt="imagen banner">

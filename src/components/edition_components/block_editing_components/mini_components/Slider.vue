@@ -1,13 +1,30 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, watch } from "vue";
+
+const emit = defineEmits(["update:bannerMargin"]);
+
 const props = defineProps({
   minValue: { type: Number, default: 0 },
   maxValue: { type: Number, default: 100 },
+  bannerMargin: Number,
 });
 
-const value = ref(50);
+const value = ref(props.bannerMargin);
 const minValue = ref(props.minValue);
 const maxValue = ref(props.maxValue);
+
+let timeoutId = null;
+watch(
+  value,
+  (newVal) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      emit("update:bannerMargin", newVal);
+    }, 1000);
+  }
+);
 </script>
 
 <template>
