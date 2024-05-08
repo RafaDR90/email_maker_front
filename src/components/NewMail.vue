@@ -5,10 +5,18 @@ import EmailPreview from "./edition_components/EmailPreview.vue";
 import { ref, watch } from "vue";
 
 /*----------------------------
+            BLOCK EDIT
+----------------------------*/
+const selectedBlock = ref("");
+const updateSelectedBlock = (block) => {
+    selectedBlock.value = block;
+};
+
+/*----------------------------
             BANNER
 ----------------------------*/
 const banner = ref("");
-const bannerMargin = ref(82);
+const bannerMargin = ref(0);
 const bannerBackground = ref("#ffffff");
 
 const updateBannerUrl = (newUrl) => {
@@ -48,9 +56,9 @@ const gridColums = ref('3');
 <template>
     <div class="w-full min-h-full flex">
         <StyleEdit />
-        <EmailPreview :key="gridColums" :selectedBanner="banner" :bannerMargin="Number(bannerMargin)" :underBannerText="underBannerText"
+        <EmailPreview :key="gridColums" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" :selectedBanner="banner" :bannerMargin="Number(bannerMargin)" :underBannerText="underBannerText"
             :bannerBackground="bannerBackground" :underBannerTextHeight="underBannerTextHeight"
             :underBannerTextFontSize="underBannerTextFontSize" :gridColums="gridColums" />
-        <BlockEdit :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" />
+        <BlockEdit :selectedBlock="selectedBlock" :bannerUrl="banner" @update:bannerUrl="updateBannerUrl" :bannerMargin="Number(bannerMargin)" @update:bannerMargin="bannerMarginUpdate" />
     </div>
 </template>

@@ -1,6 +1,8 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import { defineProps, onMounted, ref, nextTick, watch } from 'vue';
+import { defineProps, onMounted, ref, nextTick, watch, defineEmits } from 'vue';
+
+const emit = defineEmits(['update:selectedBlock']);
 
 //obtengo las props del componente
 const props = defineProps({
@@ -29,13 +31,17 @@ watch(() => props.bannerMargin, (newVal) => {
     forceUpdate.value = !forceUpdate.value;
 });
 
+const updateSelectedBlock = (block) => {
+    emit('update:selectedBlock', block);
+};
+
 </script>
 
 
 <template>
-    <div class=" min-w-[649px] bg-gray-100 min-h-full w-[50%] flex justify-center">
-        <div id="emailContainer" class=" w-[649px] min-h-20 mt-20 bg-blue-400 flex flex-col">
-            <div class="w-full">
+    <div class=" min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
+        <div id="emailContainer" class=" w-[649px] bg-white min-h-20 mt-20 flex flex-col h-max  ">
+            <div @click="updateSelectedBlock('')" class="w-full cursor-pointer">
                 <div v-if="!selectedBanner" :style="{ backgroundColor: bannerBackground || '', marginBottom: bannerMargin + 'px' }"
                     class="w-full h-80 bg-gray-100 border-4 border-gray-200 flex justify-center items-center">
                     <div class="flex flex-col justify-center items-center">
@@ -47,7 +53,7 @@ watch(() => props.bannerMargin, (newVal) => {
                     <img class="w-full" :src="selectedBanner" alt="imagen banner">
                 </div>
             </div>
-            <div class="w-full min-h-max flex justify-center items-center"
+            <div @click="updateSelectedBlock('underBannerText')"  class=" cursor-pointer w-full min-h-max flex justify-center items-center"
                 :style="{ minHeight: underBannerTextHeight === 0 ? 'max-content' : underBannerTextHeight + 'px' }">
                 <p v-if="underBannerText" :style="{ fontSize: underBannerTextFontSize + 'px' }">
                     {{ underBannerText }}
