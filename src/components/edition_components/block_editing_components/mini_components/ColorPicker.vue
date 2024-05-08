@@ -18,7 +18,7 @@ const updateColor = (index, color) => {
 const emitColorUpdate = () => {
   emits("update:colors", colors.value);
 };
-
+let timeoutId=null;
 watch(
   () => props.colorCount,
   (newVal, oldVal) => {
@@ -29,7 +29,13 @@ watch(
         // Agrega nuevos colores si es necesario
         for (let i = newColors.length; i < newVal; i++) {
           newColors.push("#000000");
-          emitColorUpdate();
+          
+          if(timeoutId){
+            clearTimeout(timeoutId);
+          }
+          timeoutId = setTimeout(() => {
+            emitColorUpdate();
+          }, 1000);
         }
       } else if (newVal < newColors.length) {
         // Elimina colores extra
