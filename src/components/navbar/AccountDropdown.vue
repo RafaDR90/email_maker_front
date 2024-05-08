@@ -1,27 +1,26 @@
 <script setup>
 import iconoPerfil from "../../assets/img/usuario.png";
-import { defineProps } from "vue";
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
 const store = useStore();
 
 const closeSession = () => {
-  router.push('/logout',
-    {
-      method: 'POST',
+  router
+    .push("/logout", {
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      localStorage.removeItem('token');
-      store.commit('clearAuthUser');
-      router.push('/login');
-    }
-    );
-}
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      localStorage.removeItem("token");
+      store.commit("clearAuthUser");
+      router.push("/login");
+    });
+};
 </script>
 
 <template>
@@ -40,7 +39,3 @@ const closeSession = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

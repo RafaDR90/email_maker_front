@@ -3,7 +3,14 @@ import Dropdown from "./AccountDropdown.vue";
 import LoginButton from "./LoginButton.vue";
 import Logo from "../../assets/img/logo.png";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const store = useStore();
+
+function goToHome() {
+  router.push("/");
+}
 </script>
 
 <template>
@@ -11,13 +18,17 @@ const store = useStore();
     <div
       class="sm:ms-4 md:ms-8 w-14 px-2 my-auto filter hover:drop-shadow-xl hover:drop-shadow-indigo-500 dark:brightness-200 dark:invert mx-3"
     >
-      <a href=""><img :src="Logo"  alt="Logo" /></a>
+      <a @click="goToHome"><img :src="Logo" alt="Logo" /></a>
     </div>
     <div id="buttons" class="size-full flex overflow-auto place-content-start">
-      <div class="navBarButton"><p>Inicio</p></div>
-      <div class="navBarButton"><p>Mis proyectos</p></div>
+      <div class="navBarButton" @click="goToHome">
+        <p>Inicio</p>
+      </div>
+      <div class="navBarButton" @click="() => {router.push('/my-projects')}">
+        <p>Mis proyectos</p>
+      </div>
     </div>
-    
+
     <Dropdown v-if="store.state.AuthUser" />
     <LoginButton v-else />
   </nav>
@@ -25,7 +36,7 @@ const store = useStore();
 
 <style scoped>
 .navBar {
-  @apply size-full min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end z-50 shadow-sm shadow-indigo-950;
+  @apply size-full min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end z-50  shadow-sm shadow-indigo-950 drop-shadow-sm;
 }
 
 .navBarButton {

@@ -27,10 +27,10 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-full h-full alt-background flex justify-center overflow-y-auto overflow-x-hidden"
+    class="w-full h-full alt-background flex justify-center overflow-y-auto overflow-x-hidden "
   >
     <div
-      class="flex flex-col items-start my-5 bg-slate-200 dark:bg-slate-900 rounded-lg mx-20 px-10 py-10 pt-5 backdrop-opacity-90 z-10 shadow-md h-full"
+      class="flex flex-col items-start my-5 bg-slate-200 dark:bg-slate-900 rounded-lg mx-20 px-10 py-10 pt-5 backdrop-opacity-90 z-0 shadow-md h-full"
     >
       <!-- Botón Nuevo Email -->
       <NewEmailButton />
@@ -85,7 +85,9 @@ onMounted(() => {
   }
 }
 
-
+.divider {
+  @apply bg-gradient-to-r from-slate-400 w-72 min-w-7 h-[2px];
+}
 
 .items-container {
   @apply grid gap-4 grid-flow-row sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7;
