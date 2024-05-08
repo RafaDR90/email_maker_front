@@ -11,12 +11,8 @@ const emits = defineEmits([
   "update:fontSelected",
 ]);
 
-//calculo ancho de pantalla
-//const width = window.innerWidth;
 
-window.addEventListener("resize", () => {
-  console.log(window.innerWidth);
-});
+
 
 const props = defineProps({
   underBannerTextFontWeight: Number,
@@ -26,7 +22,6 @@ const props = defineProps({
   underBannerSelectedFont: Object,
   underBannerTextFontSize: Number,
 });
-console.log(props.underBannerTextFontSize)
 const text = ref(props.underBannerText);
 const selectedFont = ref(props.underBannerSelectedFont);
 const availableFonts = ref([]);
