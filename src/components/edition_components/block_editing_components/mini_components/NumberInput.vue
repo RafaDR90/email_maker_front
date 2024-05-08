@@ -1,21 +1,21 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 
-const fontSize = ref(12);
-const emits = defineEmits("updateFontSize");
+const number = ref(0);
+const emits = defineEmits(['updateNumber']);
 
-function emitUpdate(newSize) {
-  emits("updateFontSize", newSize);
+function emitUpdate() {
+  emits("updateNumber");
 }
 </script>
 
 <template>
-  <div class="size-full">
+  <div class="w-full">
     <input
       type="number"
       class="custom-input text-center"
-      v-model="fontSize"
-      @input="emitUpdate(fontSize)"
+      v-model="number"
+      @input="emitUpdate()"
     />
   </div>
 </template>

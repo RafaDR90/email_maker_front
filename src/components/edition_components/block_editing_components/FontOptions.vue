@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
+
 import NumberInput from "./mini_components/NumberInput.vue";
 
 const text = ref("");
-const selectedFont = ref("");
+const selectedFont = ref("Roboto");
 const availableFonts = ref([]);
-const fontSize=ref(12);
+const fontSize = ref(12);
+const textHeight = ref(30);
 
 // Función para obtener las fuentes disponibles desde CSS
 const getAvailableFonts = () => {
@@ -36,24 +38,32 @@ const getAvailableFonts = () => {
 onMounted(() => {
   getAvailableFonts();
 });
+
+const handleFontSizeUpdate = (updatedSize) => {
+  fontSize.value = updatedSize;
+};
+
+const handleTextHeightSizeUpdate = (updatedHeight) => {
+  textHeight.value = updatedHeight;
+};
 </script>
 
 <template>
-  <div class="size-full flex flex-col place-items-start p-4">
+  <div class="blockEditItem">
     <h2 class="font-bold">Texto</h2>
     <div class="divider" />
     <!-- Img URL -->
     <h3>Texto:</h3>
     <textarea
-      class="custom-input text-sm mb-4 max-h-36 min-h-9"
+      class="custom-input text-sm max-h-36 min-h-9"
       placeholder="Introduce texto"
       v-model="text"
     />
 
     <!-- Font selector -->
     <h3>Fuente:</h3>
-    <div class="min-w-full">
-      <select id="fontSelect" class="custom-input" v-model="selectedFont">
+    <div class="w-full ">
+      <select id="fontSelect" class="custom-input text-sm" v-model="selectedFont">
         <option
           v-for="(font, index) in availableFonts"
           :key="index"
@@ -66,15 +76,11 @@ onMounted(() => {
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>
-    <NumberInput />
+    <NumberInput class=" w-fit" @updateNumber="handleFontSizeUpdate" />
 
     <!-- Altura -->
     <h3>Altura:</h3>
-    <input
-      class="custom-input text-sm mb-4"
-      placeholder="Introduce texto"
-      v-model="text"
-    />
+    <NumberInput class="w-fit " @updateNumber="handleTextHeightSizeUpdate" />
   </div>
 </template>
 

@@ -35,8 +35,8 @@ const bannerMarginUpdate=(newVal)=>{
 </script>
 
 <template>
-  <div class="size-full flex flex-col place-items-start p-4">
-    <h2 class="font-bold">Banner</h2>
+  <div class="blockEditItem">
+    <h2>Banner</h2>
     <div class="divider" />
     <!-- Img URL -->
     <h3>Url de la imagen:</h3>
@@ -51,14 +51,11 @@ const bannerMarginUpdate=(newVal)=>{
     <ColorPicker
       :colors="[backgroundColor]"
       @update:colors="handleBgColorUpdate"
-      class="mb-4"
+      class="mb-4 h-fit"
     />
   </div>
 </template>
 
 <style scoped>
 
-.divider {
-  @apply bg-slate-600 w-[91%] min-w-7 h-[1px] opacity-75 z-0;
-}
 </style>
