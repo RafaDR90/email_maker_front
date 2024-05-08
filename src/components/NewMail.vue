@@ -7,7 +7,7 @@ import { ref, watch } from "vue";
 /*----------------------------
             BLOCK EDIT
 ----------------------------*/
-const selectedBlock = ref("");
+const selectedBlock = ref("banner");
 const updateSelectedBlock = (block) => {
   selectedBlock.value = block;
 };
@@ -25,6 +25,10 @@ const updateBannerUrl = (newUrl) => {
 
 const bannerMarginUpdate = (newMargin) => {
   bannerMargin.value = newMargin;
+};
+
+const updateBannerBgColor = (newColor) => {
+    bannerBackground.value = newColor;
 };
 const underBannerTextFontWeightUpdate = (newWeight) => {
   console.log("NewEmail: ", newWeight);
@@ -79,6 +83,6 @@ const gridColums = ref("3");
       :underBannerTextFontSize="Number(underBannerTextFontWeight)"
       @update:bannerMargin="bannerMarginUpdate"
       @update:fontWeight="underBannerTextFontWeightUpdate"
-    />
+    @update:bannerBgColor="updateBannerBgColor" />
   </div>
 </template>
