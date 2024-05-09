@@ -111,3 +111,47 @@ const registrarse = async () => {
   @apply md:min-w-96 sm:overflow-auto caret-indigo-700;
 }
 </style>
+
+<!--  DEBUG
+  --  Supuesta implementación de register con axios:  --
+
+
+const registrarse = async () => {
+  // Comprobación de campos vacíos
+  if (!email.value || !password.value || !nombre.value || !confirmPassword.value) {
+    error.value = 'Por favor, rellena todos los campos';
+    errorNum.value = 1;
+    return;
+  }
+  
+  // Comprobación de longitud mínima de contraseña
+  if (password.value.length < 6) {
+    error.value = 'La contraseña debe tener al menos 6 caracteres';
+    errorNum.value = 2;
+    return;
+  }
+  
+  // Comprobación de coincidencia de contraseñas
+  if (password.value !== confirmPassword.value) {
+    error.value = 'Las contraseñas no coinciden';
+    errorNum.value = 2;
+    return;
+  }
+
+  // Llamar al método register de AuthService
+  try {
+    const data = await AuthService.register(
+      nombre.value,
+      email.value,
+      password.value,
+      confirmPassword.value
+    );
+    console.log('Registro exitoso:', data);
+    // Realizar acciones adicionales después del registro, como redireccionar a otra página
+  } catch (error) {
+    console.error('Error al registrarse:', error.message);
+    error.value = error.message || 'Error al registrarse';
+  }
+};
+
+-->

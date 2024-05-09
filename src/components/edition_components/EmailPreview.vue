@@ -5,6 +5,7 @@ import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
 import { useStyleVars } from "../../store/StyleVars";
+import ProductCard from "../ProductCard.vue";
 
 const bannerStore = useBannerVars();
 const underBannerTextStore = underBannerTextVars();
@@ -91,36 +92,12 @@ const updateSelectedBlock = (block) => {
         </p>
       </div>
       <Grid :gridConfiguration="styleStore.gridConfiguration">
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
-        <div
-          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-        >
-          <div class="bg-green-200 w-[80%] h-[90%]"></div>
-        </div>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
       </Grid>
     </div>
   </div>

@@ -47,6 +47,15 @@ const routes = [
       }
     }
   },
+  { path: '/products', component: LoginForm,
+    beforeEnter: (to, from, next) => {
+      if (store.state.AuthUser) {
+        next('/');
+      } else {
+        next();
+      }
+    }
+  },
 ]
 
 const router = createRouter({
