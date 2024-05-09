@@ -3,10 +3,9 @@ import { defineStore } from "pinia";
 export const useProductVars = defineStore({
   id: "productVars",
   state: () => ({
-    productsList: new Set(),
+    productsList: new Set(), //Set para que no se repitan los productos iguales
   }),
   actions: {
-    // Agrega un método para añadir un producto al conjunto
     addProduct(product) {
       this.productsList.add(product);
     },
