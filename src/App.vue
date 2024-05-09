@@ -7,6 +7,8 @@ import { useStore } from 'vuex';
 const store = useStore();
 const router = useRouter();
 
+
+
 onMounted(() => {
   store.dispatch('checkToken');
 });

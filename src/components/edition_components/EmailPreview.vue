@@ -1,6 +1,9 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import { defineProps, onMounted, ref, nextTick, watch, defineEmits } from "vue";
+import { useBannerVars } from "../../store/BannerVars";
+
+const bannerStore = useBannerVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -23,6 +26,7 @@ const props = defineProps({
   gridColums: String,
 });
 
+
 onMounted(async () => {
   await nextTick();
   const grid = document.querySelector(".dynamic-grid");
@@ -43,7 +47,7 @@ const updateSelectedBlock = (block) => {
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
         <div
-          v-if="!selectedBanner"
+          v-if="!bannerStore.bannerUrl"
           :style="{
             backgroundColor: bannerBackground || '',
             marginBottom: bannerMargin + 'px',
@@ -56,7 +60,7 @@ const updateSelectedBlock = (block) => {
           </div>
         </div>
         <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
-          <img class="w-full" :src="selectedBanner" alt="imagen banner" />
+          <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
         </div>
       </div>
       <div

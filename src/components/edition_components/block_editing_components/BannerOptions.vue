@@ -2,15 +2,23 @@
 import { ref,defineEmits, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import ColorPicker from "./mini_components/ColorPicker.vue";
+import { useBannerVars } from "../../../store/BannerVars";
+
+const store = useBannerVars();
+
+let bannerMarsgin = ref(store.bannerMargin);
+let bannerUrl = ref(store.bannerUrl);
+let backgrounsdColor = ref(store.bannerBgColor);
+
 
 
 const props = defineProps({
   bannerMargin:Number,
 });
 
-const emits = defineEmits(["update:colors", "update:url","update:bannerMargin"]);
+const emits = defineEmits(["update:colors","update:bannerMargin"]);
 
-const url = ref("");
+const url = ref(store.bannerUrl);
 const backgroundColor = ref("#FFFFFF");
 
 //cuando url cambie ejecuto emit
@@ -20,7 +28,7 @@ watch(url, (newVal) => {
     clearTimeout(timeoutId);
   }
   timeoutId = setTimeout(() => {
-    emits("update:url", newVal);
+    store.setBannerUrl(newVal);
   }, 1000);
 });
 
