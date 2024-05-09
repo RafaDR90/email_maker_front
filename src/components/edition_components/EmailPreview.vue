@@ -2,6 +2,9 @@
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
 import { defineProps, defineEmits } from "vue";
+import { useBannerVars } from "../../store/BannerVars";
+
+const bannerStore = useBannerVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -38,7 +41,7 @@ const updateSelectedBlock = (block) => {
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
         <div
-          v-if="!selectedBanner"
+          v-if="!bannerStore.bannerUrl"
           :style="{
             backgroundColor: bannerBackground || '',
             marginBottom: bannerMargin + 'px',
@@ -51,7 +54,7 @@ const updateSelectedBlock = (block) => {
           </div>
         </div>
         <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
-          <img class="w-full" :src="selectedBanner" alt="imagen banner" />
+          <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
         </div>
       </div>
       <div

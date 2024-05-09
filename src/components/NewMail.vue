@@ -15,13 +15,9 @@ const updateSelectedBlock = (block) => {
 /*----------------------------
             BANNER
 ----------------------------*/
-const banner = ref("");
 const bannerMargin = ref(0);
 const bannerBackground = ref("#ffffff");
 
-const updateBannerUrl = (newUrl) => {
-  banner.value = newUrl;
-};
 
 const bannerMarginUpdate = (newMargin) => {
   bannerMargin.value = newMargin;
@@ -94,8 +90,6 @@ const gridColumns = ref(3);
     />
     <BlockEdit
       :selectedBlock="selectedBlock"
-      :bannerUrl="banner"
-      @update:bannerUrl="updateBannerUrl"
       :bannerMargin="Number(bannerMargin)"
       :underBannerText="underBannerText"
       :underBannerTextHeight="underBannerTextHeight"
