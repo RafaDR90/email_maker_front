@@ -28,15 +28,11 @@ const props = defineProps({
 const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
-
-
-
 </script>
 
 
 <template>
   <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
-    <p>{{ bannerStore.marginBottom }}</p>
     <div
       id="emailContainer"
       class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
@@ -55,8 +51,18 @@ const updateSelectedBlock = (block) => {
             <p class="text-4xl text-gray-500">Inserte imagen</p>
           </div>
         </div>
-        <div v-else :style="{ marginBottom: bannerStore.marginBottom + 'px' }">
-          <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
+        <div
+          v-else
+          :style="{
+            backgroundColor: bannerStore.bannerColor,
+            marginBottom: bannerStore.marginBottom + 'px',
+          }"
+        >
+          <img
+            class="w-full"
+            :src="bannerStore.bannerUrl"
+            alt="imagen banner"
+          />
         </div>
       </div>
       <div
@@ -64,11 +70,11 @@ const updateSelectedBlock = (block) => {
         class="selectable-block min-h-max flex justify-center items-center"
         :style="{
           minHeight:
-          underBannerTextStore.height === 0
+            underBannerTextStore.height === 0
               ? 'max-content'
               : underBannerTextStore.height + 'px',
           fontWeight: underBannerTextStore.weight,
-          textSize:underBannerTextStore.fontSize,
+          textSize: underBannerTextStore.fontSize,
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
         }"
       >
