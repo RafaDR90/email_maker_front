@@ -41,6 +41,8 @@ watch(url, (newVal) => {
     <h3>Fondo:</h3>
     <ColorPicker
       class="mb-4 h-fit"
+      :value="store.bannerColor"
+      :valueUpdate="store.setBannerColor"
     />
   </div>
 </template>

@@ -1,10 +1,14 @@
 <script setup>
 import { ref, defineProps, defineEmits, watch } from "vue";
-import { useBannerVars } from "../../../../store/BannerVars";
 
-const store = useBannerVars();
 
-const selectedColor = ref(store.bannerColor);
+const props = defineProps({
+  value: String,
+  valueUpdate: Function,
+});
+
+
+const selectedColor = ref(props.value);
 
 
 let timeoutId = null;
@@ -14,7 +18,7 @@ const updateColor = (newColor) => {
     clearTimeout(timeoutId);
   }
   timeoutId = setTimeout(() => {
-    store.setBannerColor(newColor);
+    props.valueUpdate(newColor);
   }, 1000);
 };
 

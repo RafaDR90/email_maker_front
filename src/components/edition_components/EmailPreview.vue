@@ -76,6 +76,8 @@ const updateSelectedBlock = (block) => {
           fontWeight: underBannerTextStore.weight,
           textSize: underBannerTextStore.fontSize,
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
+          color: underBannerTextStore.color,
+          backgroundColor: underBannerTextStore.bgColor,
         }"
       >
         <p

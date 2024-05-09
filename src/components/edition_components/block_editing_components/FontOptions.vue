@@ -3,6 +3,7 @@ import { ref, onMounted, defineEmits, defineProps, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
+import ColorPicker from "./mini_components/ColorPicker.vue";
 
 const underBannerTextStore = underBannerTextVars();
 
@@ -111,5 +112,13 @@ watch(() => text.value, (newVal) => {
     <!-- Altura -->
     <h3>Altura:</h3>
     <NumberInput class="w-fit" :value="textHeight" :valueUpdate="underBannerTextStore.setHeight" />
+
+    <h3>Color:</h3>
+    <ColorPicker class="mb-4 h-fit" :value="underBannerTextStore.color" :valueUpdate="underBannerTextStore.setColor" />
+
+
+    <h3>Color de fondo</h3>
+    <ColorPicker class="mb-4 h-fit" :value="underBannerTextStore.bgColor"
+      :valueUpdate="underBannerTextStore.setBgColor" />
   </div>
 </template>
