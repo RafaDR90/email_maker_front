@@ -114,6 +114,11 @@ const updateSelectedBlock = (block) => {
         >
           <div class="bg-green-200 w-[80%] h-[90%]"></div>
         </div>
+        <div
+          class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+        >
+          <div class="bg-green-200 w-[80%] h-[90%]"></div>
+        </div>
       </Grid>
     </div>
   </div>
@@ -124,3 +129,20 @@ const updateSelectedBlock = (block) => {
   @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
 }
 </style>
+
+
+        <!--
+        <div class="items-container">
+         
+          <div v-for="index in 100" :key="index">
+            <div
+              class="selectable-block h-60 bg-red-500 flex justify-center items-center"
+            >
+              <div class="bg-green-200 w-[80%] h-[90%]"></div>
+            </div>
+          </div>
+        </div>
+
+
+
+        -->

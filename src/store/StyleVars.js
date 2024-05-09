@@ -16,15 +16,14 @@ export const useStyleVars = defineStore({
         this.gridConfiguration = gridConfiguration;
 
         if (Array.isArray(gridConfiguration.gridSpans)) {
-
           if (gridConfiguration.gridSpans.length < gridConfiguration.gridColumns) {
             for (let i = gridConfiguration.gridSpans.length; i < gridConfiguration.gridColumns; i++) {
-              this.gridConfiguration.gridSpans.add(0);
+                this.gridConfiguration.gridSpans.push(0);
             }
           }
         } else {
           console.error(
-            "listSpans debe ser una lista con al menos tres elementos."
+            "Error en setGridConfiguration"
           );
         }
       }

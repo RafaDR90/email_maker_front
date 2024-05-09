@@ -29,16 +29,15 @@ const columns_dist_light = ref([
   },
   {
     id: 4,
-    gridConfiguration: { gridColumns: 3, gridSpans: [1, 2] },
+    gridConfiguration: { gridColumns: 3, gridSpans: [1, 0, 2] },
     imageUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png",
   },
   {
     id: 5,
-    gridConfiguration: { gridColumns: 3, gridSpans: [2, 1] },
+    gridConfiguration: { gridColumns: 3, gridSpans: [2, 0, 1] },
     imageUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png",
   },
 ]);
-
 
 const columns_dist_dark = ref([
   { id: 1, imageUrl: "/src/assets/img/columns_dist/1columna_dark.png" },
