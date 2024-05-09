@@ -15,13 +15,9 @@ const updateSelectedBlock = (block) => {
 /*----------------------------
             BANNER
 ----------------------------*/
-const bannerMargin = ref(0);
 const bannerBackground = ref("#ffffff");
 
 
-const bannerMarginUpdate = (newMargin) => {
-  bannerMargin.value = newMargin;
-};
 
 const updateBannerBgColor = (newColor) => {
   bannerBackground.value = newColor;
@@ -79,7 +75,6 @@ const gridColumns = ref(3);
       @update:selectedBlock="updateSelectedBlock"
       :selectedBlock="selectedBlock"
       :selectedBanner="banner"
-      :bannerMargin="Number(bannerMargin)"
       :underBannerText="underBannerText"
       :underBannerSelectedFont="underBannerSelectedFont"
       :bannerBackground="bannerBackground"
@@ -90,13 +85,11 @@ const gridColumns = ref(3);
     />
     <BlockEdit
       :selectedBlock="selectedBlock"
-      :bannerMargin="Number(bannerMargin)"
       :underBannerText="underBannerText"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="Number(underBannerTextFontSize)"
       :underBannerTextFontWeight="Number(underBannerTextFontWeight)"
-      @update:bannerMargin="bannerMarginUpdate"
       @update:fontWeight="underBannerTextFontWeightUpdate"
       @update:fontSize="underBannerTextFontSizeUpdate"
       @update:textHeight="underBannerTextHeightUpdate"

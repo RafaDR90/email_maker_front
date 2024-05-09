@@ -5,7 +5,6 @@ import FontEditer from "./block_editing_components/FontOptions.vue";
 import { defineEmits, defineProps } from "vue";
 
 const emits = defineEmits([
-  "update:bannerMargin",
   "update:fontWeight",
   "update:fontSize",
   "update:textHeight",
@@ -16,7 +15,6 @@ const emits = defineEmits([
 
 const props = defineProps({
   selectedBlock: String,
-  bannerMargin: Number,
   underBannerText: String,
   underBannerTextHeight: Number,
   underBannerSelectedFont: Object,
@@ -25,10 +23,6 @@ const props = defineProps({
 });
 
 
-
-const bannerMarginUpdate = (newMargin) => {
-  emits("update:bannerMargin", newMargin);
-};
 
 const fontWeightUpdate = (newWeight) => {
   emits("update:fontWeight", newWeight);
@@ -56,8 +50,6 @@ const updateUnderBannerText = (newText) => {
   <div class="w-[25%] bg-indigo-200 dark:bg-indigo-950 h-[calc(100vh-4rem)]">
     <BannerOptions
       v-if="selectedBlock == 'banner'"
-      :bannerMargin="bannerMargin"
-      @update:bannerMargin="bannerMarginUpdate"
       @update:colors="updateBackgroundColor"
     />
     <FontEditer

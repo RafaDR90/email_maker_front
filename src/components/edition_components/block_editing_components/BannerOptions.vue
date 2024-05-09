@@ -6,17 +6,8 @@ import { useBannerVars } from "../../../store/BannerVars";
 
 const store = useBannerVars();
 
-let bannerMarsgin = ref(store.bannerMargin);
-let bannerUrl = ref(store.bannerUrl);
-let backgrounsdColor = ref(store.bannerBgColor);
 
-
-
-const props = defineProps({
-  bannerMargin:Number,
-});
-
-const emits = defineEmits(["update:colors","update:bannerMargin"]);
+const emits = defineEmits(["update:colors"]);
 
 const url = ref(store.bannerUrl);
 const backgroundColor = ref("#FFFFFF");
@@ -36,9 +27,7 @@ const handleBgColorUpdate = (updatedColor) => {
   emits("update:colors", updatedColor);
 };
 
-const bannerMarginUpdate=(newVal)=>{
-  emits("update:bannerMargin", newVal);
-}
+
 </script>
 
 <template>
@@ -51,7 +40,7 @@ const bannerMarginUpdate=(newVal)=>{
 
     <!-- Slider -->
     <h3>Margen inferior:</h3>
-    <Slider class="mb-4 " :value="bannerMargin" @update:value="bannerMarginUpdate" :step="1"/>
+    <Slider class="mb-4 " :value="store.marginBottom" :valueUpdate="store.setMarginBottom"/>
 
     <!-- Background -->
     <h3>Fondo:</h3>

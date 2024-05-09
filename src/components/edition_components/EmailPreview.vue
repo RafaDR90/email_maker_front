@@ -1,7 +1,7 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, watch } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 
 const bannerStore = useBannerVars();
@@ -12,7 +12,6 @@ const emit = defineEmits(["update:selectedBlock"]);
 const props = defineProps({
   //banner
   selectedBanner: String,
-  bannerMargin: Number,
   bannerBackground: String,
   //underBannerText
   underBannerText: String,
@@ -30,11 +29,17 @@ const props = defineProps({
 const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
+
+//cuando cambia de estado bannerStore.bannerStore ejecuto console.log
+watch(bannerStore.marginBottom, (newVal) => {
+  console.log(newVal);
+});
 </script>
 
 
 <template>
   <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
+    <p>{{ bannerStore.marginBottom }}</p>
     <div
       id="emailContainer"
       class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
@@ -44,7 +49,7 @@ const updateSelectedBlock = (block) => {
           v-if="!bannerStore.bannerUrl"
           :style="{
             backgroundColor: bannerBackground || '',
-            marginBottom: bannerMargin + 'px',
+            marginBottom: bannerStore.marginBottom + 'px',
           }"
           class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
         >
@@ -53,7 +58,7 @@ const updateSelectedBlock = (block) => {
             <p class="text-4xl text-gray-500">Inserte imagen</p>
           </div>
         </div>
-        <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
+        <div v-else :style="{ marginBottom: bannerStore.marginBottom + 'px' }">
           <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
         </div>
       </div>
