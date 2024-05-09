@@ -83,7 +83,7 @@ const updateSelectedBlock = (block) => {
           {{ underBannerTextStore.text }}
         </p>
       </div>
-      <Grid :gridColumns="styleStore.gridColumns">
+      <Grid :gridConfiguration="styleStore.gridConfiguration">
         <div
           class="selectable-block h-60 bg-red-500 flex justify-center items-center"
         >
