@@ -7,8 +7,10 @@ export const underBannerTextVars = defineStore({
             text: '{Introduce texto}',
             font: 'Roboto',
             fontSize: 16,
-            weight: 100,
-            height: 40
+            weight: false,
+            height: 40,
+            color: '#000000',
+            bgColor: '#FFFFFF'
         }
     },
     actions: {
@@ -27,5 +29,11 @@ export const underBannerTextVars = defineStore({
         setHeight(height) {
             this.height = height
         },
+        setColor(color) {
+            this.color = color
+        },
+        setBgColor(bgColor) {
+            this.bgColor = bgColor
+        }
     }
 })
