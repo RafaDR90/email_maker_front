@@ -4,6 +4,7 @@ import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
 import ColorPicker from "./mini_components/ColorPicker.vue";
+import CheckBox from "./mini_components/CheckBox.vue";
 
 const underBannerTextStore = underBannerTextVars();
 
@@ -106,8 +107,11 @@ watch(() => text.value, (newVal) => {
 
     <!-- Intensidad de la fuente -->
     <h3>Intensidad de la fuente:</h3>
-    <Slider class="mb-4" :value="fontWeight" :maxValue="900" :step="100"
-      :valueUpdate="underBannerTextStore.setWeight" />
+      <CheckBox class="mb-4"
+      :value="fontWeight"
+      :valueUpdate="underBannerTextStore.setWeight"
+      />
+
 
     <!-- Altura -->
     <h3>Altura:</h3>

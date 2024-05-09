@@ -42,7 +42,7 @@ const updateSelectedBlock = (block) => {
           v-if="!bannerStore.bannerUrl"
           :style="{
             backgroundColor: bannerStore.bannerColor || '',
-            marginBottom: bannerStore.marginBottom + 'px',
+            paddingBottom: bannerStore.marginBottom + 'px',
           }"
           class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
         >
@@ -55,7 +55,7 @@ const updateSelectedBlock = (block) => {
           v-else
           :style="{
             backgroundColor: bannerStore.bannerColor,
-            marginBottom: bannerStore.marginBottom + 'px',
+            paddingBottom: bannerStore.marginBottom + 'px',
           }"
         >
           <img
@@ -73,7 +73,7 @@ const updateSelectedBlock = (block) => {
             underBannerTextStore.height === 0
               ? 'max-content'
               : underBannerTextStore.height + 'px',
-          fontWeight: underBannerTextStore.weight,
+          fontWeight: underBannerTextStore.weight ? 600 : 200,
           textSize: underBannerTextStore.fontSize,
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
           color: underBannerTextStore.color,

@@ -7,7 +7,7 @@ export const underBannerTextVars = defineStore({
             text: '{Introduce texto}',
             font: 'Roboto',
             fontSize: 16,
-            weight: 100,
+            weight: false,
             height: 40,
             color: '#000000',
             bgColor: '#FFFFFF'
