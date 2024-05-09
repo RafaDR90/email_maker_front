@@ -5,12 +5,17 @@ import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
 import { useStyleVars } from "../../store/StyleVars";
+import { documentActions } from "../../store/DocumentActions";
+
+const documentActionsStore = documentActions();
 
 const bannerStore = useBannerVars();
 const underBannerTextStore = underBannerTextVars();
 const styleStore = useStyleVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
+
+const emailContainer = ref(null);
 
 //obtengo las props del componente
 const props = defineProps({
@@ -27,6 +32,34 @@ const props = defineProps({
 
 const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
+};
+
+watch(()=>documentActionsStore.downloadHtmlEmit, (newValue) => {
+  downloadHTMLPrueba()
+})
+const downloadHTML = () => {
+  const html = document.getElementById("emailContainer").outerHTML;
+  const blob = new Blob([html], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "email.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+const downloadHTMLPrueba = () => {
+  const html = document.getElementById("emailContainer").outerHTML;
+  //inicio descarga de html, no quiero crear un <a> quiero que se inicie la descarga
+  const blob = new Blob([html], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "email.html";
+  a.click();
+  URL.revokeObjectURL(url);
+  
+
 };
 </script>
 

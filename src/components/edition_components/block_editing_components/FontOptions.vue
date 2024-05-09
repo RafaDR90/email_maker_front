@@ -106,11 +106,7 @@ watch(() => text.value, (newVal) => {
     <NumberInput class="w-fit" :value="underBannerTextStore.fontSize" :valueUpdate="underBannerTextStore.setFontSize" />
 
     <!-- Intensidad de la fuente -->
-    <h3>Intensidad de la fuente:</h3>
-      <CheckBox class="mb-4"
-      :value="fontWeight"
-      :valueUpdate="underBannerTextStore.setWeight"
-      />
+    <CheckBox class="mb-4" :value="fontWeight" :valueUpdate="underBannerTextStore.setWeight" />
 
 
     <!-- Altura -->
