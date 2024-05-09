@@ -87,7 +87,7 @@ watch(()=> text.value, (newVal) => {
   }
   timeoutId = setTimeout(() => {
     underBannerTextStore.setText(newVal);
-  }, 1000);
+  }, 250);
 });
 </script>
 
