@@ -8,13 +8,11 @@ const emits = defineEmits([
   "update:fontWeight",
   "update:fontSize",
   "update:textHeight",
-  "update:underBannerText",
   "update:fontSelected",
 ]);
 
 const props = defineProps({
   selectedBlock: String,
-  underBannerText: String,
   underBannerTextHeight: Number,
   underBannerSelectedFont: Object,
   underBannerTextFontSize: Number,
@@ -37,9 +35,6 @@ const fontSelectedUpdate = (newFont) => {
 };
 
 
-const updateUnderBannerText = (newText) => {
-  emits("update:underBannerText", newText);
-};
 </script>
 
 
@@ -50,7 +45,6 @@ const updateUnderBannerText = (newText) => {
     />
     <FontEditer
       v-else-if="selectedBlock == 'underBannerText'"
-      :underBannerText="underBannerText"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="underBannerTextFontSize"

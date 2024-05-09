@@ -25,7 +25,6 @@ const updateSelectedBlock = (block) => {
 /*----------------------------
             TEXTO
 ----------------------------*/
-const underBannerText = ref("Título de la promoción");
 const defaultFont = getComputedStyle(document.documentElement).getPropertyValue('--default-font').trim();
 const underBannerSelectedFont = ref({defaultFont});
 const underBannerTextHeight = ref(43);
@@ -43,9 +42,7 @@ const underBannerTextFontSizeUpdate = (newSize) => {
 const underBannerTextHeightUpdate = (newHeight) => {
   underBannerTextHeight.value = newHeight;
 };
-const underBannerTextUpdate = (newText) => {
-  underBannerText.value = newText;
-};
+
 const underBannerFontUpdate = (newFont) => {
     underBannerSelectedFont.value = newFont;
 };
@@ -70,7 +67,6 @@ const gridColumns = ref(3);
       @update:selectedBlock="updateSelectedBlock"
       :selectedBlock="selectedBlock"
       :selectedBanner="banner"
-      :underBannerText="underBannerText"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerTextFontSize="underBannerTextFontSize"
@@ -79,7 +75,6 @@ const gridColumns = ref(3);
     />
     <BlockEdit
       :selectedBlock="selectedBlock"
-      :underBannerText="underBannerText"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="Number(underBannerTextFontSize)"

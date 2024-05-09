@@ -3,8 +3,10 @@ import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
 import { defineProps, defineEmits, watch } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
+import { underBannerTextVars } from "../../store/UnderBannerText";
 
 const bannerStore = useBannerVars();
+const underBannerTextStore = underBannerTextVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -13,7 +15,6 @@ const props = defineProps({
   //banner
   selectedBanner: String,
   //underBannerText
-  underBannerText: String,
   underBannerSelectedFont: {
     type: Object,
     default: () => ({ fontFamily: "Roboto" }), // Establece un valor predeterminado con fontFamily 'Roboto'
@@ -72,12 +73,12 @@ const updateSelectedBlock = (block) => {
       >
         <p
           class="text-center"
-          v-if="underBannerText"
+          v-if="underBannerTextStore.text"
           :style="{
             fontSize: underBannerTextFontSize + 'px',
           }"
         >
-          {{ underBannerText }}
+          {{ underBannerTextStore.text }}
         </p>
       </div>
       <Grid :gridColumns="gridColumns">
