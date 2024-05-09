@@ -15,7 +15,7 @@ const valueUpdate = () => {
 </script>
 
 <template>
-  <div class="w-full flex items-center justify-center py-5">
+  <div class="w-full flex items-center  py-5 ml-2">
     <label for="checkbox" class="mr-2 text-lg font-semibold text-gray-800">Negrita</label>
     <input type="checkbox" id="checkbox" class="checkbox" v-model="value" @change="valueUpdate" />
   </div>
