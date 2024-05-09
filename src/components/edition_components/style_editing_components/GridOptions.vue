@@ -72,7 +72,7 @@ const selectDist = (dist) => {
         <img
           :src="dist.imageUrl"
           :alt="dist.gridConfiguration.gridColumns + ' columnas'"
-          class="rounded-md z-10 shadow-md hover:scale-105 hover:shadow-indigo-400"
+          class="border border-indigo-900 rounded-md z-10 shadow-md hover:scale-105 hover:shadow-indigo-400"
           style="max-width: 100px; max-height: 100px"
         />
       </button>
