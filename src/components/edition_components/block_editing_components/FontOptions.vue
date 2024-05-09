@@ -11,9 +11,6 @@ const emits = defineEmits([
   "update:fontSelected",
 ]);
 
-
-
-
 const props = defineProps({
   underBannerTextFontWeight: Number,
   underBannerTextFontSize: Number,

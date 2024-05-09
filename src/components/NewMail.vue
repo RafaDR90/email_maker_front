@@ -65,7 +65,7 @@ const underBannerFontUpdate = (newFont) => {
 /*----------------------------
          CARDS GRID
 ----------------------------*/
-const gridColumns = ref(3);
+//const gridColumns = ref(3);
 /*----------------------------
        FIN CARDS GRID
 ----------------------------*/
@@ -74,7 +74,8 @@ const gridColumns = ref(3);
 <template>
   <div class="w-full min-h-full flex">
     <StyleEdit />
-    <EmailPreview
+    <!--
+<EmailPreview
       :key="gridColums"
       @update:selectedBlock="updateSelectedBlock"
       :selectedBlock="selectedBlock"
@@ -87,6 +88,19 @@ const gridColumns = ref(3);
       :underBannerTextFontSize="underBannerTextFontSize"
       :underBannerTextFontWeight="underBannerTextFontWeight"
       :gridColumns="Number(gridColumns)"
+    />
+    -->
+    <EmailPreview
+      @update:selectedBlock="updateSelectedBlock"
+      :selectedBlock="selectedBlock"
+      :selectedBanner="banner"
+      :bannerMargin="Number(bannerMargin)"
+      :underBannerText="underBannerText"
+      :underBannerSelectedFont="underBannerSelectedFont"
+      :bannerBackground="bannerBackground"
+      :underBannerTextHeight="underBannerTextHeight"
+      :underBannerTextFontSize="underBannerTextFontSize"
+      :underBannerTextFontWeight="underBannerTextFontWeight"
     />
     <BlockEdit
       :selectedBlock="selectedBlock"

@@ -3,7 +3,9 @@ import { defineProps } from "vue";
 
 const props = defineProps({
   gridColumns: { type: Number, default: 3 },
+  style: { type: Number, default: 3 },
 });
+
 </script>
 
 <template>

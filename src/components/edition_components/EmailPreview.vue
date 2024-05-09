@@ -1,10 +1,12 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
+import { useStyleVars } from "../../store/StyleVars";
 
 const bannerStore = useBannerVars();
+const styleStore = useStyleVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -80,7 +82,7 @@ const updateSelectedBlock = (block) => {
           {{ underBannerText }}
         </p>
       </div>
-      <Grid :gridColumns="gridColumns">
+      <Grid :gridColumns="styleStore.gridColumns">
         <div
           class="selectable-block h-60 bg-red-500 flex justify-center items-center"
         >

@@ -1,16 +1,17 @@
 <script setup>
-import { ref, defineProps, defineEmits } from "vue";
+import { ref, defineProps } from "vue";
 const props = defineProps({
-  gridColumns: Number,
+  gridConfiguration: Object,
+  setGridConfiguration: {type: Function, default: () =>{console.log("setGridConfiguration vacío");}},
 });
 
 // Imágenes de distribución de columnas
 const columns_dist_light = ref([
-  { id: 1, imageUrl: "/src/assets/img/columns_dist/1columna_light.png" },
-  { id: 2, imageUrl: "/src/assets/img/columns_dist/2columnas_light.png" },
-  { id: 3, imageUrl: "/src/assets/img/columns_dist/3columnas_light.png" },
-  { id: 4, imageUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png" },
-  { id: 5, imageUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png" },
+  { id: 1, columnsNum: 1, columnsSpan: [1], imageUrl: "/src/assets/img/columns_dist/1columna_light.png" },
+  { id: 2, columnsNum: 2, columnsSpan: [1, 1], imageUrl: "/src/assets/img/columns_dist/2columnas_light.png" },
+  { id: 3, columnsNum: 3, columnsSpan: [1, 1, 1], imageUrl: "/src/assets/img/columns_dist/3columnas_light.png" },
+  { id: 4, columnsNum: 3, columnsSpan: [1, 2, 0], imageUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png" },
+  { id: 5, columnsNum: 3, columnsSpan: [2, 1, 0], imageUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png" },
 ]);
 const columns_dist_dark = ref([
   { id: 1, imageUrl: "/src/assets/img/columns_dist/1columna_dark.png" },
@@ -24,10 +25,9 @@ const columns_dist_dark = ref([
 const selectedDist = ref(null);
 
 // Función para seleccionar un item
-const selectDist = (distribution) => {
-  console.log(distribution.id);
-  
-  selectedDist.value = distribution;
+const selectDist = (dist) => {
+  props.gridConfiguration(dist.columnsNum, dist.column1Span, dist.column2Span, dist.column3Span);
+  selectedDist.value = dist;
 };
 </script>
 
@@ -56,6 +56,6 @@ const selectDist = (distribution) => {
 
 <style  scoped>
 .button-group {
-  @apply flex flex-wrap gap-3 gap-y-5 place-content-start;
+  @apply flex flex-grow flex-wrap gap-3 gap-y-5 place-content-center ;
 }
 </style>
