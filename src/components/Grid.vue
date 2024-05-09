@@ -27,19 +27,20 @@ const calculateColumn = (index) => {
       'grid-auto-rows': 'minmax(100px, auto)',
     }"
   >
-    <!-- Iterar sobre todas las celdas de la cuadrícula -->
-    <template v-if="$slots.default()">
+<!--
+      <template v-if="$slots.default()">
       <div
         v-for="(item, index) in $slots.default()"
         :key="index"
         class="border-4 border-green-600 h-32"
         :style="{
-          'grid-column': `${calculateColumn(index)} / span ${item.props?.columnSpan || 1}`,
+          'grid-column': `${calculateColumn(index)} / span ${item.props.columnSpan}`,
           'grid-row': `${Math.ceil((index + 1) / props.gridConfiguration.gridColumns)} / span 1`, // Ajustar el cálculo de fila
         }"
       >
         <slot :name="index" />
       </div>
     </template>
+-->
   </div>
 </template>

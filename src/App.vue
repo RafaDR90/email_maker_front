@@ -19,16 +19,14 @@ const products = ref([]);
 const fetchProducts = async () => {
   try {
     const responseData = await ProductService.fetchTenProducts();
-
     // Mapea los datos recuperados a instancias de ProductModel
     const productsData = responseData.map(
       (productData) => new ProductModel(productData)
     );
-    // Asigna los productos mapeados al estado o variable que los almacena
-    products.value = productsData;
 
-    console.log(responseData);
-    console.log(products.value);
+    productsData.forEach((product) => productStore.addProduct(product));
+
+    console.log(productsData);
   } catch (error) {
     console.error("Error al cargar los productos:", error);
     //error.value = "Error al cargar los productos";
@@ -37,7 +35,6 @@ const fetchProducts = async () => {
 
 onMounted(() => {
   store.dispatch("checkToken");
-
   fetchProducts();
 });
 </script>

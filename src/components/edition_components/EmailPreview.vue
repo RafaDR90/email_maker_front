@@ -35,9 +35,12 @@ const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
 
-watch(()=>documentActionsStore.downloadHtmlEmit, (newValue) => {
-  downloadHTMLPrueba()
-})
+watch(
+  () => documentActionsStore.downloadHtmlEmit,
+  (newValue) => {
+    downloadHTMLPrueba();
+  }
+);
 const downloadHTML = () => {
   const html = document.getElementById("emailContainer").outerHTML;
   const blob = new Blob([html], { type: "text/plain" });
@@ -59,8 +62,6 @@ const downloadHTMLPrueba = () => {
   a.download = "email.html";
   a.click();
   URL.revokeObjectURL(url);
-  
-
 };
 </script>
 
@@ -124,13 +125,14 @@ const downloadHTMLPrueba = () => {
           {{ underBannerTextStore.text }}
         </p>
       </div>
+
       <Grid :gridConfiguration="styleStore.gridConfiguration">
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </Grid>
     </div>
   </div>
