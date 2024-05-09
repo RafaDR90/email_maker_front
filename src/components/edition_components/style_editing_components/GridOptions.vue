@@ -1,22 +1,33 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 const props = defineProps({
   gridColumns: Number,
 });
 
-// Define tus items con las URLs de las imágenes
-const items = ref([
-  { id: 1, imageUrl: "ruta/de/la/imagen1.jpg" },
-  { id: 2, imageUrl: "ruta/de/la/imagen2.jpg" },
-  { id: 3, imageUrl: "ruta/de/la/imagen3.jpg" },
+// Imágenes de distribución de columnas
+const columns_dist_light = ref([
+  { id: 1, imageUrl: "/src/assets/img/columns_dist/1columna_light.png" },
+  { id: 2, imageUrl: "/src/assets/img/columns_dist/2columnas_light.png" },
+  { id: 3, imageUrl: "/src/assets/img/columns_dist/3columnas_light.png" },
+  { id: 4, imageUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png" },
+  { id: 5, imageUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png" },
+]);
+const columns_dist_dark = ref([
+  { id: 1, imageUrl: "/src/assets/img/columns_dist/1columna_dark.png" },
+  { id: 2, imageUrl: "/src/assets/img/columns_dist/2columnas_dark.png" },
+  { id: 3, imageUrl: "/src/assets/img/columns_dist/3columnas_dark.png" },
+  { id: 4, imageUrl: "/src/assets/img/columns_dist/1_2_columnas_dark.png" },
+  { id: 5, imageUrl: "/src/assets/img/columns_dist/2_1_columnas_dark.png" },
 ]);
 
 // Define el item seleccionado
-const selectedItem = ref(null);
+const selectedDist = ref(null);
 
 // Función para seleccionar un item
-const selectItem = (item) => {
-  selectedItem.value = item;
+const selectDist = (distribution) => {
+  console.log(distribution.id);
+  
+  selectedDist.value = distribution;
 };
 </script>
 
@@ -24,17 +35,18 @@ const selectItem = (item) => {
   <div class="styleEditItem">
     <h2>Opciones de la cuadrícula</h2>
     <div class="divider" />
-    <div class="button-group space-x-3">
+    <div class="button-group my-4">
       <button
-        v-for="item in items"
+        v-for="item in columns_dist_light"
         :key="item.id"
-        :class="{ active: selectedItem === item }"
-        @click="selectItem(item)"
+        :class="{ active: selectedDist === item }"
+        @click="selectDist(item)"
       >
         <!-- Mostrar la imagen -->
         <img
           :src="item.imageUrl"
           :alt="item.id + ' columnas'"
+          class="rounded-md z-10 shadow-md hover:scale-105 hover:shadow-indigo-400"
           style="max-width: 100px; max-height: 100px"
         />
       </button>
@@ -43,4 +55,7 @@ const selectItem = (item) => {
 </template>
 
 <style  scoped>
+.button-group {
+  @apply flex flex-wrap gap-3 gap-y-5 place-content-start;
+}
 </style>
