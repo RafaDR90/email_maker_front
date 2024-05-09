@@ -21,9 +21,6 @@ const props = defineProps({
     type: Object,
     default: () => ({ fontFamily: "Roboto" }), // Establece un valor predeterminado con fontFamily 'Roboto'
   },
-  underBannerTextHeight: Number,
-  underBannerTextFontSize: Number,
-  underBannerTextFontWeight: Number,
   //grid
   gridColumns: Number,
 });
@@ -31,6 +28,8 @@ const props = defineProps({
 const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
+
+
 
 </script>
 
@@ -65,11 +64,11 @@ const updateSelectedBlock = (block) => {
         class="selectable-block min-h-max flex justify-center items-center"
         :style="{
           minHeight:
-            underBannerTextHeight === 0
+          underBannerTextStore.height === 0
               ? 'max-content'
-              : underBannerTextHeight + 'px',
-          fontWeight: underBannerTextFontWeight,
-          textSize: underBannerTextFontSize,
+              : underBannerTextStore.height + 'px',
+          fontWeight: underBannerTextStore.weight,
+          textSize:underBannerTextStore.fontSize,
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
         }"
       >
@@ -77,7 +76,7 @@ const updateSelectedBlock = (block) => {
           class="text-center"
           v-if="underBannerTextStore.text"
           :style="{
-            fontSize: underBannerTextFontSize + 'px',
+            fontSize: underBannerTextStore.fontSize + 'px',
           }"
         >
           {{ underBannerTextStore.text }}
