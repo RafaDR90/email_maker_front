@@ -7,26 +7,19 @@ import { underBannerTextVars } from "../../../store/UnderBannerText";
 const underBannerTextStore = underBannerTextVars();
 
 const emits = defineEmits([
-  "update:fontWeight",
   "update:fontSize",
-  "update:textHeight",
   "update:fontSelected",
 ]);
 
 const props = defineProps({
-  underBannerTextFontWeight: Number,
-  underBannerTextFontSize: Number,
   underBannerText: String,
-  underBannerTextHeight: Number,
   underBannerSelectedFont: Object,
-  underBannerTextFontSize: Number,
 });
 const text = ref(underBannerTextStore.text);
 const selectedFont = ref(props.underBannerSelectedFont);
 const availableFonts = ref([]);
-const fontSize = ref(props.underBannerTextFontSize || 16);
-const textHeight = ref(props.underBannerTextHeight || 43);
-const fontWeight = ref(props.underBannerTextFontWeight || 200);
+const textHeight = ref(underBannerTextStore.height || 43);
+const fontWeight = ref(underBannerTextStore.weight || 200);
 
 // Función para obtener las fuentes disponibles desde CSS
 const getAvailableFonts = () => {
@@ -65,23 +58,19 @@ onMounted(() => {
   getAvailableFonts();
 });
 
-const handleFontSizeUpdate = (updatedSize) => {
-  emits("update:fontSize", Number(updatedSize));
-};
 
-const handleTextHeightSizeUpdate = (updatedHeight) => {
-  emits("update:textHeight", Number(updatedHeight));
-};
-const handleFontWeightUpdate = (updatedWeight) => {
-  emits("update:fontWeight", Number(updatedWeight));
-};
+
+
+
 
 function handleSelectedFont(selectedFont) {
   emits("update:fontSelected", selectedFont);
 }
 
+
+
 let timeoutId = null;
-watch(()=> text.value, (newVal) => {
+watch(() => text.value, (newVal) => {
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
@@ -97,26 +86,14 @@ watch(()=> text.value, (newVal) => {
     <div class="divider" />
     <!-- Img URL -->
     <h3>Texto:</h3>
-    <textarea
-      class="custom-input text-sm max-h-36 min-h-9"
-      placeholder="Introduce texto"
-      v-model="text"
-    />
+    <textarea class="custom-input text-sm max-h-36 min-h-9" placeholder="Introduce texto" v-model="text" />
 
     <!-- Font selector -->
     <h3>Fuente:</h3>
     <div class="w-full">
-      <select
-        id="fontSelect"
-        class="custom-input text-sm"
-        v-model="selectedFont"
-        @change="handleSelectedFont(selectedFont)"
-      >
-        <option
-          v-for="(font, index) in availableFonts"
-          :key="index"
-          :value="font"
-        >
+      <select id="fontSelect" class="custom-input text-sm" v-model="selectedFont"
+        @change="handleSelectedFont(selectedFont)">
+        <option v-for="(font, index) in availableFonts" :key="index" :value="font">
           {{ font.fontFamily }}
         </option>
       </select>
@@ -124,28 +101,15 @@ watch(()=> text.value, (newVal) => {
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>
-    <NumberInput
-      class="w-fit"
-      :value="fontSize"
-      @update:value="handleFontSizeUpdate"
-    />
+    <NumberInput class="w-fit" :value="underBannerTextStore.fontSize" :valueUpdate="underBannerTextStore.setFontSize" />
 
     <!-- Intensidad de la fuente -->
     <h3>Intensidad de la fuente:</h3>
-    <Slider
-      class="mb-4"
-      :value="fontWeight"
-      :maxValue="900"
-      :step="100"
-      @update:value="handleFontWeightUpdate"
-    />
+    <Slider class="mb-4" :value="fontWeight" :maxValue="900" :step="100"
+      :valueUpdate="underBannerTextStore.setWeight" />
 
     <!-- Altura -->
     <h3>Altura:</h3>
-    <NumberInput
-      class="w-fit"
-      :value="textHeight"
-      @update:value="handleTextHeightSizeUpdate"
-    />
+    <NumberInput class="w-fit" :value="textHeight" :valueUpdate="underBannerTextStore.setHeight" />
   </div>
 </template>

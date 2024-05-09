@@ -1,19 +1,29 @@
 <script setup>
-import { ref, defineEmits, defineProps } from "vue";
+import { ref, defineEmits, defineProps, watch } from "vue";
 
 const emits = defineEmits(["update:value"]);
 
 const props = defineProps({
   value: { type: Number, default: 16 },
+  valueUpdate: { type: Function, default: () => {} },
 });
+
+
 
 const number = ref(props.value);
 
-function emitUpdate(newValue) {
-  // Si el valor es menor que 0, establecerlo a 0
-  number.value = Math.max(0, newValue);
-  emits("update:value", newValue);
-}
+let timeoutId = null;
+watch(
+  () => number.value,
+  (newValue) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      props.valueUpdate(newValue);
+    }, 250);
+  }
+);
 </script>
 
 <template>
@@ -22,7 +32,6 @@ function emitUpdate(newValue) {
       type="number"
       class="custom-input text-center"
       v-model="number"
-      @input="emitUpdate(number)"
     />
   </div>
 </template>
