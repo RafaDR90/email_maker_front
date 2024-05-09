@@ -36,7 +36,7 @@ function goToHome() {
 
 <style scoped>
 .navBar {
-  @apply size-full min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end z-50  shadow-sm shadow-indigo-950 drop-shadow-sm;
+  @apply size-full sticky min-h-12 bg-slate-200 dark:bg-slate-900 flex text-center items-end z-50  shadow-sm shadow-indigo-950 drop-shadow-sm;
 }
 
 .navBarButton {

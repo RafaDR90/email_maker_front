@@ -89,7 +89,7 @@ const handleTextUpdate = (updatedText) => {
 
 <template>
   <div class="blockEditItem">
-    <h2 class="font-bold">Texto</h2>
+    <h2>Texto</h2>
     <div class="divider" />
     <!-- Img URL -->
     <h3>Texto:</h3>
@@ -146,6 +146,3 @@ const handleTextUpdate = (updatedText) => {
     />
   </div>
 </template>
-
-<style scoped>
-</style>

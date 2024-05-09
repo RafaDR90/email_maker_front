@@ -48,11 +48,14 @@
   --default-font: "Roboto", sans-serif;
 }
 
-.blockEditItem{
+.blockEditItem {
+  @apply w-full h-fit flex flex-col place-items-start p-4;
+}
+.styleEditItem {
   @apply w-full h-fit flex flex-col place-items-start p-4;
 }
 
-h2{
+h2 {
   @apply font-bold self-center;
 }
 
@@ -72,7 +75,7 @@ h3 {
 }
 /* Dropdown Button y LoginButton */
 .dropbtn {
-  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer z-40 ;
+  @apply bg-indigo-800 text-slate-50 m-0 py-5 min-w-48 w-full cursor-pointer z-40;
 }
 
 .dropdown {
