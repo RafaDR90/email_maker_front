@@ -69,7 +69,7 @@ const underBannerFontUpdate = (newFont) => {
 /*----------------------------
          CARDS GRID
 ----------------------------*/
-const gridColums = ref("3");
+const gridColumns = ref(3);
 /*----------------------------
        FIN CARDS GRID
 ----------------------------*/
@@ -90,7 +90,7 @@ const gridColums = ref("3");
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerTextFontSize="underBannerTextFontSize"
       :underBannerTextFontWeight="underBannerTextFontWeight"
-      :gridColums="gridColums"
+      :gridColumns="Number(gridColumns)"
     />
     <BlockEdit
       :selectedBlock="selectedBlock"

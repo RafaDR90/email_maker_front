@@ -1,6 +1,7 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import { defineProps, onMounted, ref, nextTick, watch, defineEmits } from "vue";
+import Grid from "../Grid.vue";
+import { defineProps, defineEmits } from "vue";
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -20,13 +21,7 @@ const props = defineProps({
   underBannerTextFontSize: Number,
   underBannerTextFontWeight: Number,
   //grid
-  gridColums: String,
-});
-
-onMounted(async () => {
-  await nextTick();
-  const grid = document.querySelector(".dynamic-grid");
-  grid.style.gridTemplateColumns = `repeat(${props.gridColums}, 1fr)`;
+  gridColumns: Number,
 });
 
 const updateSelectedBlock = (block) => {
@@ -72,7 +67,8 @@ const updateSelectedBlock = (block) => {
           fontFamily: underBannerSelectedFont.fontFamily || 'Roboto',
         }"
       >
-        <p class=" text-center"
+        <p
+          class="text-center"
           v-if="underBannerText"
           :style="{
             fontSize: underBannerTextFontSize + 'px',
@@ -81,7 +77,7 @@ const updateSelectedBlock = (block) => {
           {{ underBannerText }}
         </p>
       </div>
-      <div class="grid gap-1 w-full border border-green-200 dynamic-grid">
+      <Grid :gridColumns="gridColumns">
         <div
           class="selectable-block h-60 bg-red-500 flex justify-center items-center"
         >
@@ -107,17 +103,18 @@ const updateSelectedBlock = (block) => {
         >
           <div class="bg-green-200 w-[80%] h-[90%]"></div>
         </div>
-      </div>
+      </Grid>
     </div>
   </div>
 </template>
 
 <style scoped>
+/*
 .dynamic-grid {
   grid-template-columns: repeat(3, 1fr);
 }
-
+*/
 .selectable-block {
-  @apply w-full cursor-pointer hover:border-4 hover:border-orange-400;
+  @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
 }
 </style>
