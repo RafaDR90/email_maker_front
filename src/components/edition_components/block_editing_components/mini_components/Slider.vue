@@ -8,6 +8,7 @@ const props = defineProps({
   maxValue: { type: Number, default: 100 },
   value: { type: Number, default: 0 },
   step: { type: Number, default: 1 },
+  valueUpdate: { type: Function, default: () => {} },
 });
 
 const value = ref(props.value);
@@ -21,7 +22,7 @@ watch(value, (newVal) => {
     clearTimeout(timeoutId);
   }
   timeoutId = setTimeout(() => {
-    emit("update:value", newVal);
+    props.valueUpdate(newVal);
   }, 1000);
 });
 </script>

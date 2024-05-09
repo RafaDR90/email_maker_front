@@ -1,11 +1,13 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import { defineProps, defineEmits, ref } from "vue";
+import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
+import { underBannerTextVars } from "../../store/UnderBannerText";
 import { useStyleVars } from "../../store/StyleVars";
 
 const bannerStore = useBannerVars();
+const underBannerTextStore = underBannerTextVars();
 const styleStore = useStyleVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
@@ -14,10 +16,7 @@ const emit = defineEmits(["update:selectedBlock"]);
 const props = defineProps({
   //banner
   selectedBanner: String,
-  bannerMargin: Number,
-  bannerBackground: String,
   //underBannerText
-  underBannerText: String,
   underBannerSelectedFont: {
     type: Object,
     default: () => ({ fontFamily: "Roboto" }), // Establece un valor predeterminado con fontFamily 'Roboto'
@@ -32,11 +31,13 @@ const props = defineProps({
 const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
+
 </script>
 
 
 <template>
   <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
+    <p>{{ bannerStore.marginBottom }}</p>
     <div
       id="emailContainer"
       class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
@@ -45,8 +46,8 @@ const updateSelectedBlock = (block) => {
         <div
           v-if="!bannerStore.bannerUrl"
           :style="{
-            backgroundColor: bannerBackground || '',
-            marginBottom: bannerMargin + 'px',
+            backgroundColor: bannerStore.bannerColor || '',
+            marginBottom: bannerStore.marginBottom + 'px',
           }"
           class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
         >
@@ -55,7 +56,7 @@ const updateSelectedBlock = (block) => {
             <p class="text-4xl text-gray-500">Inserte imagen</p>
           </div>
         </div>
-        <div v-else :style="{ marginBottom: bannerMargin + 'px' }">
+        <div v-else :style="{ marginBottom: bannerStore.marginBottom + 'px' }">
           <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
         </div>
       </div>
@@ -74,12 +75,12 @@ const updateSelectedBlock = (block) => {
       >
         <p
           class="text-center"
-          v-if="underBannerText"
+          v-if="underBannerTextStore.text"
           :style="{
             fontSize: underBannerTextFontSize + 'px',
           }"
         >
-          {{ underBannerText }}
+          {{ underBannerTextStore.text }}
         </p>
       </div>
       <Grid :gridColumns="styleStore.gridColumns">

@@ -15,17 +15,8 @@ const updateSelectedBlock = (block) => {
 /*----------------------------
             BANNER
 ----------------------------*/
-const bannerMargin = ref(0);
-const bannerBackground = ref("#ffffff");
 
 
-const bannerMarginUpdate = (newMargin) => {
-  bannerMargin.value = newMargin;
-};
-
-const updateBannerBgColor = (newColor) => {
-  bannerBackground.value = newColor;
-};
 
 /*----------------------------
             FIN BANNER
@@ -34,7 +25,6 @@ const updateBannerBgColor = (newColor) => {
 /*----------------------------
             TEXTO
 ----------------------------*/
-const underBannerText = ref("Título de la promoción");
 const defaultFont = getComputedStyle(document.documentElement).getPropertyValue('--default-font').trim();
 const underBannerSelectedFont = ref({defaultFont});
 const underBannerTextHeight = ref(43);
@@ -52,9 +42,7 @@ const underBannerTextFontSizeUpdate = (newSize) => {
 const underBannerTextHeightUpdate = (newHeight) => {
   underBannerTextHeight.value = newHeight;
 };
-const underBannerTextUpdate = (newText) => {
-  underBannerText.value = newText;
-};
+
 const underBannerFontUpdate = (newFont) => {
     underBannerSelectedFont.value = newFont;
 };
@@ -80,10 +68,7 @@ const underBannerFontUpdate = (newFont) => {
       @update:selectedBlock="updateSelectedBlock"
       :selectedBlock="selectedBlock"
       :selectedBanner="banner"
-      :bannerMargin="Number(bannerMargin)"
-      :underBannerText="underBannerText"
       :underBannerSelectedFont="underBannerSelectedFont"
-      :bannerBackground="bannerBackground"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerTextFontSize="underBannerTextFontSize"
       :underBannerTextFontWeight="underBannerTextFontWeight"
@@ -104,18 +89,14 @@ const underBannerFontUpdate = (newFont) => {
     />
     <BlockEdit
       :selectedBlock="selectedBlock"
-      :bannerMargin="Number(bannerMargin)"
-      :underBannerText="underBannerText"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerSelectedFont="underBannerSelectedFont"
       :underBannerTextFontSize="Number(underBannerTextFontSize)"
       :underBannerTextFontWeight="Number(underBannerTextFontWeight)"
-      @update:bannerMargin="bannerMarginUpdate"
       @update:fontWeight="underBannerTextFontWeightUpdate"
       @update:fontSize="underBannerTextFontSizeUpdate"
       @update:textHeight="underBannerTextHeightUpdate"
       @update:underBannerText="underBannerTextUpdate"
-      @update:bannerBgColor="updateBannerBgColor"
       @update:fontSelected="underBannerFontUpdate"
     />
   </div>

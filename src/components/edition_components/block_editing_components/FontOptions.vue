@@ -1,13 +1,15 @@
 <script setup>
-import { ref, onMounted, defineEmits, defineProps } from "vue";
+import { ref, onMounted, defineEmits, defineProps, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import NumberInput from "./mini_components/NumberInput.vue";
+import { underBannerTextVars } from "../../../store/UnderBannerText";
+
+const underBannerTextStore = underBannerTextVars();
 
 const emits = defineEmits([
   "update:fontWeight",
   "update:fontSize",
   "update:textHeight",
-  "update:text",
   "update:fontSelected",
 ]);
 
@@ -19,7 +21,7 @@ const props = defineProps({
   underBannerSelectedFont: Object,
   underBannerTextFontSize: Number,
 });
-const text = ref(props.underBannerText);
+const text = ref(underBannerTextStore.text);
 const selectedFont = ref(props.underBannerSelectedFont);
 const availableFonts = ref([]);
 const fontSize = ref(props.underBannerTextFontSize || 16);
@@ -78,10 +80,15 @@ function handleSelectedFont(selectedFont) {
   emits("update:fontSelected", selectedFont);
 }
 
-const handleTextUpdate = (updatedText) => {
-  text.value = updatedText;
-  emits("update:text", updatedText);
-};
+let timeoutId = null;
+watch(()=> text.value, (newVal) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    underBannerTextStore.setText(newVal);
+  }, 1000);
+});
 </script>
 
 <template>
@@ -94,7 +101,6 @@ const handleTextUpdate = (updatedText) => {
       class="custom-input text-sm max-h-36 min-h-9"
       placeholder="Introduce texto"
       v-model="text"
-      @input="handleTextUpdate(text)"
     />
 
     <!-- Font selector -->

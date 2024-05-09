@@ -6,20 +6,8 @@ import { useBannerVars } from "../../../store/BannerVars";
 
 const store = useBannerVars();
 
-let bannerMarsgin = ref(store.bannerMargin);
-let bannerUrl = ref(store.bannerUrl);
-let backgrounsdColor = ref(store.bannerBgColor);
-
-
-
-const props = defineProps({
-  bannerMargin:Number,
-});
-
-const emits = defineEmits(["update:colors","update:bannerMargin"]);
 
 const url = ref(store.bannerUrl);
-const backgroundColor = ref("#FFFFFF");
 
 //cuando url cambie ejecuto emit
 let timeoutId = null;
@@ -32,13 +20,9 @@ watch(url, (newVal) => {
   }, 1000);
 });
 
-const handleBgColorUpdate = (updatedColor) => {
-  emits("update:colors", updatedColor);
-};
 
-const bannerMarginUpdate=(newVal)=>{
-  emits("update:bannerMargin", newVal);
-}
+
+
 </script>
 
 <template>
@@ -51,13 +35,11 @@ const bannerMarginUpdate=(newVal)=>{
 
     <!-- Slider -->
     <h3>Margen inferior:</h3>
-    <Slider class="mb-4 " :value="bannerMargin" @update:value="bannerMarginUpdate" :step="1"/>
+    <Slider class="mb-4 " :value="store.marginBottom" :valueUpdate="store.setMarginBottom"/>
 
     <!-- Background -->
     <h3>Fondo:</h3>
     <ColorPicker
-      :color="[backgroundColor]"
-      @update:color="handleBgColorUpdate"
       class="mb-4 h-fit"
     />
   </div>
