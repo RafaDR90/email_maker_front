@@ -109,11 +109,6 @@ const updateSelectedBlock = (block) => {
 </template>
 
 <style scoped>
-/*
-.dynamic-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-*/
 .selectable-block {
   @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
 }
