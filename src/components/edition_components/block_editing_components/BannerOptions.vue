@@ -7,10 +7,7 @@ import { useBannerVars } from "../../../store/BannerVars";
 const store = useBannerVars();
 
 
-const emits = defineEmits(["update:colors"]);
-
 const url = ref(store.bannerUrl);
-const backgroundColor = ref("#FFFFFF");
 
 //cuando url cambie ejecuto emit
 let timeoutId = null;
@@ -23,9 +20,7 @@ watch(url, (newVal) => {
   }, 1000);
 });
 
-const handleBgColorUpdate = (updatedColor) => {
-  emits("update:colors", updatedColor);
-};
+
 
 
 </script>
@@ -45,8 +40,6 @@ const handleBgColorUpdate = (updatedColor) => {
     <!-- Background -->
     <h3>Fondo:</h3>
     <ColorPicker
-      :color="[backgroundColor]"
-      @update:color="handleBgColorUpdate"
       class="mb-4 h-fit"
     />
   </div>

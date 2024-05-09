@@ -12,7 +12,6 @@ const emit = defineEmits(["update:selectedBlock"]);
 const props = defineProps({
   //banner
   selectedBanner: String,
-  bannerBackground: String,
   //underBannerText
   underBannerText: String,
   underBannerSelectedFont: {
@@ -30,10 +29,6 @@ const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
 
-//cuando cambia de estado bannerStore.bannerStore ejecuto console.log
-watch(bannerStore.marginBottom, (newVal) => {
-  console.log(newVal);
-});
 </script>
 
 
@@ -48,7 +43,7 @@ watch(bannerStore.marginBottom, (newVal) => {
         <div
           v-if="!bannerStore.bannerUrl"
           :style="{
-            backgroundColor: bannerBackground || '',
+            backgroundColor: bannerStore.bannerColor || '',
             marginBottom: bannerStore.marginBottom + 'px',
           }"
           class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"

@@ -5,7 +5,7 @@ export const useBannerVars = defineStore({
     state: () => {
         return {
             bannerUrl: '',
-            bannerColor: '',
+            bannerColor: '#FFFFFF',
             marginBottom: 0,
         }
     },

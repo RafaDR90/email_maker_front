@@ -15,13 +15,8 @@ const updateSelectedBlock = (block) => {
 /*----------------------------
             BANNER
 ----------------------------*/
-const bannerBackground = ref("#ffffff");
 
 
-
-const updateBannerBgColor = (newColor) => {
-  bannerBackground.value = newColor;
-};
 
 /*----------------------------
             FIN BANNER
@@ -77,7 +72,6 @@ const gridColumns = ref(3);
       :selectedBanner="banner"
       :underBannerText="underBannerText"
       :underBannerSelectedFont="underBannerSelectedFont"
-      :bannerBackground="bannerBackground"
       :underBannerTextHeight="underBannerTextHeight"
       :underBannerTextFontSize="underBannerTextFontSize"
       :underBannerTextFontWeight="underBannerTextFontWeight"
@@ -94,7 +88,6 @@ const gridColumns = ref(3);
       @update:fontSize="underBannerTextFontSizeUpdate"
       @update:textHeight="underBannerTextHeightUpdate"
       @update:underBannerText="underBannerTextUpdate"
-      @update:bannerBgColor="updateBannerBgColor"
       @update:fontSelected="underBannerFontUpdate"
     />
   </div>

@@ -8,7 +8,6 @@ const emits = defineEmits([
   "update:fontWeight",
   "update:fontSize",
   "update:textHeight",
-  "update:bannerBgColor",
   "update:underBannerText",
   "update:fontSelected",
 ]);
@@ -37,9 +36,7 @@ const fontSelectedUpdate = (newFont) => {
   emits("update:fontSelected", newFont);
 };
 
-const updateBackgroundColor = (newColor) => {
-  emits("update:bannerBgColor", newColor);
-};
+
 const updateUnderBannerText = (newText) => {
   emits("update:underBannerText", newText);
 };
@@ -50,7 +47,6 @@ const updateUnderBannerText = (newText) => {
   <div class="w-[25%] bg-indigo-200 dark:bg-indigo-950 h-[calc(100vh-4rem)]">
     <BannerOptions
       v-if="selectedBlock == 'banner'"
-      @update:colors="updateBackgroundColor"
     />
     <FontEditer
       v-else-if="selectedBlock == 'underBannerText'"
