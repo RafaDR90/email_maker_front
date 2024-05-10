@@ -13,13 +13,11 @@ const downloadHTML = () => {
   <div class="flex gap-5 w-full justify-center mb-10 flex-wrap">
     <button
       class="button bg-orange-500 rounded hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300"
-      @click="downloadHTML"
-    >
+      @click="downloadHTML">
       Descargar HTML
     </button>
     <button
-      class="button bg-indigo-500 rounded hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-    >
+      class="button bg-indigo-500 rounded hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-300">
       Guardar
     </button>
   </div>

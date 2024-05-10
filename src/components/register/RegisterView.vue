@@ -146,7 +146,6 @@ const registrarse = async () => {
       password.value,
       confirmPassword.value
     );
-    console.log('Registro exitoso:', data);
     // Realizar acciones adicionales después del registro, como redireccionar a otra página
   } catch (error) {
     console.error('Error al registrarse:', error.message);
