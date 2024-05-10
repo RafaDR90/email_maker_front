@@ -45,7 +45,7 @@ const updateSelectedCard = (id) => {
 
 <template>
   <div class="grid-container" :style="updateStyle()">
-    <button v-for="(producto, key) in productItemsStore.productsList" class="w-full " :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
+    <button v-for="(producto, key) in productItemsStore.productsList" :key="key" class="w-full " :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
       (key % 2 === 0 ?
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}` } :
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}` }) :
