@@ -26,7 +26,7 @@ const props = defineProps({
   //underBannerText
   underBannerSelectedFont: {
     type: Object,
-    default: () => ({ fontFamily: "Montserrat" }), 
+    default: () => ({ fontFamily: "Montserrat" }),
   },
   //grid
   gridColumns: Number,
@@ -68,10 +68,10 @@ const downloadHTMLPrueba = () => {
 
 
 <template>
-  <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center ">
+  <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
     <div
       id="emailContainer"
-      class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max "
+      class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
         <div

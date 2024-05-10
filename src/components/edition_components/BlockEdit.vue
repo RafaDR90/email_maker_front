@@ -19,7 +19,7 @@ const fontSelectedUpdate = (newFont) => {
 
 <template>
   <div
-    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-200 dark:bg-indigo-950  shadow-md z-20 overflow-auto"
+    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 shadow-md z-20 overflow-auto"
   >
     <BannerOptions v-if="selectedBlock == 'banner'" />
     <FontEditer
