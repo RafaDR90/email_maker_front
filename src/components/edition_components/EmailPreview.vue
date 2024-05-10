@@ -1,7 +1,6 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import GridAlt from "../GridAlt.vue";
 import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
@@ -74,37 +73,24 @@ const downloadHTMLPrueba = () => {
       class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
-        <div
-          v-if="!bannerStore.bannerUrl"
-          :style="{
-            backgroundColor: bannerStore.bannerColor || '',
-            paddingBottom: bannerStore.marginBottom + 'px',
-          }"
-          class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
-        >
+        <div v-if="!bannerStore.bannerUrl" :style="{
+          backgroundColor: bannerStore.bannerColor || '',
+          paddingBottom: bannerStore.marginBottom + 'px',
+        }" class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center">
           <div class="flex flex-col justify-center items-center">
             <img class="w-20 h-20" :src="Banner" alt="imagen banner" />
             <p class="text-4xl text-gray-500">Inserte imagen</p>
           </div>
         </div>
-        <div
-          v-else
-          :style="{
-            backgroundColor: bannerStore.bannerColor,
-            paddingBottom: bannerStore.marginBottom + 'px',
-          }"
-        >
-          <img
-            class="w-full"
-            :src="bannerStore.bannerUrl"
-            alt="imagen banner"
-          />
+        <div v-else :style="{
+          backgroundColor: bannerStore.bannerColor,
+          paddingBottom: bannerStore.marginBottom + 'px',
+        }">
+          <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
         </div>
       </div>
-      <div
-        @click="updateSelectedBlock('underBannerText')"
-        class="selectable-block min-h-max flex justify-center items-center"
-        :style="{
+      <div @click="updateSelectedBlock('underBannerText')"
+        class="selectable-block min-h-max flex justify-center items-center" :style="{
           minHeight:
             underBannerTextStore.height === 0
               ? 'max-content'
@@ -114,44 +100,15 @@ const downloadHTMLPrueba = () => {
           fontFamily: underBannerSelectedFont.fontFamily || 'Montserrat',
           color: underBannerTextStore.color,
           backgroundColor: underBannerTextStore.bgColor,
-        }"
-      >
-        <p
-          class="text-center"
-          v-if="underBannerTextStore.text"
-          :style="{
-            fontSize: underBannerTextStore.fontSize + 'px',
-          }"
-        >
+        }">
+        <p class="text-center w-full" v-if="underBannerTextStore.text" :style="{
+          fontSize: underBannerTextStore.fontSize + 'px',
+        }">
           {{ underBannerTextStore.text }}
         </p>
       </div>
-
-      <!--<Grid :gridConfiguration="styleStore.gridConfiguration">
-        <div v-for="product in productVars.productsList" :key="product">
-          <ProductCard :product="product" />
-        </div>
-      </Grid>-->
-      <GridAlt />
+      <Grid />
     </div>
   </div>
 </template>
 
-
-
-
-        <!--
-        <div class="items-container">
-         
-          <div v-for="index in 100" :key="index">
-            <div
-              class="selectable-block h-60 bg-red-500 flex justify-center items-center"
-            >
-              <div class="bg-green-200 w-[80%] h-[90%]"></div>
-            </div>
-          </div>
-        </div>
-
-
-
-        -->
