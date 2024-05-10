@@ -1,14 +1,10 @@
 <script setup>
-import { ref, defineEmits, defineProps, watch } from "vue";
-
-const emits = defineEmits(["update:value"]);
+import { ref, defineProps, watch } from "vue";
 
 const props = defineProps({
   value: { type: Number, default: 16 },
   valueUpdate: { type: Function, default: () => {} },
 });
-
-
 
 const number = ref(props.value);
 
@@ -28,10 +24,6 @@ watch(
 
 <template>
   <div class="w-full">
-    <input
-      type="number"
-      class="custom-input text-center"
-      v-model="number"
-    />
+    <input type="number" class="custom-input text-center" v-model="number" />
   </div>
 </template>

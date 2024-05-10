@@ -1,17 +1,16 @@
 <script setup>
-import { ref, onMounted, defineEmits, defineProps, watch, computed } from "vue";
-import Slider from "./mini_components/Slider.vue";
+import { ref, onMounted, defineEmits, defineProps, watch } from "vue";
 import NumberInput from "./mini_components/NumberInput.vue";
-import { underBannerTextVars } from "../../../store/UnderBannerText";
 import ColorPicker from "./mini_components/ColorPicker.vue";
+import FontSelector from "./mini_components/FontSelector.vue";
 import CheckBox from "./mini_components/CheckBox.vue";
+import { underBannerTextVars } from "../../../store/UnderBannerText";
 
 const underBannerTextStore = underBannerTextVars();
 
 const emits = defineEmits(["update:fontSize", "update:fontSelected"]);
 
 const props = defineProps({
-  underBannerText: String,
   underBannerSelectedFont: Object,
 });
 const text = ref(underBannerTextStore.text);
@@ -37,11 +36,6 @@ function filteredFont() {
   }
 }
 
-function handleSelectedFont(selectedFont) {
-  selectedFont.value = selectedFont;
-  emits("update:fontSelected", selectedFont);
-}
-
 let timeoutId = null;
 watch(
   () => text.value,
@@ -58,9 +52,8 @@ watch(
 
 <template>
   <div class="blockEditItem">
-    <h2>Texto</h2>
+    <h2>Título</h2>
     <div class="divider" />
-    <!-- Img URL -->
     <h3>Texto:</h3>
     <textarea
       class="custom-input text-sm max-h-36 min-h-9"
@@ -70,23 +63,11 @@ watch(
 
     <!-- Font selector -->
     <h3>Fuente:</h3>
-    <div class="w-full">
-      <select
-        id="fontSelect"
-        class="custom-input text-sm"
-        v-model="selectedFont"
-        @change="handleSelectedFont(selectedFont)"
-        selected="selectedFont"
-      >
-        <option
-          v-for="(font, index) in availableFonts"
-          :key="index"
-          :value="font"
-        >
-          {{ font.fontFamily }}
-        </option>
-      </select>
-    </div>
+    <FontSelector
+      :fontsList="availableFonts"
+      :selectedFont="underBannerTextStore.font"
+      :updateFont="underBannerTextStore.setFont"
+    />
 
     <!-- Font size -->
     <h3>Tamaño de la fuente:</h3>

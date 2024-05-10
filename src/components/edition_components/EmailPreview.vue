@@ -20,8 +20,6 @@ const emit = defineEmits(["update:selectedBlock"]);
 
 //obtengo las props del componente
 const props = defineProps({
-  //banner
-  selectedBanner: String,
   //underBannerText
   underBannerSelectedFont: {
     type: Object,
@@ -73,37 +71,55 @@ const downloadHTMLPrueba = () => {
       class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
-        <div v-if="!bannerStore.bannerUrl" :style="{
-          backgroundColor: bannerStore.bannerColor || '',
-          paddingBottom: bannerStore.marginBottom + 'px',
-        }" class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center">
+        <div
+          v-if="!bannerStore.bannerUrl"
+          :style="{
+            backgroundColor: bannerStore.bannerColor || '',
+            paddingBottom: bannerStore.marginBottom + 'px',
+          }"
+          class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
+        >
           <div class="flex flex-col justify-center items-center">
             <img class="w-20 h-20" :src="Banner" alt="imagen banner" />
             <p class="text-4xl text-gray-500">Inserte imagen</p>
           </div>
         </div>
-        <div v-else :style="{
-          backgroundColor: bannerStore.bannerColor,
-          paddingBottom: bannerStore.marginBottom + 'px',
-        }">
-          <img class="w-full" :src="bannerStore.bannerUrl" alt="imagen banner" />
+        <div
+          v-else
+          :style="{
+            backgroundColor: bannerStore.bannerColor,
+            paddingBottom: bannerStore.marginBottom + 'px',
+          }"
+        >
+          <img
+            class="w-full"
+            :src="bannerStore.bannerUrl"
+            alt="imagen banner"
+          />
         </div>
       </div>
-      <div @click="updateSelectedBlock('underBannerText')"
-        class="selectable-block min-h-max flex justify-center items-center" :style="{
+      <div
+        @click="updateSelectedBlock('underBannerText')"
+        class="selectable-block min-h-max flex justify-center items-center"
+        :style="{
           minHeight:
             underBannerTextStore.height === 0
               ? 'max-content'
               : underBannerTextStore.height + 'px',
           fontWeight: underBannerTextStore.weight ? 600 : 200,
           textSize: underBannerTextStore.fontSize,
-          fontFamily: underBannerSelectedFont.fontFamily || 'Montserrat',
+          fontFamily: underBannerTextStore.font.fontFamily ,
           color: underBannerTextStore.color,
           backgroundColor: underBannerTextStore.bgColor,
-        }">
-        <p class="text-center w-full" v-if="underBannerTextStore.text" :style="{
-          fontSize: underBannerTextStore.fontSize + 'px',
-        }">
+        }"
+      >
+        <p
+          class="text-center w-full"
+          v-if="underBannerTextStore.text"
+          :style="{
+            fontSize: underBannerTextStore.fontSize + 'px',
+          }"
+        >
           {{ underBannerTextStore.text }}
         </p>
       </div>

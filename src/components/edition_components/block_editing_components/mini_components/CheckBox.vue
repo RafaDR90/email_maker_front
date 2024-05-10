@@ -2,7 +2,7 @@
 import { defineProps, ref } from 'vue';
 
 const props = defineProps({
-  value: Boolean,
+  value: Number,
   valueUpdate: Function,
 });
 

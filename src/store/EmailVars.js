@@ -1,45 +1,30 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
-import { emailVars } from "./EmailVars";
 
-export const underBannerTextVars = defineStore({
-  id: "underBannerTextVars",
+export const emailVars = defineStore({
+  id: "emailVars",
   state: () => {
-    const emailStore = emailVars();
-    const selectedFont = ref(emailStore.fonts[3]);
+    const fonts = getAvailableFonts();
 
     return {
-      text: "{Introduce texto}",
-      fonts: emailStore.fonts,
-      font: selectedFont,
+      fonts: fonts,
+      generalFont: fonts[1],
       fontSize: 16,
-      weight: false,
-      height: 40,
-      color: "#000000",
+      fontWeight: 200,
       bgColor: "#FFFFFF",
     };
   },
   actions: {
-    setText(text) {
-      this.text = text;
-    },
     addFont(font) {
       this.fonts.add(font);
     },
-    setFont(font) {
-      this.font = font;
+    setGeneralFont(font) {
+      this.generalFont = font;
     },
     setFontSize(fontSize) {
       this.fontSize = fontSize;
     },
-    setWeight(weight) {
-      this.weight = weight;
-    },
-    setHeight(height) {
-      this.height = height;
-    },
-    setColor(color) {
-      this.color = color;
+    setFontWeight(weight) {
+      this.fontWeight = weight;
     },
     setBgColor(bgColor) {
       this.bgColor = bgColor;

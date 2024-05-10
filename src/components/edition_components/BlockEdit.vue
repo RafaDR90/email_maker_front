@@ -1,6 +1,6 @@
 <script setup>
 import BannerOptions from "./block_editing_components/BannerOptions.vue";
-import FontEditer from "./block_editing_components/FontOptions.vue";
+import FontOptions from "./block_editing_components/FontOptions.vue";
 
 import { defineEmits, defineProps } from "vue";
 
@@ -19,13 +19,12 @@ const fontSelectedUpdate = (newFont) => {
 
 <template>
   <div
-    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 shadow-md z-20 overflow-auto"
+    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 shadow-md z-20 overflow-auto p-4"
   >
     <BannerOptions v-if="selectedBlock == 'banner'" />
-    <FontEditer
+    <FontOptions
       v-else-if="selectedBlock == 'underBannerText'"
       :underBannerSelectedFont="underBannerSelectedFont"
-      @update:text="updateUnderBannerText"
       @update:fontSelected="fontSelectedUpdate"
     />
   </div>

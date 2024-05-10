@@ -47,7 +47,7 @@ const underBannerFontUpdate = (newFont) => {
 <template>
   <div class="w-full min-h-full flex">
     <StyleEdit />
-    <EmailPreview class="h-[calc(100vh-4rem)] overflow-y-auto" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" :selectedBanner="banner"
+    <EmailPreview class="h-[calc(100vh-4rem)] overflow-y-auto" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" 
       :underBannerSelectedFont="underBannerSelectedFont" />
     <BlockEdit :selectedBlock="selectedBlock" :underBannerSelectedFont="underBannerSelectedFont"
       @update:fontSelected="underBannerFontUpdate" />

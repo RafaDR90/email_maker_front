@@ -48,15 +48,18 @@
   --default-font: "Roboto", sans-serif;
 }
 
+.divider{
+  @apply mb-3;
+}
 .selectable-block {
   @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
 }
 
 .blockEditItem {
-  @apply w-full h-fit flex flex-col place-items-start p-4;
+  @apply w-full h-fit flex flex-col place-items-start;
 }
 .styleEditItem {
-  @apply w-full h-fit flex flex-col place-items-start p-4;
+  @apply w-full h-fit flex flex-col place-items-start;
 }
 
 h2 {

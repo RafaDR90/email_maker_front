@@ -14,7 +14,6 @@ const updateStyle = () => {
 }
 
 const getDirection = (key) => {
-  console.log(key);
 if(gridConfiguration.selectedMode.childDistribution == 'normal'){
   return 'col'
 }
@@ -31,7 +30,7 @@ if(key%2==0 && gridConfiguration.selectedMode.childDistribution[0]==1){
 
 <template>
     <div class="grid-container" :style="updateStyle()">
-        <div v-for="(producto, key) in productVarsStore.productsList" class="w-full " :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
+        <div v-for="(producto, key) in productVarsStore.productsList" class="w-full " :key="key" :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
             (key % 2 === 0 ?
                 { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}` } :
                 { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}` }) :

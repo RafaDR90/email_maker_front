@@ -13,7 +13,6 @@ const roundPvp = (pvp) => {
   return formattedPrice;
 };
 
-console.log(props.cardDirection)
 </script>
 
 <template>
