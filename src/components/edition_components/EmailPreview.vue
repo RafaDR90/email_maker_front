@@ -6,6 +6,7 @@ import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
 import { useStyleVars } from "../../store/StyleVars";
+import { useProductVars } from "../../store/ProductVars";
 import ProductCard from "../ProductCard.vue";
 import { documentActions } from "../../store/DocumentActions";
 
@@ -14,6 +15,7 @@ const documentActionsStore = documentActions();
 const bannerStore = useBannerVars();
 const underBannerTextStore = underBannerTextVars();
 const styleStore = useStyleVars();
+const productVars = useProductVars();
 
 const emit = defineEmits(["update:selectedBlock"]);
 
@@ -36,9 +38,12 @@ const updateSelectedBlock = (block) => {
   emit("update:selectedBlock", block);
 };
 
-watch(()=>documentActionsStore.downloadHtmlEmit, (newValue) => {
-  downloadHTMLPrueba()
-})
+watch(
+  () => documentActionsStore.downloadHtmlEmit,
+  (newValue) => {
+    downloadHTMLPrueba();
+  }
+);
 const downloadHTML = () => {
   const html = document.getElementById("emailContainer").outerHTML;
   const blob = new Blob([html], { type: "text/plain" });
@@ -60,8 +65,6 @@ const downloadHTMLPrueba = () => {
   a.download = "email.html";
   a.click();
   URL.revokeObjectURL(url);
-  
-
 };
 </script>
 
@@ -125,24 +128,18 @@ const downloadHTMLPrueba = () => {
           {{ underBannerTextStore.text }}
         </p>
       </div>
+
       <!--<Grid :gridConfiguration="styleStore.gridConfiguration">
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+        <div v-for="product in productVars.productsList" :key="product">
+          <ProductCard :product="product" />
+        </div>
       </Grid>-->
       <GridAlt />
     </div>
   </div>
 </template>
 
-<style scoped>
-.selectable-block {
-  @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
-}
-</style>
+
 
 
         <!--

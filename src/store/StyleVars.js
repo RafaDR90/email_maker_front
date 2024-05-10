@@ -14,7 +14,7 @@ export const useStyleVars = defineStore({
     setGridConfiguration(gridConfiguration) {
       if (gridConfiguration) {
         this.gridConfiguration = gridConfiguration;
-
+        /*
         if (Array.isArray(gridConfiguration.gridSpans)) {
           if (gridConfiguration.gridSpans.length < gridConfiguration.gridColumns) {
             for (let i = gridConfiguration.gridSpans.length; i < gridConfiguration.gridColumns; i++) {
@@ -26,6 +26,7 @@ export const useStyleVars = defineStore({
             "Error en setGridConfiguration"
           );
         }
+        */
       }
     },
   },

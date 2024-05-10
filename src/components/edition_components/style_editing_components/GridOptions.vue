@@ -29,12 +29,12 @@ const columns_dist_light = ref([
   },
   {
     id: 4,
-    gridConfiguration: { gridColumns: 3, gridSpans: [1, 0, 2] },
+    gridConfiguration: { gridColumns: 3, gridSpans: [1, 2] },
     imageUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png",
   },
   {
     id: 5,
-    gridConfiguration: { gridColumns: 3, gridSpans: [2, 0, 1] },
+    gridConfiguration: { gridColumns: 3, gridSpans: [2, 1] },
     imageUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png",
   },
 ]);
@@ -52,6 +52,7 @@ const selectedDist = ref(null);
 
 // Función para seleccionar un item
 const selectDist = (dist) => {
+  console.log("Dist seleccionada: ", dist);
   props.setGridConfiguration(dist.gridConfiguration);
   selectedDist.value = dist;
 };

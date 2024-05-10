@@ -1,5 +1,6 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
+
 const props = defineProps({
   gridConfiguration: {
     type: Object,
@@ -10,17 +11,25 @@ const props = defineProps({
   },
 });
 
-const calculateColumn = (index) => {
-  let column = 1;
-  for (let i = 0; i < index % props.gridConfiguration.gridColumns; i++) {
-    column += props.gridConfiguration.gridSpans[i];
+const gridTemplateColumns = computed(() => {
+  return `${gridSpansFormatted(props.gridConfiguration)}`;
+});
+
+function gridSpansFormatted(gridConfiguration) {
+  if (gridConfiguration.gridSpans) {
+    return gridConfiguration.gridSpans.map((span) => span + "fr").join(" ");
   }
-  return column;
-};
+}
 </script>
 
 <template>
-  <div>
-    
+  <div
+    class="grid gap-2 w-full"
+    :style="{
+      'grid-template-columns': gridTemplateColumns,
+      'grid-auto-rows': 'minmax(0px, auto)',
+    }"
+  >
+    <slot />
   </div>
 </template>
