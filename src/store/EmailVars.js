@@ -4,10 +4,12 @@ export const emailVars = defineStore({
   id: "emailVars",
   state: () => {
     const fonts = getAvailableFonts();
+    const systemFont = fonts[1];
+    //const underBannerStore = underBannerTextVars();
 
     return {
       fonts: fonts,
-      generalFont: fonts[1],
+      generalFont: systemFont,
       fontSize: 16,
       fontWeight: 200,
       bgColor: "#FFFFFF",
@@ -18,7 +20,9 @@ export const emailVars = defineStore({
       this.fonts.add(font);
     },
     setGeneralFont(font) {
-      this.generalFont = font;
+      this.generalFont = font.value;
+      document.getElementById("emailContainer").style.fontFamily =
+        font.value.fontFamily;
     },
     setFontSize(fontSize) {
       this.fontSize = fontSize;

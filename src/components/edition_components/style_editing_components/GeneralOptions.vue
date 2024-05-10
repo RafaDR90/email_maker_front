@@ -1,8 +1,15 @@
 <script setup>
 import FontSelector from "../block_editing_components/mini_components/FontSelector.vue";
+import { emailVars } from "../../../store/EmailVars";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
 
-const underBannerTextStore = underBannerTextVars();
+const emailVarsStore = emailVars();
+const underBannerStore = underBannerTextVars();
+
+function changeFont(font) {
+  emailVarsStore.setGeneralFont(font);
+  underBannerStore.setFont(font);
+}
 </script>
 
 <template>
@@ -12,9 +19,9 @@ const underBannerTextStore = underBannerTextVars();
     <!-- Font selector -->
     <h3 class="mt-0">Fuente:</h3>
     <FontSelector
-      :fontsList="underBannerTextStore.fonts"
-      :selectedFont="underBannerTextStore.font"
-      :updateFont="underBannerTextStore.setFont"
+      :fontsList="emailVarsStore.fonts"
+      :selectedFont="emailVarsStore.generalFont"
+      :updateFont="changeFont"
     />
   </div>
 </template>

@@ -6,7 +6,7 @@ export const underBannerTextVars = defineStore({
   id: "underBannerTextVars",
   state: () => {
     const emailStore = emailVars();
-    const selectedFont = ref(emailStore.fonts[3]);
+    const selectedFont = ref(emailStore.fonts[1]);
 
     return {
       text: "{Introduce texto}",

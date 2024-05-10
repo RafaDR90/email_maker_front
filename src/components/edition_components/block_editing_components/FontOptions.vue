@@ -22,6 +22,7 @@ const fontWeight = ref(underBannerTextStore.weight || 200);
 // Llamar a la función para obtener las fuentes disponibles cuando el componente está montado
 onMounted(() => {
   availableFonts.value = underBannerTextStore.fonts;
+  console.log(selectedFont.value);
   selectedFont.value = filteredFont();
 });
 
