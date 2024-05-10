@@ -4,19 +4,13 @@ import Grid from "../Grid.vue";
 import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
-import { useStyleVars } from "../../store/StyleVars";
-import { useProductVars } from "../../store/ProductVars";
-import ProductCard from "../ProductCard.vue";
 import { documentActions } from "../../store/DocumentActions";
 
 const documentActionsStore = documentActions();
 
 const bannerStore = useBannerVars();
 const underBannerTextStore = underBannerTextVars();
-const styleStore = useStyleVars();
-const productVars = useProductVars();
 
-const emit = defineEmits(["update:selectedBlock"]);
 
 //obtengo las props del componente
 const props = defineProps({
@@ -30,12 +24,12 @@ const props = defineProps({
 });
 
 const updateSelectedBlock = (block) => {
-  emit("update:selectedBlock", block);
+  documentActionsStore.updateSelectedBlock(block);
 };
 
 watch(
   () => documentActionsStore.downloadHtmlEmit,
-  (newValue) => {
+  () => {
     downloadHTMLPrueba();
   }
 );
