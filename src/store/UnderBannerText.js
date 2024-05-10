@@ -4,7 +4,7 @@ export const underBannerTextVars = defineStore({
     id: 'underBannerTextVars',
     state: () => {
         return {
-            text: '{Introduce texto}',
+            text: `Introduce texto`,
             font: 'Roboto',
             fontSize: 16,
             weight: false,

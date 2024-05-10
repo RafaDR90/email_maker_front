@@ -1,35 +1,49 @@
 <script setup>
-import { defineProps, computed } from "vue";
+import { gridVars } from '../store/GridVars';
+import ProductCard from './ProductCard.vue';
+import { useProductVars } from '../store/ProductVars';
 
-const props = defineProps({
-  gridConfiguration: {
-    type: Object,
-    default: {
-      gridColumns: 3,
-      gridSpans: [1, 1, 1],
-    },
-  },
-});
+const productVarsStore = useProductVars();
 
-const gridTemplateColumns = computed(() => {
-  return `${gridSpansFormatted(props.gridConfiguration)}`;
-});
+const gridConfiguration = gridVars();
 
-function gridSpansFormatted(gridConfiguration) {
-  if (gridConfiguration.gridSpans) {
-    return gridConfiguration.gridSpans.map((span) => span + "fr").join(" ");
-  }
+const updateStyle = () => {
+    return {
+        'grid-template-columns': `repeat(${gridConfiguration.selectedMode.columns}, 1fr)`
+    };
 }
+
+const getDirection = (key) => {
+  console.log(key);
+if(gridConfiguration.selectedMode.childDistribution == 'normal'){
+  return 'col'
+}
+if(key%2==0 && gridConfiguration.selectedMode.childDistribution[0]==1){
+  return 'col'
+}else if(key%2!=0 && gridConfiguration.selectedMode.childDistribution[1]==1){
+  return 'col'
+}else{
+  return 'row'
+}
+}
+
 </script>
 
 <template>
-  <div
-    class="grid gap-2 w-full"
-    :style="{
-      'grid-template-columns': gridTemplateColumns,
-      'grid-auto-rows': 'minmax(0px, auto)',
-    }"
-  >
-    <slot />
-  </div>
+    <div class="grid-container" :style="updateStyle()">
+        <div v-for="(producto, key) in productVarsStore.productsList" class="w-full " :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
+            (key % 2 === 0 ?
+                { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}` } :
+                { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}` }) :
+            {}">
+            <ProductCard :product="producto" :cardDirection="getDirection(key)" />
+        </div>
+    </div>
 </template>
+
+<style scoped>
+.grid-container {
+    display: grid;
+    gap: 10px;
+}
+</style>
