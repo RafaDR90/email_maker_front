@@ -1,6 +1,7 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
+import GridAlt from "../GridAlt.vue";
 import { defineProps, defineEmits, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
@@ -124,14 +125,15 @@ const downloadHTMLPrueba = () => {
           {{ underBannerTextStore.text }}
         </p>
       </div>
-      <Grid :gridConfiguration="styleStore.gridConfiguration">
+      <!--<Grid :gridConfiguration="styleStore.gridConfiguration">
         <ProductCard/>
         <ProductCard/>
         <ProductCard/>
         <ProductCard/>
         <ProductCard/>
         <ProductCard/>
-      </Grid>
+      </Grid>-->
+      <GridAlt />
     </div>
   </div>
 </template>
