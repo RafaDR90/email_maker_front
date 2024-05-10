@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted } from "vue";
-import { useRouter } from "vue-router";
 import Navbar from "./components/navbar/NavBar.vue";
 import { useStore } from "vuex";
 import ProductService from "./api/ProductService";
@@ -8,13 +7,11 @@ import { useProductVars } from "./store/ProductVars";
 import ProductModel from "./model/ProductModel";
 
 const store = useStore();
-const router = useRouter();
 const productStore = useProductVars();
 
 /* ---------------------
   Obtención de productos
   ---------------------- */
-
 const fetchProducts = async () => {
   try {
     const responseData = await ProductService.fetchTenProducts();
@@ -25,7 +22,6 @@ const fetchProducts = async () => {
     productsData.forEach((product) => productStore.addProduct(product));
   } catch (error) {
     console.error("Error al cargar los productos:", error);
-    //error.value = "Error al cargar los productos";
   }
 };
 

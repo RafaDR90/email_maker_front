@@ -12,7 +12,7 @@ const gridConfiguration = ref(styleStore.gridConfiguration);
 
 
 <template>
-  <div class="w-[25%] bg-indigo-100 dark:bg-indigo-950 flex flex-col justify-between">
+  <div class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 flex flex-col justify-between shadow-md z-20 overflow-auto">
     <div>
       <GridOptions :gridConfiguration="gridConfiguration" :setGridConfiguration="styleStore.setGridConfiguration"/>
     </div>
