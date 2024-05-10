@@ -22,10 +22,7 @@ const fetchProducts = async () => {
     const productsData = responseData.map(
       (productData) => new ProductModel(productData)
     );
-
     productsData.forEach((product) => productStore.addProduct(product));
-
-    console.log(productsData);
   } catch (error) {
     console.error("Error al cargar los productos:", error);
     //error.value = "Error al cargar los productos";
