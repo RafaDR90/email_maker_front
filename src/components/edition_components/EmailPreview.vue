@@ -1,14 +1,16 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import { defineProps, defineEmits, watch, ref } from "vue";
+import { defineProps, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
+import { useEmailVars } from "../../store/EmailVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
 import { documentActions } from "../../store/DocumentActions";
 
 const documentActionsStore = documentActions();
 
 const bannerStore = useBannerVars();
+const emailVarsStore = useEmailVars();
 const underBannerTextStore = underBannerTextVars();
 
 
@@ -62,7 +64,10 @@ const downloadHTMLPrueba = () => {
   <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
     <div
       id="emailContainer"
-      class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
+      class="w-[649px] min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
+      :style="{
+        backgroundColor: emailVarsStore.bgColor || '#FFFFFF'
+      }"
     >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
         <div
