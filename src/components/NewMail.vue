@@ -2,7 +2,7 @@
 import BlockEdit from "./edition_components/BlockEdit.vue";
 import StyleEdit from "./edition_components/StyleEdit.vue";
 import EmailPreview from "./edition_components/EmailPreview.vue";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 /*----------------------------
             BLOCK EDIT
@@ -38,7 +38,7 @@ const underBannerFontUpdate = (newFont) => {
 /*----------------------------
          CARDS GRID
 ----------------------------*/
-//const gridColumns = ref(3);
+
 /*----------------------------
        FIN CARDS GRID
 ----------------------------*/

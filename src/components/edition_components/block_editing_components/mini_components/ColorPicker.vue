@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, watch } from "vue";
+import { ref, defineProps, watchEffect } from "vue";
 
 const props = defineProps({
   value: String,
@@ -18,6 +18,10 @@ const updateColor = (newColor) => {
     props.valueUpdate(newColor);
   }, 1000);
 };
+
+watchEffect(() => {
+  selectedColor.value = props.value;
+});
 </script>
 
 <template>

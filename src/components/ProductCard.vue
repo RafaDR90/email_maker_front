@@ -12,7 +12,6 @@ const roundPvp = (pvp) => {
   const formattedPrice = roundedPvp.toFixed(2);
   return formattedPrice;
 };
-
 </script>
 
 <template>
@@ -42,4 +41,17 @@ const roundPvp = (pvp) => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+p {
+  @apply text-sm py-1;
+}
+.product-card-container {
+  @apply size-full h-60 bg-slate-200 rounded-md z-10 shadow-indigo-950 shadow-sm flex justify-center items-center;
+}
+.product-card {
+  @apply flex content-center items-center justify-center bg-indigo-300 rounded-md w-[90%] h-[93%] px-3 py-1;
+}
+.product-card-content {
+  @apply size-full flex flex-col place-items-center justify-center place-content-center;
+}
+</style>

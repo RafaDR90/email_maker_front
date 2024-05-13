@@ -1,14 +1,16 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../Grid.vue";
-import { defineProps, defineEmits, watch, ref } from "vue";
+import { defineProps, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
+import { useEmailVars } from "../../store/EmailVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
 import { documentActions } from "../../store/DocumentActions";
 
 const documentActionsStore = documentActions();
 
 const bannerStore = useBannerVars();
+const emailVarsStore = useEmailVars();
 const underBannerTextStore = underBannerTextVars();
 
 
@@ -60,12 +62,22 @@ const downloadHTMLPrueba = () => {
 
 <template>
   <div class="min-w-[649px] bg-blue-50 min-h-full w-[50%] flex justify-center">
-    <div id="emailContainer" class="w-[649px] bg-white min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max">
+    <div
+      id="emailContainer"
+      class="w-[649px] min-h-20 mt-16 pb-10 mb-16 flex flex-col h-max"
+      :style="{
+        backgroundColor: emailVarsStore.bgColor || '#FFFFFF'
+      }"
+    >
       <div @click="updateSelectedBlock('banner')" class="selectable-block">
-        <div v-if="!bannerStore.bannerUrl" :style="{
-          backgroundColor: bannerStore.bannerColor || '',
-          paddingBottom: bannerStore.marginBottom + 'px',
-        }" class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center">
+        <div
+          v-if="!bannerStore.bannerUrl"
+          :style="{
+            backgroundColor: bannerStore.bannerColor || '',
+            paddingBottom: bannerStore.marginBottom + 'px',
+          }"
+          class="w-full h-fit flex justify-center items-center"
+        >
           <div class="flex flex-col justify-center items-center">
             <img class="w-20 h-20" :src="Banner" alt="imagen banner" />
             <p class="text-4xl text-gray-500">Inserte imagen</p>

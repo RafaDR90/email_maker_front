@@ -4,6 +4,7 @@ import Navbar from "./components/navbar/NavBar.vue";
 import { useStore } from "vuex";
 
 const store = useStore();
+
  
 
 onMounted(() => {

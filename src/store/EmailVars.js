@@ -1,15 +1,14 @@
 import { defineStore } from "pinia";
 
-export const emailVars = defineStore({
+export const useEmailVars = defineStore({
   id: "emailVars",
   state: () => {
     const fonts = getAvailableFonts();
+    const systemFont = fonts[1];
 
     return {
       fonts: fonts,
-      generalFont: fonts[1],
-      fontSize: 16,
-      fontWeight: 200,
+      generalFont: systemFont,
       bgColor: "#FFFFFF",
     };
   },
@@ -18,13 +17,9 @@ export const emailVars = defineStore({
       this.fonts.add(font);
     },
     setGeneralFont(font) {
-      this.generalFont = font;
-    },
-    setFontSize(fontSize) {
-      this.fontSize = fontSize;
-    },
-    setFontWeight(weight) {
-      this.fontWeight = weight;
+      this.generalFont = font.value;
+      document.getElementById("emailContainer").style.fontFamily =
+        font.value.fontFamily;
     },
     setBgColor(bgColor) {
       this.bgColor = bgColor;
