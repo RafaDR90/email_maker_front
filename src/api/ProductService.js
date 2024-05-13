@@ -20,4 +20,13 @@ export default class ProductService {
       throw error;
     }
   }
+  static async fetch10ProductsWithRef(ref){
+    try {
+      const response = await axios.post(`${BASE_URL}/products/search`, {reference: ref});
+      return response.data;
+    } catch (error) {
+      console.error("Error al cargar los productos:", error);
+      throw error;
+    }
+  }
 }

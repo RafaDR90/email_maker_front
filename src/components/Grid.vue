@@ -33,7 +33,6 @@ const getDirection = (key) => {
 }
 const addProductsToArray = () => {
   productItemsStore.addProduct()
-  console.log(productItemsStore.productsList)
 }
 
 const updateSelectedCard = (id) => {
