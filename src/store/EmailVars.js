@@ -7,8 +7,10 @@ export const useEmailVars = defineStore({
     const systemFont = fonts[1];
 
     return {
+      emailSubject: "Asunto",
       fonts: fonts,
       generalFont: systemFont,
+      emailSubjectFont: systemFont,
       bgColor: "#FFFFFF",
     };
   },
@@ -18,11 +20,19 @@ export const useEmailVars = defineStore({
     },
     setGeneralFont(font) {
       this.generalFont = font.value;
+      this.emailSubjectFont = font.value;
       document.getElementById("emailContainer").style.fontFamily =
         font.value.fontFamily;
     },
     setBgColor(bgColor) {
       this.bgColor = bgColor;
+    },
+    setEmailSubjectFont(emailSubjectFont) {
+      console.log(emailSubjectFont);
+      this.emailSubjectFont = emailSubjectFont;
+    },
+    setEmailSubject(emailSubject) {
+      this.emailSubject = emailSubject;
     },
   },
 });
