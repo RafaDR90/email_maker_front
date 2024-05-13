@@ -14,8 +14,8 @@ function changeFont(font) {
   underBannerStore.setFont(font);
 }
 
-function changeBackgroundColor(color){
-  if(validateColor(color)){
+function changeBackgroundColor(color) {
+  if (validateColor(color)) {
     emailVarsStore.setBgColor(color);
     underBannerStore.setBgColor(color);
     bannerStore.setBannerColor(color);
@@ -23,7 +23,7 @@ function changeBackgroundColor(color){
 }
 
 function validateColor(color) {
-  if (typeof color !== 'string') {
+  if (typeof color !== "string") {
     return false;
   }
 
@@ -47,8 +47,11 @@ function validateColor(color) {
       :updateFont="changeFont"
     />
     <!-- General Background Color -->
-    <h3 >Color del fondo:</h3>
-    <ColorPicker :value="emailVarsStore.bgColor" :valueUpdate="changeBackgroundColor"/>
+    <h3>Color del fondo:</h3>
+    <ColorPicker
+      :value="emailVarsStore.bgColor"
+      :valueUpdate="changeBackgroundColor"
+    />
   </div>
 </template>
 

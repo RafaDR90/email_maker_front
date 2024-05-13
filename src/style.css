@@ -45,7 +45,7 @@
 }
 
 :root {
-  --default-font: "Roboto", sans-serif;
+  --default-font: font-family: "Roboto", sans-serif;
 }
 
 .divider{

@@ -28,8 +28,9 @@ export const useEmailVars = defineStore({
       this.bgColor = bgColor;
     },
     setEmailSubjectFont(emailSubjectFont) {
-      console.log(emailSubjectFont);
       this.emailSubjectFont = emailSubjectFont;
+      document.getElementById("emailSubject").style.fontFamily =
+        emailSubjectFont.value.fontFamily;
     },
     setEmailSubject(emailSubject) {
       this.emailSubject = emailSubject;

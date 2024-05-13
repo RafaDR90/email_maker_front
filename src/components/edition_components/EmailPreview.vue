@@ -46,8 +46,18 @@ const downloadHTML = () => {
 };
 
 const downloadHTMLPrueba = () => {
-  const html = document.getElementById("emailContainer").outerHTML;
-  //inicio descarga de html, no quiero crear un <a> quiero que se inicie la descarga
+  const headContent = `
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>`;
+
+  const emailContainerHTML = document.getElementById("emailContainer").outerHTML;
+  const html = `<!DOCTYPE html><html>${headContent}<body>${emailContainerHTML}</body></html>`;
+
   const blob = new Blob([html], { type: "text/html" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -63,8 +73,7 @@ const downloadHTMLPrueba = () => {
   <div
     class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
   >
-    <div id="emailContainer" class="w-[649px]">
-
+    <div id="emailContainer" class="w-72">
       <!-- Asunto -->
       <div
         id="emailSubject"

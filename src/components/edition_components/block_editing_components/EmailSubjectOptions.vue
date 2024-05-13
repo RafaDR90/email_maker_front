@@ -26,10 +26,8 @@ watch(
 );
 
 watch(emailVarsStore, () => {
-  console.log(emailVarsStore.emailSubjectFont);
-  selectedFont.value = emailVarsStore.emailSubjectFont.value;
+  selectedFont.value = emailVarsStore.emailSubjectFont;
 });
-
 </script>
 
 <template>
@@ -54,8 +52,8 @@ watch(emailVarsStore, () => {
     <!-- Font selector -->
     <h3>Fuente:</h3>
     <FontSelector
+      :selectedFont="selectedFont"
       :fontsList="availableFonts"
-      :selectedFont="emailVarsStore.emailSubjectFont"
       :updateFont="emailVarsStore.setEmailSubjectFont"
     />
   </div>
