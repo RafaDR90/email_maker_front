@@ -149,4 +149,3 @@ const downloadHTMLPrueba = () => {
     </div>
   </div>
 </template>
-

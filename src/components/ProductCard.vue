@@ -15,32 +15,28 @@ const roundPvp = (pvp) => {
 </script>
 
 <template>
-  <div
-    class="flex gap-2 border border-black"
-    :class="cardDirection == 'col' ? 'flex-col' : 'flex-row'"
-  >
-    <div v-if="props.product">
-      <div class="border border-red-200">
-        {{ props.product.titulo }}
-      </div>
-      <div class="border border-y-teal-300">
-        {{ props.product.pvd }}
-      </div>
+  <div class="flex gap-2 border border-black" :class="cardDirection == 'col' ? 'flex-col' : 'flex-row'">
+    <div class="border border-red-200">
+      <img style="width: 200px ;" :src="props.product.url_imagen_compress" alt="Imagen del producto">
     </div>
-    <div v-else class="product-card-content">
-      <img
-        :src="product.url_imagen_compress"
-        alt="Imagen del producto"
-        class="object-contain h-[60%] w-auto"
-      />
-      <p class="font-bold text-xs overflow-y-hidden line-clamp-2">
-        {{ product.titulo }}
-      </p>
-      <p>{{ roundPvp(product.pvp) }}€</p>
-
-      <p v-if="product.oferta > 0">
-        {{ product.oferta }}
-      </p>
+    <div class="border border-y-teal-300">
+      <p class=" text-xl font-bold">{{ props.product.titulo_small }}</p>
+      <div v-if="props.product.oferta" class="flex justify-center items-center">
+        <p class="p-2 text-white bg-red-600 w-min mx-5">¡OFERTA!</p>
+      </div>
+      <div>
+        <div class="flex justify-around mt-4">
+          <p v-if="props.product.oferta" class="text-3xl text-blue-700 font-bold">{{ props.product.pvd }}</p>
+          <p :class="props.product.oferta ? ' text-gray-500 line-through' : ' text-blue-700'"
+            class=" text-3xl font-bold">
+            {{ props.product.pvd_estandar }}</p>
+        </div>
+        <div>
+          <div class="flex justify-center">
+            <p class=" bg-red-600 p-3 px-8 text-white m-3 w-min">Comprar</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
