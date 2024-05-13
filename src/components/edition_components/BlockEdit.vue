@@ -1,6 +1,6 @@
 <script setup>
 import BannerOptions from "./block_editing_components/BannerOptions.vue";
-import FontOptions from "./block_editing_components/FontOptions.vue";
+import FontOptions from "./block_editing_components/UnderBannerOptions.vue";
 import ProductCardOptions from "./block_editing_components/ProductCardOptions.vue";
 import { documentActions } from "../../store/DocumentActions";
 

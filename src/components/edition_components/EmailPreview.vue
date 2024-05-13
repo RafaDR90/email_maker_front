@@ -76,7 +76,7 @@ const downloadHTMLPrueba = () => {
             backgroundColor: bannerStore.bannerColor || '',
             paddingBottom: bannerStore.marginBottom + 'px',
           }"
-          class="w-full h-80 bg-red-600 border-2 border-gray-200 flex justify-center items-center"
+          class="w-full h-fit flex justify-center items-center"
         >
           <div class="flex flex-col justify-center items-center">
             <img class="w-20 h-20" :src="Banner" alt="imagen banner" />

@@ -63,6 +63,7 @@ watch(underBannerTextStore, () => {
       class="custom-input text-sm max-h-36 min-h-9"
       placeholder="Introduce texto"
       v-model="text"
+      onfocus="this.select()"
     />
 
     <!-- Font selector -->
