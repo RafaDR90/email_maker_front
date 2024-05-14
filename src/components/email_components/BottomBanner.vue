@@ -9,6 +9,7 @@
       align-items: center;
     "
   >
+  
     <div
       id="footerBanner"
       style="

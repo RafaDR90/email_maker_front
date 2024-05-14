@@ -169,8 +169,15 @@ function isImageValid(imageURL) {
             backgroundColor: emailVarsStore.bgColor || '#FFFFFF',
           }"
         >
-          <NewBanner @click="updateSelectedBlock('banner')" class="selectable-block" />
+          <NewBanner
+            :bannerImageUrl="bannerStore.bannerUrl"
+            :bannerBackgroundColor="bannerStore.bannerColor"
+            :bannerBottomMargin="bannerStore.marginBottom"
+            @click="updateSelectedBlock('banner')"
+            class="selectable-block"
+          />
           <!-- Top Banner -->
+          <!--
           <div @click="updateSelectedBlock('banner')" class="selectable-block">
             <div
               v-if="!bannerStore.bannerUrl"
@@ -227,7 +234,7 @@ function isImageValid(imageURL) {
               </div>
             </div>
           </div>
-
+          -->
           <!-- Top Banner Text-->
           <div
             @click="updateSelectedBlock('underBannerText')"
@@ -268,9 +275,13 @@ function isImageValid(imageURL) {
 
         <!-- Bottom Section -->
         <BottomSection>
-          <div class="selectable-block">
-            <BottomBanner />
-          </div>
+          <NewBanner
+            class="selectable-block"
+            :bannerImageUrl="bannerStore.bottomBannerUrl"
+            :bannerBackgroundColor="bannerStore.bottomBannerColor"
+            :bannerBottomMargin="bannerStore.bottomBannerMarginBottom"
+            @click="updateSelectedBlock('bottomBanner')"
+          />
         </BottomSection>
         <EmailFooter />
       </div>

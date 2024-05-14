@@ -1,8 +1,14 @@
 <script setup>
+import { defineProps } from "vue";
 import addBannerImg from "../../../../assets/img/boton-agregar.png";
 import { useBannerVars } from "../../../../store/BannerVars";
 const bannerStore = useBannerVars();
 
+const props = defineProps({
+  bannerImageUrl: { type: String, default: "" },
+  bannerBackgroundColor: { type: String, default: "#FFFFFF" },
+  bannerBottomMargin: { type: Number, default: 0 },
+});
 /**
  * Función para comprobar si la imagen es una URL
  */
@@ -20,7 +26,6 @@ function isURL(newUrl) {
  */
 function isImageValid(imageURL) {
   if (!isURL(imageURL)) {
-    console.log("a");
     return false;
   }
   const img = new Image();
@@ -32,10 +37,10 @@ function isImageValid(imageURL) {
 
 <template>
   <div
-    v-if="!bannerStore.bannerUrl"
+    v-if="!props.bannerImageUrl"
     :style="{
-      backgroundColor: bannerStore.bannerColor || '',
-      paddingBottom: bannerStore.marginBottom + 'px',
+      backgroundColor: bannerBackgroundColor || '',
+      paddingBottom: bannerBottomMargin + 'px',
     }"
     style="
       width: 100%;
@@ -65,14 +70,14 @@ function isImageValid(imageURL) {
   <div
     v-else
     :style="{
-      backgroundColor: bannerStore.bannerColor,
-      paddingBottom: bannerStore.marginBottom + 'px',
+      backgroundColor: bannerBackgroundColor,
+      paddingBottom: bannerBottomMargin + 'px',
     }"
   >
     <img
-      v-if="isImageValid(bannerStore.bannerUrl)"
+      v-if="isImageValid(props.bannerImageUrl)"
       style="width: 100%"
-      :src="bannerStore.bannerUrl"
+      :src="props.bannerImageUrl"
       alt="imagen banner"
     />
     <div

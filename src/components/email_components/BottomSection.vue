@@ -5,6 +5,7 @@
       width: 100%;
       height: 80px;
       background-color: white;
+      padding-top: 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
