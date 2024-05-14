@@ -137,50 +137,57 @@
       >
     </div>
     <br />
-    <p>
-      <font size="1" face="Arial, Helvetica, sans-serif" color="#999999">
-        Este e-mail contiene información confidencial, el contenido de la misma
-        se encuentra protegido por Ley. Cualquier persona distinta a su
-        destinataria tiene prohibida su reproducción, uso, divulgación o
-        impresión total o parcial. Si ha recibido este mensaje por error,
-        notifíquelo de inmediato al remitente borrando el mensaje original
-        juntamente con sus ficheros anexos. Gracias.
-      </font>
-    </p>
-    <br />
-    <p>
-      <font size="1" face="Arial, Helvetica, sans-serif" color="#999999"
-        >Te informamos que puedes renunciar en cualquier momento y de forma
-        sencilla a la recepción de nuestro servicio de ofertas y novedades
-        haciendo clic en este enlace
-        <a
-          style="text-decoration: underline"
-          href="https://comunicados.megasur.es/c/p8rl8kr/kmhzceqy/f7xxcfl-4wg"
-          target="_blank"
-          data-saferedirecturl="https://www.google.com/url?q=https://comunicados.megasur.es/c/p8rl8kr/kmhzceqy/f7xxcfl-4wg&amp;source=gmail&amp;ust=1715756676625000&amp;usg=AOvVaw0cWh1jeB9Umq7r1u4KzDPl"
-          >Dar de baja de newsletter</a
-        >.
-      </font>
-    </p>
-
-    <div style="display: flex; align-items: center;">
-      <div>
-        <img
-          src="https://ci3.googleusercontent.com/meips/ADKq_NawO0cAiJnsc-n5YXB1HJEOFYYMHUewU-UBirAzJ5oqDDWde8EUl7vmWetVVboumyT7JZ_Po8UNCDHZp1xlJE7LUNNkkIv0=s0-d-e1-ft#https://www.megasur.es/mailing/set/arch/arbol.png"
-          width="28px"
-          height="26px"
-          class="CToWUd"
-          data-bit="iit"
-        />
-      </div>
-      <div>
-        <br />
+    <div
+      id="footerTextContainer"
+      style="
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
+      "
+    >
+      <p>
+        <font size="1" face="Arial, Helvetica, sans-serif" color="#999999">
+          Este e-mail contiene información confidencial, el contenido de la
+          misma se encuentra protegido por Ley. Cualquier persona distinta a su
+          destinataria tiene prohibida su reproducción, uso, divulgación o
+          impresión total o parcial. Si ha recibido este mensaje por error,
+          notifíquelo de inmediato al remitente borrando el mensaje original
+          juntamente con sus ficheros anexos. Gracias.
+        </font>
+      </p>
+      <br />
+      <p>
         <font size="1" face="Arial, Helvetica, sans-serif" color="#999999"
-          >Antes de imprimir este mensaje, por favor, compruebe que es
-          necesario. Una tonelada de papel implica la tala de 15 árboles y el
-          consumo de 250.000 litros de agua. El Medio Ambiente es cuestión de
-          TODOS.</font
-        >
+          >Te informamos que puedes renunciar en cualquier momento y de forma
+          sencilla a la recepción de nuestro servicio de ofertas y novedades
+          haciendo clic en este enlace
+          <a
+            style="text-decoration: underline"
+            href="https://comunicados.megasur.es/c/p8rl8kr/kmhzceqy/f7xxcfl-4wg"
+            target="_blank"
+            data-saferedirecturl="https://www.google.com/url?q=https://comunicados.megasur.es/c/p8rl8kr/kmhzceqy/f7xxcfl-4wg&amp;source=gmail&amp;ust=1715756676625000&amp;usg=AOvVaw0cWh1jeB9Umq7r1u4KzDPl"
+            >Dar de baja de newsletter</a
+          >.
+        </font>
+      </p>
+      <br />
+      <div style="display: flex; align-items: center">
+        <div style="margin-right: 0.2rem">
+          <img
+            src="https://ci3.googleusercontent.com/meips/ADKq_NawO0cAiJnsc-n5YXB1HJEOFYYMHUewU-UBirAzJ5oqDDWde8EUl7vmWetVVboumyT7JZ_Po8UNCDHZp1xlJE7LUNNkkIv0=s0-d-e1-ft#https://www.megasur.es/mailing/set/arch/arbol.png"
+            width="28px"
+            height="26px"
+            data-bit="iit"
+          />
+        </div>
+        <div>
+          <font size="1" face="Arial, Helvetica, sans-serif" color="#999999"
+            >Antes de imprimir este mensaje, por favor, compruebe que es
+            necesario. Una tonelada de papel implica la tala de 15 árboles y el
+            consumo de 250.000 litros de agua. El Medio Ambiente es cuestión de
+            TODOS.</font
+          >
+        </div>
       </div>
     </div>
   </footer>
