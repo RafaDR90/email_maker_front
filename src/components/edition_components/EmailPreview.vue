@@ -4,6 +4,7 @@ import Grid from "../email_components/Grid.vue";
 import EmailHeader from "../email_components/EmailHeader.vue";
 import BottomBanner from "../email_components/BottomBanner.vue";
 import BottomSection from "../email_components/BottomSection.vue";
+import NewBanner from "./block_editing_components/mini_components/Banner.vue";
 import EmailFooter from "../email_components/EmailFooter.vue";
 import { defineProps, watch, ref, computed } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
@@ -168,6 +169,8 @@ function isImageValid(imageURL) {
             backgroundColor: emailVarsStore.bgColor || '#FFFFFF',
           }"
         >
+          <NewBanner @click="updateSelectedBlock('banner')" class="selectable-block" />
+          <!-- Top Banner -->
           <div @click="updateSelectedBlock('banner')" class="selectable-block">
             <div
               v-if="!bannerStore.bannerUrl"
@@ -224,6 +227,8 @@ function isImageValid(imageURL) {
               </div>
             </div>
           </div>
+
+          <!-- Top Banner Text-->
           <div
             @click="updateSelectedBlock('underBannerText')"
             class="selectable-block"
@@ -256,8 +261,12 @@ function isImageValid(imageURL) {
               {{ underBannerTextStore.text }}
             </p>
           </div>
+
+          <!-- Products Grid -->
           <Grid />
         </div>
+
+        <!-- Bottom Section -->
         <BottomSection>
           <div class="selectable-block">
             <BottomBanner />
