@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginForm from './components/LoginForm.vue';
-import DashboardLayout from './components/DashboardLayout.vue';
+import DashboardLayout from './components/dashboard_components/DashboardLayout.vue';
 import store from '../store.js';
 import RegisterForm from './components/register/RegisterView.vue';
 import NewMail from './components/NewMail.vue';

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import FAB from "../components/FloatingActionButton.vue";
-import NewEmailButton from "../components/NewEmailButton.vue";
+import FAB from "./FloatingActionButton.vue";
+import NewEmailButton from "./NewEmailButton.vue";
 
 const isButtonVisible = ref(true);
 

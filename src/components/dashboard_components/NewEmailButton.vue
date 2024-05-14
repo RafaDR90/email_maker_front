@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router";
-import newEmailIcon from "../assets/img/newButton.png";
+import newEmailIcon from "../../assets/img/newButton.png";
 const router = useRouter();
 </script>
 

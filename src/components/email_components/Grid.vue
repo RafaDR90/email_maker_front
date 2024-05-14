@@ -1,10 +1,10 @@
 <script setup>
-import { gridVars } from '../store/GridVars';
-import ProductCard from './ProductCard.vue';
-import { useProductVars } from '../store/ProductVars';
-import Banner from "../assets/img/boton-agregar.png";
-import { productItems } from '../store/ProductsItems';
-import { documentActions } from '../store/DocumentActions';
+import { gridVars } from '../../store/GridVars';
+import ProductCard from '../ProductCard.vue';
+import { useProductVars } from '../../store/ProductVars';
+import Banner from "../../assets/img/boton-agregar.png";
+import { productItems } from '../../store/ProductsItems';
+import { documentActions } from '../../store/DocumentActions';
 import { watch, ref } from 'vue';
 
 const documentActionsStore = documentActions();

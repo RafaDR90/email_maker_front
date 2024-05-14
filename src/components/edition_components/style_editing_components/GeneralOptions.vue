@@ -40,7 +40,7 @@ function validateColor(color) {
     <h2>Opciones generales del email</h2>
     <div class="divider" />
     <!-- Font selector -->
-    <h3 class="mt-0">Fuente:</h3>
+    <h3 class="mt-0 w-full">Fuente:</h3>
     <FontSelector
       :fontsList="emailVarsStore.fonts"
       :selectedFont="emailVarsStore.generalFont"
@@ -54,6 +54,3 @@ function validateColor(color) {
     />
   </div>
 </template>
-
-<style scoped>
-</style>
