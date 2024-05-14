@@ -56,9 +56,11 @@ watch(() => cardBorderOption.value, () => {
         <ColorPicker v-if="cardBgOption" :value="cardStyleStore.cardBg" :valueUpdate="cardStyleStore.setCardBg" />
     </div>
     <div class="mt-5">
-        <label class="">Borde:</label> <input class="ml-2 w-4 h-4" type="checkbox" v-model="cardBorderOption">
-        <ColorPicker v-if="cardBorderOption" :value="cardStyleStore.borderColor" :valueUpdate="cardStyleStore.setBorderColor" />
-
+        <marquee>
+            <label class="">Borde:</label> <input class="ml-2 w-4 h-4" type="checkbox" v-model="cardBorderOption">
+        </marquee>
+        <ColorPicker v-if="cardBorderOption" :value="cardStyleStore.borderColor"
+            :valueUpdate="cardStyleStore.setBorderColor" />
     </div>
 
 </template>

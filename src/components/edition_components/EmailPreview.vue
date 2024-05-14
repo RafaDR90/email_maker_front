@@ -116,7 +116,7 @@ function isImageValid(imageURL) {
 
 
 <template>
-  <div
+  <marquee
     class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
   >
     <div
@@ -275,5 +275,5 @@ function isImageValid(imageURL) {
         <EmailFooter />
       </div>
     </div>
-  </div>
+  </marquee>
 </template>
