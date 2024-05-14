@@ -17,27 +17,27 @@ const roundPvp = (pvp) => {
 
 <template>
   <div   style="display: flex; gap: 0.5rem; height: 460px; border: 1px solid #000000;" :style="cardDirection=='col' ? 'flex-direction: column' : 'flex-direction: row'">
-    <div class=" flex justify-center h-[200px] relative">
-      <div v-if="props.product.oferta" class="flex  items-center absolute w-full">
-        <p class="p-2 text-white text-xl bg-red-600 font-bold rounded w-min mx-5 mt-1">¡OFERTA!</p>
+    <div style="display: flex; justify-content: center; height: 200px; position: relative;">
+      <div v-if="props.product.oferta" style="display: flex; align-items: center; position: absolute; width: 100%;">
+        <p style="padding: 0.5rem; color: white; font-size: 1.25rem; background-color: red; font-weight: bold; width: min-content; margin-left: 1.25rem; margin-right: 1.25rem; margin-top: 0.25rem;">¡OFERTA!</p>
       </div>
-      <img :src="props.product.url_imagen_compress" alt="Imagen del producto" class="h-full">
+      <img :src="props.product.url_imagen_compress" alt="Imagen del producto" style="height: 100%;">
     </div>
-    <div class="h-[300px] flex flex-col">
-      <div class="flex justify-center h-[60px] items-center ">
-        <p class=" text-xl font-bold">{{ props.product.titulo_small }}</p>
+    <div style="height: 300px; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: center; height: 60px; align-items: center;">
+        <p style="font-size: 1.25rem; font-weight: bold;">{{ props.product.titulo_small }}</p>
       </div>
 
-      <div class="mt-auto flex flex-col gap-3 ">
-        <div class="flex flex-col gap-3 justify-around mt-4 ">
-          <p v-if="props.product.oferta" class="text-3xl text-blue-700 font-bold mx-6">{{ roundPvp(props.product.pvd) }}</p>
-          <p :class="props.product.oferta ? ' text-gray-500 line-through' : ' text-blue-700'"
-            class=" text-3xl font-bold mx-6">
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: space-around; margin-top: 1rem;">
+          <p v-if="props.product.oferta" style="font-size: 1.875rem; color: blue; font-weight: bold;margin-left: 1.5rem; margin-right: 1.5rem;">{{ roundPvp(props.product.pvd) }}</p>
+          <p :style="props.product.oferta ? 'color: gray;text-decoration: line-through;' : 'color: blue; '"
+            style="font-size: 1.875rem; font-weight: bold; margin-left: 1.5rem; margin-right: 1.5rem;">
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div>
-          <div class="flex justify-center">
-            <p class=" bg-red-600 p-3 px-8 text-white m-3 w-min">Comprar</p>
+          <div style="display: flex; justify-content: center;">
+            <p style="background-color: red; padding: 0.875rem;padding-left: 2rem; padding-right: 2rem; color: white; margin: 0.875rem; width: min-content; ">Comprar</p>
           </div>
         </div>
       </div>
