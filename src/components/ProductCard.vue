@@ -20,12 +20,12 @@ const roundPvp = (pvp) => {
 </script>
 
 <template>
-  <div class="selectable-block" style="display: flex; gap: 0.5rem; height: 460px;" :style="[
+  <div style="display: flex; gap: 0.5rem; height: 460px; padding: 0.5rem;" :style="[
     cardDirection === 'col' ? { 'flex-direction': 'column' } : { 'flex-direction': 'row' },
     cardStyleStore.cardBgActive ? { 'background-color': cardStyleStore.cardBg } : {},
     cardStyleStore.border ? { 'border': '1px solid '+cardStyleStore.borderColor } : {},
   ]">
-    <div style="display: flex; justify-content: center; height: 200px; position: relative;">
+    <div style="display: flex; justify-content: center; height: 200px; position: relative; ">
       <div v-if="props.product.oferta" style="display: flex; align-items: center; position: absolute; width: 100%;">
         <p
           style="padding: 0.5rem; color: white; font-size: 1.25rem; background-color: red; font-weight: bold; width: min-content; margin-left: 1.25rem; margin-right: 1.25rem; margin-top: 0.25rem;">
@@ -69,7 +69,7 @@ const roundPvp = (pvp) => {
           cardStyleStore.buttonBold ? {fontWeight: 'bold'} : {},
           cardStyleStore.buttonRounded ? {borderRadius: '5px'} : {},
             ]"
-              style=" margin: 0.875rem; width: min-content; ">
+              style=" margin: 0.875rem; margin-bottom: 0; width: min-content; ">
               Comprar</a>
           </div>
         </div>

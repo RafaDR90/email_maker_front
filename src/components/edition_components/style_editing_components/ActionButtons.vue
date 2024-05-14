@@ -10,7 +10,7 @@ const downloadHTML = () => {
 </script>
 
 <template>
-  <div class="flex gap-5 w-full justify-center mb-10 flex-wrap">
+  <div class="flex gap-5 w-full justify-center mb-3 flex-wrap">
     <button
       class="button bg-orange-500 rounded hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300"
       @click="downloadHTML">
