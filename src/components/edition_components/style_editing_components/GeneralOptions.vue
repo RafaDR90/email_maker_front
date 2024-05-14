@@ -1,6 +1,7 @@
 <script setup>
 import FontSelector from "../block_editing_components/mini_components/FontSelector.vue";
 import ColorPicker from "../block_editing_components/mini_components/ColorPicker.vue";
+import DropDownComp from "../block_editing_components/mini_components/DropDownComp.vue";
 import { useEmailVars } from "../../../store/EmailVars";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
 import { useBannerVars } from "../../../store/BannerVars";
@@ -19,6 +20,7 @@ function changeBackgroundColor(color) {
     emailVarsStore.setBgColor(color);
     underBannerStore.setBgColor(color);
     bannerStore.setBannerColor(color);
+    bannerStore.setBottomBannerColor(color);
   }
 }
 
@@ -37,20 +39,29 @@ function validateColor(color) {
 
 <template>
   <div class="my-4 flex flex-col content-center">
-    <h2>Opciones generales del email</h2>
-    <div class="divider" />
-    <!-- Font selector -->
-    <h3 class="mt-0 w-full">Fuente:</h3>
-    <FontSelector
-      :fontsList="emailVarsStore.fonts"
-      :selectedFont="emailVarsStore.generalFont"
-      :updateFont="changeFont"
-    />
-    <!-- General Background Color -->
-    <h3>Color del fondo:</h3>
-    <ColorPicker
-      :value="emailVarsStore.bgColor"
-      :valueUpdate="changeBackgroundColor"
-    />
+    <DropDownComp :buttonText="'Opciones del email'" :isOpen="false">
+      <!-- Font selector -->
+      <h3 class="mt-0 w-full">Fuente:</h3>
+      <FontSelector
+        :fontsList="emailVarsStore.fonts"
+        :selectedFont="emailVarsStore.generalFont"
+        :updateFont="changeFont"
+      />
+      <!-- General Background Color -->
+      <h3>Color del fondo:</h3>
+      <ColorPicker
+        :value="emailVarsStore.bgColor"
+        :valueUpdate="changeBackgroundColor"
+      />
+    </DropDownComp>
+
+    <DropDownComp :buttonText="'Opciones de las tarjetas'" :isOpen="false">
+      <!-- General Card Background Color -->
+      <h3>Color del fondo:</h3>
+      <ColorPicker
+        :value="emailVarsStore.bgColor"
+        :valueUpdate="changeBackgroundColor"
+      />
+    </DropDownComp>
   </div>
 </template>

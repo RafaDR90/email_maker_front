@@ -17,6 +17,8 @@ const gridConfiguration = ref(styleStore.gridConfiguration);
     class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 flex flex-col justify-between shadow-md z-20 overflow-auto"
   >
     <div class="flex flex-col h-full justify-start mb-4 p-4">
+      <h2>Opciones generales</h2>
+      <div class="divider" />
       <GridOptions />
       <GeneralOptions />
     </div>
