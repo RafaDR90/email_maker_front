@@ -17,7 +17,6 @@ const roundPvp = (pvp) => {
   return formattedPrice;
 };
 
-console.log(cardStyleStore.buttonBg)
 </script>
 
 <template>
@@ -60,7 +59,7 @@ console.log(cardStyleStore.buttonBg)
         </div>
         <div>
           <div style="display: flex; justify-content: center;">
-            <p :style="[
+            <a :href="'https://www.megasur.es'+props.product.url_product"  target="_blank" :style="[
               {backgroundColor: cardStyleStore.buttonBg},
               {padding: cardStyleStore.buttonPadding+'px'},
           {paddingLeft: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*70))+'px'},
@@ -71,7 +70,7 @@ console.log(cardStyleStore.buttonBg)
           cardStyleStore.buttonRounded ? {borderRadius: '5px'} : {},
             ]"
               style=" margin: 0.875rem; width: min-content; ">
-              Comprar</p>
+              Comprar</a>
           </div>
         </div>
       </div>
