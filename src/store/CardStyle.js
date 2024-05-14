@@ -22,11 +22,13 @@ export const cardStyle = defineStore({
             colorOldPrice: "#000000",
             OldPriceSize: 20,
             //botton
-            buttonBg: "#FF0000",
+            buttonBg: "#ff0000",
             buttonPadding: 10,
             buttonFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",
-            buttonTextColor: "#FFFFFF",
-            buttonFontSize: 20,
+            buttonTextColor: "#ffffff",
+            buttonFontSize: 18,
+            buttonBold: true,
+            buttonRounded: true
         }
     },
     actions: {
