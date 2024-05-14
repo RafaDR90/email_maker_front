@@ -76,7 +76,7 @@ const downloadHTMLPrueba = () => {
   <div
     class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
   >
-    <div id="emailContainer" style="width: 649px; height: fit-content; background-color: red; padding:20px;">
+    <div id="emailContainer" style="width: 649px; height: fit-content; background-color: red;">
       <!-- Asunto -->
       <div
         id="emailSubject"
