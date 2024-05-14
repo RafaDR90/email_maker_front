@@ -16,8 +16,7 @@ const roundPvp = (pvp) => {
   const formattedPrice = roundedPvp.toFixed(2);
   return formattedPrice;
 };
-console.log(cardStyleStore.cardBgActive);
-console.log(cardStyleStore.cardBg);
+
 </script>
 
 <template>
@@ -47,21 +46,31 @@ console.log(cardStyleStore.cardBg);
         <div
           style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: space-around; margin-top: 1rem;">
           <p v-if="props.product.oferta"
-            style="font-weight: bold;margin-left: 1.5rem; margin-right: 1.5rem;" :style="[
+            style="margin-left: 1.5rem; margin-right: 1.5rem;" :style="[
               {fontSize: cardStyleStore.fontSizePrice+'px'},
               {color: cardStyleStore.priceColor},
               cardStyleStore.priceBold ? {fontWeight: 'bold'} : {}
             ]">{{ roundPvp(props.product.pvd) }}</p>
           <p :style="[
-            props.product.oferta ? {color: cardStyleStore.colorOldPrice, textDecoration: 'line-through', fontSize:cardStyleStore.OldPriceSize+'px'} : {color: cardStyleStore.priceColor, fontSize: cardStyleStore.fontSizePrice+'px'}]"
-            style="font-weight: bold; margin-left: 1.5rem; margin-right: 1.5rem;">
+            props.product.oferta ? {color: cardStyleStore.colorOldPrice, textDecoration: 'line-through', fontSize:cardStyleStore.OldPriceSize+'px'} : {color: cardStyleStore.priceColor, fontSize: cardStyleStore.fontSizePrice+'px'},
+            cardStyleStore.priceBold ? {fontWeight: 'bold'} : {}]"
+            style=" margin-left: 1.5rem; margin-right: 1.5rem;">
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div>
           <div style="display: flex; justify-content: center;">
-            <p
-              style="background-color: red; padding: 0.875rem;padding-left: 2rem; padding-right: 2rem; color: white; margin: 0.875rem; width: min-content; ">
-              Comprar</p>
+            <a :href="'https://www.megasur.es'+props.product.url_product"  target="_blank" :style="[
+              {backgroundColor: cardStyleStore.buttonBg},
+              {padding: cardStyleStore.buttonPadding+'px'},
+          {paddingLeft: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*70))+'px'},
+          {paddingRight: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*70))+'px'},
+          {color: cardStyleStore.buttonTextColor},
+          {fontSize: cardStyleStore.buttonFontSize+'px'},
+          cardStyleStore.buttonBold ? {fontWeight: 'bold'} : {},
+          cardStyleStore.buttonRounded ? {borderRadius: '5px'} : {},
+            ]"
+              style=" margin: 0.875rem; width: min-content; ">
+              Comprar</a>
           </div>
         </div>
       </div>
