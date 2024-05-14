@@ -39,7 +39,7 @@ const roundPvp = (pvp) => {
           'font-size: ' + cardStyleStore.fontSizeTitle + 'px',
           'color: ' + cardStyleStore.titleColor,
           cardStyleStore.titleBold ? { 'font-weight': 'bold' } : {},
-        ]">{{ props.product.titulo_small }}</p>
+        ]" style="margin-right: 3px; margin-left: 3px;" >{{ props.product.titulo_small }}</p>
       </div>
 
       <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
