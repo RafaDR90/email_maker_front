@@ -16,7 +16,7 @@ const roundPvp = (pvp) => {
 </script>
 
 <template>
-  <div class="flex gap-2 border border-black h-[460px]" :class="cardDirection == 'col' ? 'flex-col' : 'flex-row'">
+  <div   style="display: flex; gap: 0.5rem; height: 460px; border: 1px solid #000000;" :style="cardDirection=='col' ? 'flex-direction: column' : 'flex-direction: row'">
     <div class=" flex justify-center h-[200px] relative">
       <div v-if="props.product.oferta" class="flex  items-center absolute w-full">
         <p class="p-2 text-white text-xl bg-red-600 font-bold rounded w-min mx-5 mt-1">¡OFERTA!</p>
