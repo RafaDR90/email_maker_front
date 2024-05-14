@@ -5,7 +5,7 @@ export const cardStyle = defineStore({
     state: () => {
         return {
             //generales
-            cardBgActive: false,
+            cardBgActive: true,
             cardBg: "#FFFFFF",
             border: true,
             borderColor: "#000000",
@@ -32,6 +32,9 @@ export const cardStyle = defineStore({
         }
     },
     actions: {
+        setCardBgActive(satus) {
+            this.cardBgActive = satus;
+        },
         setCardBg(color) {
             this.cardBg = color;
         },

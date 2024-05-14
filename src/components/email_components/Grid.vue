@@ -55,7 +55,7 @@ const updateSelectedCard = (id) => {
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}` } :
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}` }) :
       {}"
-      style="width: 95%; margin-left: auto; margin-right: auto;  ">
+      style="width: 95%; margin-left: auto; margin-right: auto; background-color: transparent;  ">
       <ProductCard @click="updateSelectedCard(producto.id)"  :product="producto" :cardDirection="getDirection(key)" />
     </button>
     <div style="width: 100%; display: flex; justify-content: center; align-items: center;  height: 11rem;">
