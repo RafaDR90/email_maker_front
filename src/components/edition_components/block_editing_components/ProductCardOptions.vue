@@ -6,6 +6,8 @@ import AutocompleteForm from './mini_components/AutocompleteForm.vue';
 import ProductService from '../../../api/ProductService';
 import { cardStyle } from '../../../store/CardStyle';
 import ColorPicker from './mini_components/ColorPicker.vue';
+import DropDownComp from './mini_components/DropDownComp.vue';
+import NumberInput from './mini_components/NumberInput.vue';
 
 
 const cardStyleStore = cardStyle();
@@ -61,6 +63,14 @@ watch(() => cardBorderOption.value, () => {
         </marquee>
         <ColorPicker v-if="cardBorderOption" :value="cardStyleStore.borderColor"
             :valueUpdate="cardStyleStore.setBorderColor" />
+    </div>
+    <div class=" mt-5">
+        <DropDownComp :buttonText="'Titulo'">
+            <div>
+                <label class="">Tamaño del titulo:</label>
+                <NumberInput :value="cardStyleStore.fontSizeTitle" :valueUpdate="cardStyleStore.setFontSizeTitle" />
+            </div>
+        </DropDownComp>
     </div>
 
 </template>
