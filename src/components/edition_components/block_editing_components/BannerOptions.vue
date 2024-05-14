@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineEmits, watch } from "vue";
+import { ref, watch } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import ColorPicker from "./mini_components/ColorPicker.vue";
 import { useBannerVars } from "../../../store/BannerVars";
@@ -52,6 +52,3 @@ watch(url, (newVal) => {
     />
   </div>
 </template>
-
-<style scoped>
-</style>

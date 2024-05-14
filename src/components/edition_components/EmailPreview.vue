@@ -5,7 +5,7 @@ import EmailHeader from "../email_components/EmailHeader.vue";
 import BottomBanner from "../email_components/BottomBanner.vue";
 import BottomSection from "../email_components/BottomSection.vue";
 import EmailFooter from "../email_components/EmailFooter.vue";
-import { defineProps, watch, ref } from "vue";
+import { defineProps, watch, ref, computed } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { useEmailVars } from "../../store/EmailVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
@@ -69,6 +69,32 @@ const downloadHTMLPrueba = () => {
   a.click();
   URL.revokeObjectURL(url);
 };
+
+/**
+ * Función para comprobar si la imagen es una URL
+ */
+function isURL(newUrl) {
+  try {
+    const url = new URL(newUrl);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ * Función para comprobar si la imagen es válida.
+ */
+function isImageValid(imageURL) {
+  if (!isURL(imageURL) ) {
+    console.log("a");
+    return false;
+  }
+  const img = new Image();
+  img.src = imageURL;
+
+  return img.complete && img.naturalWidth !== 0;
+}
 </script>
 
 
@@ -146,6 +172,7 @@ const downloadHTMLPrueba = () => {
                   :src="Banner"
                   alt="imagen banner"
                 />
+
                 <p style="font-size: 2.25rem; color: #6b7280">Inserte imagen</p>
               </div>
             </div>
@@ -157,10 +184,20 @@ const downloadHTMLPrueba = () => {
               }"
             >
               <img
+                v-if="isImageValid(bannerStore.bannerUrl)"
                 style="width: 100%"
                 :src="bannerStore.bannerUrl"
                 alt="imagen banner"
               />
+              <div
+                v-else
+                style="width: 100%; padding: 20px; background-color: lightcoral"
+                align="center"
+              >
+                <p style="color: darkred; font-weight: bold">
+                  ¡Imagen no encontrada!
+                </p>
+              </div>
             </div>
           </div>
           <div
