@@ -47,10 +47,14 @@ console.log(cardStyleStore.cardBg);
         <div
           style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: space-around; margin-top: 1rem;">
           <p v-if="props.product.oferta"
-            style="font-size: 1.875rem; color: blue; font-weight: bold;margin-left: 1.5rem; margin-right: 1.5rem;">{{
-              roundPvp(props.product.pvd) }}</p>
-          <p :style="props.product.oferta ? 'color: gray;text-decoration: line-through;' : 'color: blue; '"
-            style="font-size: 1.875rem; font-weight: bold; margin-left: 1.5rem; margin-right: 1.5rem;">
+            style="font-weight: bold;margin-left: 1.5rem; margin-right: 1.5rem;" :style="[
+              {fontSize: cardStyleStore.fontSizePrice+'px'},
+              {color: cardStyleStore.priceColor},
+              cardStyleStore.priceBold ? {fontWeight: 'bold'} : {}
+            ]">{{ roundPvp(props.product.pvd) }}</p>
+          <p :style="[
+            props.product.oferta ? {color: cardStyleStore.colorOldPrice, textDecoration: 'line-through', fontSize:cardStyleStore.OldPriceSize+'px'} : {color: cardStyleStore.priceColor, fontSize: cardStyleStore.fontSizePrice+'px'}]"
+            style="font-weight: bold; margin-left: 1.5rem; margin-right: 1.5rem;">
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div>

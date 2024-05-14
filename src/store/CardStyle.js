@@ -16,8 +16,8 @@ export const cardStyle = defineStore({
             titleBold: true,
             //precio
             priceFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",
-            priceColor: "#ff0000",
-            fontSizePrice: 20,
+            priceColor: "#0000ff",
+            fontSizePrice: 30,
             priceBold: true,
             colorOldPrice: "#000000",
             OldPriceSize: 20,
