@@ -3,7 +3,7 @@
     style="
       width: 100%;
       height: 80px;
-      background-color: white;
+      background-color: transparent;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -12,7 +12,7 @@
     <div
       id="footerBanner"
       style="
-        background-color: red;
+        background-color: transparent;
         height: fit-content;
         width: 100%;
         display: flex;

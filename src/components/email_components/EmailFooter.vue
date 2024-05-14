@@ -6,7 +6,7 @@
     style="
       width: 100%;
       height: fit-content;
-      background-color: white;
+      background-color: transparent;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -16,6 +16,7 @@
       id="footerCompanyInfo"
       style="
         display: grid;
+        width: 100%;
         grid-template-columns: repeat(3, 1fr);
         column-gap: 0.1rem;
         color: darkslategrey;
@@ -29,6 +30,7 @@
           size: 50px;
           padding: 1rem;
           display: flex;
+          align-content: center;
           align-items: center;
           justify-items: center;
         "
