@@ -57,11 +57,11 @@ const updateSelectedCard = (id) => {
       {}">
       <ProductCard @click="updateSelectedCard(producto.id)"  :product="producto" :cardDirection="getDirection(key)" />
     </button>
-    <div class=" w-full flex justify-center items-center h-44">
-      <div class="w-[90%] h-[90%] border-gray-600 bg-gray-300 flex justify-center items-center">
-        <button @click="addProductsToArray" class=" w-max h-max flex flex-col justify-center items-center">
-          <p class=" w-full text-center">Añade producto</p>
-          <img :src="Banner" alt="" class="w-20 h-20">
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;  height: 11rem;">
+      <div style="width: 90%; height: 90%; display: flex; justify-content: center; align-items: center; border-color: #4B5563; background-color: #D1D5DB;">
+        <button @click="addProductsToArray" style="width: max-content; height: max-content; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <p style="width: 100%; text-align: center;">Añade producto</p>
+          <img :src="Banner" alt="banner" style="width: 5rem; height: 5rem;">
         </button>
       </div>
     </div>

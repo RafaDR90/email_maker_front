@@ -52,7 +52,7 @@
   @apply mb-3;
 }
 .selectable-block {
-  @apply w-full cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
+  @apply  cursor-pointer hover:border-4 hover:border-orange-400 hover:shadow-lg;
 }
 
 .blockEditItem {
