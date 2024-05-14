@@ -1,8 +1,6 @@
-
-  
 <script setup>
 import { ref } from "vue";
-import newEmailIcon from "../assets/img/newButton.png";
+import newEmailIcon from "../../assets/img/newButton.png";
 
 const newEmail = () => {
   console.log("New Email pulsado");

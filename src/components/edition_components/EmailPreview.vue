@@ -1,6 +1,9 @@
 <script setup>
 import Banner from "../../assets/img/boton-agregar.png";
-import Grid from "../Grid.vue";
+import Grid from "../email_components/Grid.vue";
+import EmailHeader from "../email_components/EmailHeader.vue";
+import BottomBanner from "../email_components/BottomBanner.vue";
+import EmailFooter from "../email_components/EmailFooter.vue";
 import { defineProps, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { useEmailVars } from "../../store/EmailVars";
@@ -50,12 +53,11 @@ const downloadHTMLPrueba = () => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>  
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
+    <title>${emailVarsStore.emailSubject}</title>  
 </head>`;
 
-  const emailContainerHTML = document.getElementById("emailContainer").outerHTML;
+  const emailContainerHTML =
+    document.getElementById("emailContainer").outerHTML;
   const html = `<!DOCTYPE html><html>${headContent}<body>${emailContainerHTML}</body></html>`;
 
   const blob = new Blob([html], { type: "text/html" });
@@ -70,46 +72,101 @@ const downloadHTMLPrueba = () => {
 
 
 <template>
-  <div class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start">
-    <div id="emailContainer" style="width: 649px;">
-
+  <div
+    class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
+  >
+    <div id="emailContainer" style="width: 649px; height: fit-content;">
       <!-- Asunto -->
-      <div id="emailSubject" class="selectable-block" style="color: #718096; font-size: 0.875rem; overflow: clip;"
+      <div
+        id="emailSubject"
+        class="selectable-block"
+        style="color: #718096; font-size: 0.875rem; overflow: clip"
         :class="{ fontFamily: emailVarsStore.emailSubjectFont.fontFamily }"
-        @click="updateSelectedBlock('emailSubject')">
+        @click="updateSelectedBlock('emailSubject')"
+      >
         <p>
           {{ emailVarsStore.emailSubject }}
         </p>
-        <div v-if="emailVarsStore.emailSubject.length <= 0" style="display: flex; justify-content: center;">
+        <div
+          v-if="emailVarsStore.emailSubject.length <= 0"
+          style="display: flex; justify-content: center"
+        >
           <p>**Aquí va el asunto del email**</p>
         </div>
       </div>
 
+      <!-- Cabecera empresa -->
+      <EmailHeader />
+
       <!-- Contenido del email -->
-      <div id="emailContent"
-        style="width: 649px; min-height: 5rem; padding-bottom: 2.5rem; margin-bottom: 4rem; display: flex; flex-direction: column; height: max-content;"
+      <div
+        id="emailContent"
+        style="
+          width: 649px;
+          min-height: 5rem;
+          padding-bottom: 2rem;
+          display: flex;
+          flex-direction: column;
+          height: max-content;
+        "
         :style="{
           backgroundColor: emailVarsStore.bgColor || '#FFFFFF',
-        }">
+        }"
+      >
         <div @click="updateSelectedBlock('banner')" class="selectable-block">
-          <div v-if="!bannerStore.bannerUrl" :style="{
-            backgroundColor: bannerStore.bannerColor || '',
-            paddingBottom: bannerStore.marginBottom + 'px',
-          }" style="width: 100%; height: fit-content; display: flex; justify-content: center; align-items: center;">
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <img style="width: 5rem; height: 5rem;" :src="Banner" alt="imagen banner" />
-              <p style="font-size: 2.25rem; color: #6b7280;">Inserte imagen</p>
+          <div
+            v-if="!bannerStore.bannerUrl"
+            :style="{
+              backgroundColor: bannerStore.bannerColor || '',
+              paddingBottom: bannerStore.marginBottom + 'px',
+            }"
+            style="
+              width: 100%;
+              height: fit-content;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 5rem; height: 5rem"
+                :src="Banner"
+                alt="imagen banner"
+              />
+              <p style="font-size: 2.25rem; color: #6b7280">Inserte imagen</p>
             </div>
           </div>
-          <div v-else :style="{
-            backgroundColor: bannerStore.bannerColor,
-            paddingBottom: bannerStore.marginBottom + 'px',
-          }">
-            <img style="width: 100%;" :src="bannerStore.bannerUrl" alt="imagen banner" />
+          <div
+            v-else
+            :style="{
+              backgroundColor: bannerStore.bannerColor,
+              paddingBottom: bannerStore.marginBottom + 'px',
+            }"
+          >
+            <img
+              style="width: 100%"
+              :src="bannerStore.bannerUrl"
+              alt="imagen banner"
+            />
           </div>
         </div>
-        <div @click="updateSelectedBlock('underBannerText')"
-          style="min-height: max-content; display: flex; justify-content: center; align-items: center;" :style="{
+        <div
+          @click="updateSelectedBlock('underBannerText')"
+          style="
+            min-height: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+          :style="{
             minHeight:
               underBannerTextStore.height === 0
                 ? 'max-content'
@@ -119,16 +176,23 @@ const downloadHTMLPrueba = () => {
             fontFamily: underBannerTextStore.font.fontFamily,
             color: underBannerTextStore.color,
             backgroundColor: underBannerTextStore.bgColor,
-          }">
-          <p class="text-center w-full" v-if="underBannerTextStore.text" style="text-align: center; width: 100%;"
+          }"
+        >
+          <p
+            class="text-center w-full"
+            v-if="underBannerTextStore.text"
+            style="text-align: center; width: 100%"
             :style="{
               fontSize: underBannerTextStore.fontSize + 'px',
-            }">
+            }"
+          >
             {{ underBannerTextStore.text }}
           </p>
         </div>
         <Grid />
       </div>
+      <BottomBanner />
+      <EmailFooter style="margin-bottom: 4rem" />
     </div>
   </div>
 </template>
