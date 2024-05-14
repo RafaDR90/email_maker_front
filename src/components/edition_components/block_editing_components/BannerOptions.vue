@@ -1,29 +1,55 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, defineProps } from "vue";
 import Slider from "./mini_components/Slider.vue";
 import ColorPicker from "./mini_components/ColorPicker.vue";
-import { useBannerVars } from "../../../store/BannerVars";
 import closeIcon from "../../../assets/img/x.png";
 
-const store = useBannerVars();
+const props = defineProps({
+  title: { type: String, default: "Edición" },
+  bannerUrl: { type: String, default: "" },
+  bannerColor: { type: String, default: "#FFFFFF" },
+  marginBottom: { type: Number, default: 0 },
+  setBannerUrl: { type: Function, default: () => {} },
+  setBannerColor: { type: Function, default: () => {} },
+  setMarginBottomBanner: { type: Function, default: () => {} },
+});
 
-const url = ref(store.bannerUrl);
+const url = ref(props.bannerUrl);
+const color = ref(props.bannerColor);
+const marginBottom = ref(props.marginBottom);
 
-//cuando url cambie ejecuto emit
 let timeoutId = null;
 watch(url, (newVal) => {
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
   timeoutId = setTimeout(() => {
-    store.setBannerUrl(newVal);
+    props.setBannerUrl(newVal);
+    // store.setBannerUrl(newVal);
+  }, 1000);
+});
+
+watch(color, (newVal) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    props.setBannerColor(newVal);
+  }, 1000);
+});
+watch(marginBottom, (newVal) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    props.setMarginBottomBanner(newVal);
   }, 1000);
 });
 </script>
 
 <template>
   <div class="blockEditItem">
-    <h2>Banner</h2>
+    <h2>{{props.title}}</h2>
     <div class="divider" />
     <!-- Img URL -->
     <h3>Url de la imagen:</h3>
@@ -39,16 +65,16 @@ watch(url, (newVal) => {
     <h3>Margen inferior:</h3>
     <Slider
       class="mb-4"
-      :value="store.marginBottom"
-      :valueUpdate="store.setMarginBottom"
+      :value="marginBottom"
+      :valueUpdate="props.setMarginBottomBanner"
     />
 
     <!-- Background -->
     <h3>Fondo:</h3>
     <ColorPicker
       class="mb-4 h-fit"
-      :value="store.bannerColor"
-      :valueUpdate="store.setBannerColor"
+      :value="bannerColor"
+      :valueUpdate="props.setBannerColor"
     />
   </div>
 </template>
