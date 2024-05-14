@@ -25,7 +25,6 @@ const productsItemsStore = productItems();
 const selectedProduct = ref(null);
 
 
-const cardBgOption = ref(cardStyleStore.cardBgActive);
 
 watch(() => documentActionsStore.selectedCard, () => {
     selectedProduct.value = productsItemsStore.productsList[documentActionsStore.selectedCard]
@@ -36,11 +35,14 @@ const setProduct = (product) => {
 }
 
 
-
-watch(() => cardStyleStore.cardBg, () => {
-    if (!cardBgOption.value) {
-    }
+const cardBgOption = ref(cardStyleStore.cardBgActive);
+watch(() => cardBgOption.value, () => {
     cardStyleStore.setCardBgActive(cardBgOption.value);
+})
+
+const cardBorderOption = ref(cardStyleStore.border);
+watch(() => cardBorderOption.value, () => {
+    cardStyleStore.setBorder(cardBorderOption.value);
 })
 
 </script>
@@ -50,8 +52,13 @@ watch(() => cardStyleStore.cardBg, () => {
         <AutocompleteForm :foundProducts="foundProductsRef" @search="searchProducts" @exportResult="setProduct" />
     </div>
     <div class="mt-5">
-        <label class="">Color de fondo:</label> <input type="checkbox" v-model="cardBgOption">
-        <ColorPicker :value="cardStyleStore.cardBg" :valueUpdate="cardStyleStore.setCardBg" />
+        <label class="">Color de fondo:</label> <input class="ml-2 w-4 h-4" type="checkbox" v-model="cardBgOption">
+        <ColorPicker v-if="cardBgOption" :value="cardStyleStore.cardBg" :valueUpdate="cardStyleStore.setCardBg" />
+    </div>
+    <div class="mt-5">
+        <label class="">Borde:</label> <input class="ml-2 w-4 h-4" type="checkbox" v-model="cardBorderOption">
+        <ColorPicker v-if="cardBorderOption" :value="cardStyleStore.borderColor" :valueUpdate="cardStyleStore.setBorderColor" />
+
     </div>
 
 </template>
