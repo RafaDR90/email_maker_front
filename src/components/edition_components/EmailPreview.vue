@@ -3,6 +3,7 @@ import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../email_components/Grid.vue";
 import EmailHeader from "../email_components/EmailHeader.vue";
 import BottomBanner from "../email_components/BottomBanner.vue";
+import BottomSection from "../email_components/BottomSection.vue";
 import EmailFooter from "../email_components/EmailFooter.vue";
 import { defineProps, watch, ref } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
@@ -75,7 +76,7 @@ const downloadHTMLPrueba = () => {
   <div
     class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
   >
-    <div id="emailContainer" style="width: 649px; height: fit-content;">
+    <div id="emailContainer" style="width: 649px; height: fit-content; background-color: red; padding:20px;">
       <!-- Asunto -->
       <div
         id="emailSubject"
@@ -160,6 +161,7 @@ const downloadHTMLPrueba = () => {
         </div>
         <div
           @click="updateSelectedBlock('underBannerText')"
+          class="selectable-block"
           style="
             min-height: max-content;
             display: flex;
@@ -191,8 +193,12 @@ const downloadHTMLPrueba = () => {
         </div>
         <Grid />
       </div>
-      <BottomBanner />
-      <EmailFooter style="margin-bottom: 4rem" />
+      <BottomSection>
+        <div class="selectable-block">
+          <BottomBanner />
+        </div>
+      </BottomSection>
+      <EmailFooter />
     </div>
   </div>
 </template>
