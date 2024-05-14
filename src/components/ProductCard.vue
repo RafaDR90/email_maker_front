@@ -12,24 +12,28 @@ const roundPvp = (pvp) => {
   const formattedPrice = roundedPvp.toFixed(2);
   return formattedPrice;
 };
+
 </script>
 
 <template>
-  <div class="flex gap-2 border border-black" :class="cardDirection == 'col' ? 'flex-col' : 'flex-row'">
-    <div class="border border-red-200">
-      <img style="width: 200px ;" :src="props.product.url_imagen_compress" alt="Imagen del producto">
-    </div>
-    <div class="border border-y-teal-300">
-      <p class=" text-xl font-bold">{{ props.product.titulo_small }}</p>
-      <div v-if="props.product.oferta" class="flex justify-center items-center">
-        <p class="p-2 text-white bg-red-600 w-min mx-5">¡OFERTA!</p>
+  <div class="flex gap-2 border border-black h-[460px]" :class="cardDirection == 'col' ? 'flex-col' : 'flex-row'">
+    <div class=" flex justify-center h-[200px] relative">
+      <div v-if="props.product.oferta" class="flex  items-center absolute w-full">
+        <p class="p-2 text-white text-xl bg-red-600 font-bold rounded w-min mx-5 mt-1">¡OFERTA!</p>
       </div>
-      <div>
-        <div class="flex justify-around mt-4">
-          <p v-if="props.product.oferta" class="text-3xl text-blue-700 font-bold">{{ props.product.pvd }}</p>
+      <img :src="props.product.url_imagen_compress" alt="Imagen del producto" class="h-full">
+    </div>
+    <div class="h-[300px] flex flex-col">
+      <div class="flex justify-center h-[60px] items-center ">
+        <p class=" text-xl font-bold">{{ props.product.titulo_small }}</p>
+      </div>
+
+      <div class="mt-auto flex flex-col gap-3 ">
+        <div class="flex flex-col gap-3 justify-around mt-4 ">
+          <p v-if="props.product.oferta" class="text-3xl text-blue-700 font-bold mx-6">{{ roundPvp(props.product.pvd) }}</p>
           <p :class="props.product.oferta ? ' text-gray-500 line-through' : ' text-blue-700'"
-            class=" text-3xl font-bold">
-            {{ props.product.pvd_estandar }}</p>
+            class=" text-3xl font-bold mx-6">
+            {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div>
           <div class="flex justify-center">
@@ -40,18 +44,3 @@ const roundPvp = (pvp) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-p {
-  @apply text-sm py-1;
-}
-.product-card-container {
-  @apply size-full h-60 bg-slate-200 rounded-md z-10 shadow-indigo-950 shadow-sm flex justify-center items-center;
-}
-.product-card {
-  @apply flex content-center items-center justify-center bg-indigo-300 rounded-md w-[90%] h-[93%] px-3 py-1;
-}
-.product-card-content {
-  @apply size-full flex flex-col place-items-center justify-center place-content-center;
-}
-</style>
