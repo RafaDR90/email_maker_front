@@ -20,7 +20,7 @@ const roundPvp = (pvp) => {
 </script>
 
 <template>
-  <div style="display: flex; gap: 0.5rem; height: 460px;" :style="[
+  <div class="selectable-block" style="display: flex; gap: 0.5rem; height: 460px;" :style="[
     cardDirection === 'col' ? { 'flex-direction': 'column' } : { 'flex-direction': 'row' },
     cardStyleStore.cardBgActive ? { 'background-color': cardStyleStore.cardBg } : {},
     cardStyleStore.border ? { 'border': '1px solid '+cardStyleStore.borderColor } : {},

@@ -15,17 +15,18 @@ const gridConfiguration = ref(styleStore.gridConfiguration);
 
 <template>
   <div
-    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 flex flex-col justify-between shadow-md z-20 overflow-auto"
+    class="w-[25%] h-[calc(100vh-4rem)] bg-indigo-100 dark:bg-indigo-950 flex flex-col justify-between shadow-md z-20 overflow-auto p-4"
   >
-    <div class="flex flex-col h-full justify-start mb-4 p-4">
-      <h2>Opciones generales</h2>
+    <!--<div class="flex flex-col h-full justify-start mb-4 p-4 ">-->
+    <div class="flex flex-col w-full items-center">
+      <h2 >Opciones generales</h2>
       <div class="divider" />
       <GridOptions />
       <GeneralOptions />
-      <CardGeneralOptions />
     </div>
+    <!--</div>-->
 
     <!-- Descargar HTML y Guardar -->
-    <ActionButtons />
+    <ActionButtons  />
   </div>
 </template>

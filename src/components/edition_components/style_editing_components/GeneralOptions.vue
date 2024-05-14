@@ -5,6 +5,7 @@ import DropDownComp from "../block_editing_components/mini_components/DropDownCo
 import { useEmailVars } from "../../../store/EmailVars";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
 import { useBannerVars } from "../../../store/BannerVars";
+import ProductCardOptions from "../style_editing_components/CardGeneralOptions.vue";
 
 const emailVarsStore = useEmailVars();
 const bannerStore = useBannerVars();
@@ -38,7 +39,7 @@ function validateColor(color) {
 </script>
 
 <template>
-  <div class="my-4 flex flex-col content-center">
+  <div class="w-full flex flex-col content-center">
     <DropDownComp :buttonText="'Opciones del email'" :isOpen="false">
       <!-- Font selector -->
       <h3 class="mt-0 w-full">Fuente:</h3>
@@ -55,13 +56,8 @@ function validateColor(color) {
       />
     </DropDownComp>
 
-    <DropDownComp :buttonText="'Opciones de las tarjetas'" :isOpen="false">
-      <!-- General Card Background Color -->
-      <h3>Color del fondo:</h3>
-      <ColorPicker
-        :value="emailVarsStore.bgColor"
-        :valueUpdate="changeBackgroundColor"
-      />
+    <DropDownComp :buttonText="'Opciones de las tarjetas 2'" :isOpen="false">
+      <ProductCardOptions />
     </DropDownComp>
   </div>
 </template>
