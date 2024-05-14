@@ -49,13 +49,13 @@ const updateSelectedCard = (id) => {
 </script>
 
 <template>
-  <div :style="updateStyle()">
+  <div :style="updateStyle()" style="display: grid;">
     <button v-for="(producto, key) in productItemsStore.productsList" :key="key" ref="productsDiv" :style="gridConfiguration.selectedMode.childDistribution !== 'normal' ?
       (key % 2 === 0 ?
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}` } :
         { 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}` }) :
       {}"
-      style="width: 95%; margin-left: auto; margin-right: auto; display: grid; gap: 2px;">
+      style="width: 95%; margin-left: auto; margin-right: auto;  ">
       <ProductCard @click="updateSelectedCard(producto.id)"  :product="producto" :cardDirection="getDirection(key)" />
     </button>
     <div style="width: 100%; display: flex; justify-content: center; align-items: center;  height: 11rem;">

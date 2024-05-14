@@ -5,6 +5,7 @@ export const cardStyle = defineStore({
     state: () => {
         return {
             //generales
+            cardBgActive: false,
             cardBg: "#FFFFFF",
             border: true,
             borderColor: "#000000",
@@ -15,10 +16,11 @@ export const cardStyle = defineStore({
             titleBold: true,
             //precio
             priceFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",
-            priceColor: "#000000",
+            priceColor: "#ff0000",
             fontSizePrice: 20,
             priceBold: true,
             colorOldPrice: "#000000",
+            OldPriceSize: 20,
             //botton
             buttonBg: "#FF0000",
             buttonPadding: 10,
