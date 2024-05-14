@@ -59,13 +59,29 @@ const downloadHTMLPrueba = () => {
 
   const emailContainerHTML =
     document.getElementById("emailContainer").outerHTML;
-  const html = `<!DOCTYPE html><html>${headContent}<body>${emailContainerHTML}</body></html>`;
+  const content = `<div style="width: 100%; display: flex; justify-content: center; align-items: center;">${emailContainerHTML}</div>`;
+  const html = `<!DOCTYPE html><html>${headContent}<body>${content}</body></html>`;
 
   const blob = new Blob([html], { type: "text/html" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "email.html";
+
+  const currentDate = new Date();
+
+  const formattedDate = currentDate
+    .toISOString()
+    .slice(0, 10)
+    .replace(/-/g, "_");
+
+  const formattedTime = currentDate
+    .toTimeString()
+    .slice(0, 8)
+    .replace(/:/g, "_");
+
+  // Crear el nombre de archivo con la fecha y la hora
+  const fileName = `email-${formattedDate}-${formattedTime}.html`;
+  a.download = fileName;
   a.click();
   URL.revokeObjectURL(url);
 };
@@ -86,7 +102,7 @@ function isURL(newUrl) {
  * Función para comprobar si la imagen es válida.
  */
 function isImageValid(imageURL) {
-  if (!isURL(imageURL) ) {
+  if (!isURL(imageURL)) {
     console.log("a");
     return false;
   }
@@ -104,13 +120,21 @@ function isImageValid(imageURL) {
   >
     <div
       id="emailContainer"
-      style="width: 649px; height: fit-content; background-color: transparent"
+      style="
+        width: 649px;
+        height: fit-content;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        align-content: center;
+      "
     >
       <!-- Asunto -->
       <div
         id="emailSubject"
         class="selectable-block"
-        style="color: #718096; font-size: 0.875rem; overflow: clip"
+        style="color: #718096; width: 100%; font-size: 0.875rem; overflow: clip"
         :class="{ fontFamily: emailVarsStore.emailSubjectFont.fontFamily }"
         @click="updateSelectedBlock('emailSubject')"
       >

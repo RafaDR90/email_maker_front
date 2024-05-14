@@ -5,7 +5,6 @@
   <div
     id="header"
     style="
-      width: 100%;
       height: 80px;
       background-color: white;
       display: flex;
@@ -13,14 +12,25 @@
       padding: 0.5rem;
     "
   >
-    <div id="imgContainer" style="width: 120px;">
+    <div id="imgContainer" style="width: 150px">
       <img
         src="https://www2.megasur.es/mailing/set/arch/logo_azul_cabecera.png"
         alt="MEGASUR"
       />
     </div>
-    <div style="width:100%; color:gray; display:flex; font-size: small;  flex-direction: column; align-items: end;">
-      <p style="font-weight: bold;">Líderes en informática y electrónica de consumo</p>
+    <div
+      style="
+        width: 97%;
+        color: gray;
+        display: flex;
+        font-size: small;
+        flex-direction: column;
+        align-items: end;
+      "
+    >
+      <p style="font-weight: bold">
+        Líderes en informática y electrónica de consumo
+      </p>
       <p>958 50 90 10</p>
     </div>
   </div>
