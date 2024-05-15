@@ -13,6 +13,10 @@ export const productItems = defineStore({
       product.id = id;
       this.productsList[id] = product;
     },
+    setProductTitle(id, title) {
+      product = getProductById(id);
+      product.titulo = title;
+    },
     getLastProduct() {
       return this.productsList[this.productsList.length - 1];
     },

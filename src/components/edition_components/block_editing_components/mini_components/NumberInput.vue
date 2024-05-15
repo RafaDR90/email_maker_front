@@ -6,11 +6,11 @@ const props = defineProps({
   valueUpdate: { type: Function, default: () => {} },
 });
 
-const number = ref(props.value);
+const text = ref(props.value);
 
 let timeoutId = null;
 watch(
-  () => number.value,
+  () => text.value,
   (newValue) => {
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -24,6 +24,6 @@ watch(
 
 <template>
   <div class="w-full">
-    <input type="number" class="custom-input text-center" v-model="number" />
+    <input type="number" class="custom-input text-center" v-model="text" />
   </div>
 </template>

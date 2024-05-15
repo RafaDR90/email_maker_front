@@ -6,6 +6,7 @@ import AutocompleteForm from "./mini_components/AutocompleteForm.vue";
 import ProductService from "../../../api/ProductService";
 import { cardStyle } from "../../../store/CardStyle";
 import RegularInput from "./mini_components/RegularInput.vue";
+import NumberInput from "./mini_components/NumberInput.vue";
 
 const cardStyleStore = cardStyle();
 
@@ -35,10 +36,15 @@ const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
 };
 
-function hasMultipleFields(selectedProduct) {
-  return Object.keys(selectedProduct).length > 1;
-}
 
+const data = ref({
+  title: '',
+  placeholder: 'Introduce texto'
+})
+
+function hasMultipleFields(selectedProduct) {
+  return Object.keys(selectedProduct.value).length > 1;
+}
 
 
 watch(selectedProduct, () => {
@@ -46,10 +52,17 @@ watch(selectedProduct, () => {
     return false;
   }
 
-  productTitle.value = selectedProduct.titulo;
+  productTitle.value = selectedProduct.value.titulo_small;
   console.log("Product title:",productTitle.value);
   console.log(selectedProduct.value);
 });
+
+function updateProductCardTitle(title){
+
+  productsItemsStore.setProductTitle(selectedProduct.value,title);
+}
+
+
 </script>
 
 <template>
@@ -62,6 +75,10 @@ watch(selectedProduct, () => {
       @exportResult="setProduct"
     />
     <h3>Título:</h3>
-    <RegularInput :text="selectedProduct" />
+    <RegularInput :textList="data" :onChange="updateProductCardTitle"/>
+    <h3>Precio:</h3>
+    <NumberInput :textList="data" />
+    <h3>Oferta:</h3>
+    <NumberInput :value="0"  />
   </div>
 </template>
