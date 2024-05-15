@@ -69,7 +69,7 @@ const roundPvp = (pvp) => {
           cardStyleStore.buttonBold ? {fontWeight: 'bold'} : {},
           cardStyleStore.buttonRounded ? {borderRadius: '5px'} : {},
             ]"
-              style=" margin: 0.875rem; margin-bottom: 0; width: min-content; ">
+              style=" margin: 0.875rem; margin-bottom: 0; width: min-content; text-decoration: none;">
               Comprar</a>
           </div>
         </div>
