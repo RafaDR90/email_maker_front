@@ -5,9 +5,9 @@ export const cardStyle = defineStore({
     state: () => {
         return {
             //generales
-            cardBgActive: true,
+            cardBgActive: false,
             cardBg: "#FFFFFF",
-            border: true,
+            border: false,
             borderColor: "#000000",
             //titulo
             titleFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",

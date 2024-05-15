@@ -142,34 +142,19 @@ const roundPvp = (pvp) => {
           </p>
         </div>
         <div>
-          <div style="display: flex; justify-content: center">
-            <a
-              :href="'https://www.megasur.es' + props.product.url_product"
-              target="_blank"
-              :style="[
-                { backgroundColor: cardStyleStore.buttonBg },
-                { padding: cardStyleStore.buttonPadding + 'px' },
-                {
-                  paddingLeft:
-                    cardStyleStore.buttonPadding +
-                    (cardStyleStore.buttonPadding / 100) * 70 +
-                    'px',
-                },
-                {
-                  paddingRight:
-                    cardStyleStore.buttonPadding +
-                    (cardStyleStore.buttonPadding / 100) * 70 +
-                    'px',
-                },
-                { color: cardStyleStore.buttonTextColor },
-                { fontSize: cardStyleStore.buttonFontSize + 'px' },
-                cardStyleStore.buttonBold ? { fontWeight: 'bold' } : {},
-                cardStyleStore.buttonRounded ? { borderRadius: '5px' } : {},
-              ]"
-              style="margin: 0.875rem; margin-bottom: 0; width: min-content"
-            >
-              Comprar</a
-            >
+          <div style="display: flex; justify-content: center;">
+            <a :href="'https://www.megasur.es'+props.product.url_product"  target="_blank" :style="[
+              {backgroundColor: cardStyleStore.buttonBg},
+              {padding: cardStyleStore.buttonPadding+'px'},
+          {paddingLeft: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*40))+'px'},
+          {paddingRight: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*40))+'px'},
+          {color: cardStyleStore.buttonTextColor},
+          {fontSize: cardStyleStore.buttonFontSize+'px'},
+          cardStyleStore.buttonBold ? {fontWeight: 'bold'} : {},
+          cardStyleStore.buttonRounded ? {borderRadius: '5px'} : {},
+            ]"
+              style=" margin: 0.875rem; margin-bottom: 0; width: min-content; text-decoration: none;">
+              Comprar</a>
           </div>
         </div>
       </div>
