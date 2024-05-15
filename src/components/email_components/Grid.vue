@@ -53,7 +53,7 @@ const updateSelectedCard = (id) => {
 </script>
 
 <template>
-  <div :style="updateStyle()" style="display: grid; row-gap: 5px;">
+  <div :style="updateStyle()" style="display: grid; row-gap: 5px">
     <button
       class="selectable-block"
       v-for="(producto, key) in productItemsStore.productsList"
@@ -93,6 +93,7 @@ const updateSelectedCard = (id) => {
       "
     >
       <div
+        @click="addProductsToArray"
         class="selectable-block"
         style="
           width: 90%;
@@ -104,7 +105,6 @@ const updateSelectedCard = (id) => {
         "
       >
         <button
-          @click="addProductsToArray"
           style="
             width: max-content;
             height: max-content;

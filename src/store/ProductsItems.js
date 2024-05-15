@@ -13,8 +13,11 @@ export const productItems = defineStore({
       product.id = id;
       this.productsList[id] = product;
     },
-    getLastProduct(){
-      return this.productsList[this.productsList.length-1];
-    }
+    getLastProduct() {
+      return this.productsList[this.productsList.length - 1];
+    },
+    getProductById(id) {
+      return this.productsList.find((product) => product.id === id);
+    },
   },
 });

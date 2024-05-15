@@ -1,8 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
 import addBannerImg from "../../../../assets/img/boton-agregar.png";
-import { useBannerVars } from "../../../../store/BannerVars";
-const bannerStore = useBannerVars();
 
 const props = defineProps({
   bannerImageUrl: { type: String, default: "" },
@@ -75,7 +73,7 @@ function isImageValid(imageURL) {
     }"
   >
     <img
-      v-if="isImageValid(props.bannerImageUrl)"
+      v-if=" isImageValid(props.bannerImageUrl)"
       style="width: 100%"
       :src="props.bannerImageUrl"
       alt="imagen banner"

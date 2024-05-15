@@ -1,8 +1,6 @@
 <script setup>
-import Banner from "../../assets/img/boton-agregar.png";
 import Grid from "../email_components/Grid.vue";
 import EmailHeader from "../email_components/EmailHeader.vue";
-import BottomBanner from "../email_components/BottomBanner.vue";
 import BottomSection from "../email_components/BottomSection.vue";
 import NewBanner from "./block_editing_components/mini_components/Banner.vue";
 import EmailFooter from "../email_components/EmailFooter.vue";
