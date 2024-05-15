@@ -7,6 +7,7 @@ export const documentActions = defineStore({
             downloadHtmlEmit: true,
             selectedBlock: 'banner',
             selectedCard: null,
+            addProductModal: true,
         }
     },
     actions: {
@@ -18,6 +19,9 @@ export const documentActions = defineStore({
         },
         updateSelectedCard(card){
             this.selectedCard = card;
+        },
+        setAddProductModal(status){
+            this.addProductModal = status;
         }
     }
 })

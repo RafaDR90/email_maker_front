@@ -54,67 +54,48 @@ const updateSelectedCard = (id) => {
 
 <template>
   <div :style="updateStyle()" style="display: grid; row-gap: 5px;">
-    <button
-      class="selectable-block"
-      v-for="(producto, key) in productItemsStore.productsList"
-      :key="key"
-      ref="productsDiv"
-      :style="
-        gridConfiguration.selectedMode.childDistribution !== 'normal'
-          ? key % 2 === 0
-            ? {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
-              }
-            : {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
-              }
-          : {}
-      "
-      style="
+    <button class="selectable-block" v-for="(producto, key) in productItemsStore.productsList" :key="key"
+      ref="productsDiv" :style="gridConfiguration.selectedMode.childDistribution !== 'normal'
+        ? key % 2 === 0
+          ? {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
+          }
+          : {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
+          }
+        : {}
+        " style="
         width: 95%;
         margin-left: auto;
         margin-right: auto;
         background-color: transparent;
         border: none;
-      "
-    >
-      <ProductCard
-        @click="updateSelectedCard(producto.id)"
-        :product="producto"
-        :cardDirection="getDirection(key)"
-      />
+      ">
+      <ProductCard @click="updateSelectedCard(producto.id)" :product="producto" :cardDirection="getDirection(key)" />
     </button>
-    <div
-      style="
+    <div v-if="documentActionsStore.addProductModal" style="
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 11rem;
-      "
-    >
-      <div
-        class="selectable-block"
-        style="
+      ">
+      <div class="selectable-block" style="
           width: 90%;
           height: 90%;
           display: flex;
           justify-content: center;
           align-items: center;
           background-color: #d1d5db;
-        "
-      >
-        <button
-          @click="addProductsToArray"
-          style="
+        ">
+        <button @click="addProductsToArray" style="
             width: max-content;
             height: max-content;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-          "
-        >
+          ">
           <p style="width: 100%; text-align: center">Añade producto</p>
           <img :src="Banner" alt="banner" style="width: 5rem; height: 5rem" />
         </button>
