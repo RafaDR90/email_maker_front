@@ -21,8 +21,7 @@ const userPlaceholder = ref(props.placeholder);
 const title = ref(props.value);
 
 let timeoutId = null;
-watch(
-  () => title,
+watch(title,
   (newValue) => {
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -42,7 +41,6 @@ watch(
       class="custom-input text-sm"
       :placeholder="textList[1] || ' '"
       v-model="title"
-      @input="onChange"
       onfocus="this.select()"
     />
     <button v-if="title" class="size-4 mx-2" @click="title = ''">

@@ -75,7 +75,6 @@ const updateSelectedCard = (id) => {
         margin-left: auto;
         margin-right: auto;
         background-color: transparent;
-        border: none;
       "
     >
       <ProductCard

@@ -22,47 +22,56 @@ const documentActionsStore = documentActions();
 const productsItemsStore = productItems();
 const selectedProduct = ref(null);
 
+/** */
 const productTitle = ref("");
+const productPvd = ref(selectedProduct.pvd || 0);
 
-watch(
-  () => documentActionsStore.selectedCard,
-  () => {
-    selectedProduct.value =
-      productsItemsStore.productsList[documentActionsStore.selectedCard];
-  }
-);
+watch(documentActionsStore, () => {
+  selectedProduct.value =
+    productsItemsStore.productsList[documentActionsStore.selectedCard];
+});
 
 const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
+  selectedProduct.value = product;
 };
 
-
 const data = ref({
-  title: '',
-  placeholder: 'Introduce texto'
-})
+  title: "",
+  placeholder: "Introduce texto",
+});
 
 function hasMultipleFields(selectedProduct) {
   return Object.keys(selectedProduct.value).length > 1;
 }
 
-
 watch(selectedProduct, () => {
-  if(!hasMultipleFields(selectedProduct)){
+  console.log("SELECTED PRODUCT", selectedProduct.value);
+  if (!hasMultipleFields(selectedProduct)) {
     return false;
   }
 
   productTitle.value = selectedProduct.value.titulo_small;
-  console.log("Product title:",productTitle.value);
-  console.log(selectedProduct.value);
+  data.title = productTitle.value;
 });
 
-function updateProductCardTitle(title){
-
-  productsItemsStore.setProductTitle(selectedProduct.value,title);
+function updateProductCardTitle(title) {
+  productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
 }
 
-
+function newFun(newVal) {
+  console.log("NewVal", newVal);
+  console.log("NEWFUN PRODUCT", selectedProduct.value);
+  let p = productsItemsStore.getProductById(selectedProduct.value.id);
+  console.log("P", p);
+  if (p.oferta == 1) {
+    p.pvd = newVal.toString();
+  } else {
+    p.pvd_estandar = newVal.toString();
+  }
+  productsItemsStore.editProduct(p.id, p);
+  //selectedProduct.pvd = newVal;
+}
 </script>
 
 <template>
@@ -75,10 +84,10 @@ function updateProductCardTitle(title){
       @exportResult="setProduct"
     />
     <h3>Título:</h3>
-    <RegularInput :textList="data" :onChange="updateProductCardTitle"/>
+    <RegularInput :textList="data" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
-    <NumberInput :textList="data" />
+    <NumberInput :value="productPvd" :valueUpdate="newFun" />
     <h3>Oferta:</h3>
-    <NumberInput :value="0"  />
+    <NumberInput :value="0" />
   </div>
 </template>

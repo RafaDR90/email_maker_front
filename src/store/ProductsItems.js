@@ -11,12 +11,14 @@ export const productItems = defineStore({
     },
     editProduct(id, product) {
       product.id = id;
+      console.log("PRE", this.productsList[id]);
       this.productsList[id] = product;
+      console.log("POST", this.productsList[id]);
+      console.log(this.productsList[id]);
     },
     setProductTitle(id, title) {
-      console.log(this.productsList.find((product) => product.id === id));
-      let product = this.productsList.find((product) => product.id === id);
-      product.titulo = title;
+      this.productsList.find((product) => product.id === id).titulo_small =
+        title;
     },
     getLastProduct() {
       return this.productsList[this.productsList.length - 1];

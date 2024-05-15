@@ -37,6 +37,7 @@ watch(color, (newVal) => {
     props.setBannerColor(newVal);
   }, 1000);
 });
+
 watch(marginBottom, (newVal) => {
   if (timeoutId) {
     clearTimeout(timeoutId);
