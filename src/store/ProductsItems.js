@@ -11,10 +11,7 @@ export const productItems = defineStore({
     },
     editProduct(id, product) {
       product.id = id;
-      console.log("PRE", this.productsList[id]);
       this.productsList[id] = product;
-      console.log("POST", this.productsList[id]);
-      console.log(this.productsList[id]);
     },
     setProductTitle(id, title) {
       this.productsList.find((product) => product.id === id).titulo_small =

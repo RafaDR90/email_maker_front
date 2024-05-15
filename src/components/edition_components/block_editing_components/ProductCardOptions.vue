@@ -22,8 +22,11 @@ const documentActionsStore = documentActions();
 const productsItemsStore = productItems();
 const selectedProduct = ref(null);
 
-/** */
+/** Variables Cards **/
 const productTitle = ref("");
+console.log("1", selectedProduct.value);
+const productPvdEstandar = ref(0);
+console.log("3", productPvdEstandar.value);
 const productPvd = ref(selectedProduct.pvd || 0);
 
 watch(documentActionsStore, () => {
@@ -34,10 +37,15 @@ watch(documentActionsStore, () => {
 const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
+  productPvdEstandar.value = selectedProduct.value.pvd_estandar;
+  console.log(selectedProduct.value);
 };
 
 const data = ref({
-  title: "",
+  title:
+    selectedProduct.value && selectedProduct.value.titulo_small
+      ? selectedProduct.value.titulo_small
+      : "",
   placeholder: "Introduce texto",
 });
 
@@ -50,27 +58,49 @@ watch(selectedProduct, () => {
   if (!hasMultipleFields(selectedProduct)) {
     return false;
   }
+  if (selectedProduct.value && selectedProduct.value.titulo_small) {
+    console.log("Perro");
+    console.log(selectedProduct.value.titulo_small);
+    data.value.title = selectedProduct.value.titulo_small;
+    productTitle.value = selectedProduct.value.titulo_small;
+    console.log(data.value.title);
+  }
 
-  productTitle.value = selectedProduct.value.titulo_small;
-  data.title = productTitle.value;
+  data.value.title = productTitle.value;
 });
 
 function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
 }
 
-function newFun(newVal) {
-  console.log("NewVal", newVal);
-  console.log("NEWFUN PRODUCT", selectedProduct.value);
-  let p = productsItemsStore.getProductById(selectedProduct.value.id);
-  console.log("P", p);
-  if (p.oferta == 1) {
-    p.pvd = newVal.toString();
-  } else {
-    p.pvd_estandar = newVal.toString();
+function updatePrice(newVal) {
+  if (!newVal || !selectedProduct.value) {
+    return null;
   }
-  productsItemsStore.editProduct(p.id, p);
-  //selectedProduct.pvd = newVal;
+
+  if (selectedProduct.value.id || selectedProduct.value.id >= 0) {
+    let p = selectedProduct.value;
+    console.log("P", p);
+    p.pvd_estandar = newVal.toString();
+    productsItemsStore.editProduct(p.id, p);
+  }
+}
+
+function updateOfferPrice(newVal) {
+  if (!newVal && !selectedProduct.value) {
+    return null;
+  }
+
+  if (selectedProduct.value.id) {
+    let p = selectedProduct.value;
+    if (p.oferta == 1) {
+      if (newVal > p.pvd) {
+        newVal = p.pvd;
+      }
+      p.pvd = newVal.toString();
+    }
+    productsItemsStore.editProduct(p.id, p);
+  }
 }
 </script>
 
@@ -86,8 +116,13 @@ function newFun(newVal) {
     <h3>Título:</h3>
     <RegularInput :textList="data" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
-    <NumberInput :value="productPvd" :valueUpdate="newFun" />
+    <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
-    <NumberInput :value="0" />
+    <NumberInput
+      v-if="selectedProduct && selectedProduct.oferta >= 1"
+      :value="productPvd"
+      :valueUpdate="updateOfferPrice"
+    />
+    <p class="text-gray-500" v-else>Este producto no está en oferta</p>
   </div>
 </template>

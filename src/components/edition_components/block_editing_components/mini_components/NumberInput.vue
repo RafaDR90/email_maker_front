@@ -9,17 +9,14 @@ const props = defineProps({
 const text = ref(props.value);
 
 let timeoutId = null;
-watch(
-  () => text.value,
-  (newValue) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      props.valueUpdate(newValue);
-    }, 250);
+watch(text, (newValue) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
   }
-);
+  timeoutId = setTimeout(() => {
+    props.valueUpdate(newValue);
+  }, 250);
+});
 </script>
 
 <template>

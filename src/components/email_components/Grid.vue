@@ -8,7 +8,6 @@ import { documentActions } from "../../store/DocumentActions";
 import { watch, ref } from "vue";
 
 const documentActionsStore = documentActions();
-
 const productItemsStore = productItems();
 const productVarsStore = useProductVars();
 
@@ -75,10 +74,17 @@ const updateSelectedCard = (id) => {
         margin-left: auto;
         margin-right: auto;
         background-color: transparent;
-      ">
-      <ProductCard @click="updateSelectedCard(producto.id)" :product="producto" :cardDirection="getDirection(key)" />
+      "
+    >
+      <ProductCard
+        @click="updateSelectedCard(producto.id)"
+        :product="producto"
+        :cardDirection="getDirection(key)"
+      />
     </button>
-    <div v-if="documentActionsStore.addProductModal" style="
+    <div
+      v-if="documentActionsStore.addProductModal"
+      style="
         width: 100%;
         display: flex;
         justify-content: center;
@@ -88,6 +94,7 @@ const updateSelectedCard = (id) => {
     >
       <div
         class="selectable-block"
+        @click="addProductsToArray"
         style="
           width: 90%;
           height: 90%;
@@ -98,7 +105,6 @@ const updateSelectedCard = (id) => {
         "
       >
         <button
-          @click="addProductsToArray"
           style="
             width: max-content;
             height: max-content;
@@ -106,7 +112,8 @@ const updateSelectedCard = (id) => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-          ">
+          "
+        >
           <p style="width: 100%; text-align: center">Añade producto</p>
           <img :src="Banner" alt="banner" style="width: 5rem; height: 5rem" />
         </button>
