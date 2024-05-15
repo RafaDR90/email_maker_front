@@ -5,10 +5,12 @@ export const cardStyle = defineStore({
     state: () => {
         return {
             //generales
+            cardHeight: 460,
             cardBgActive: false,
             cardBg: "#FFFFFF",
             border: false,
             borderColor: "#000000",
+            priceInvert: false,
             //titulo
             titleFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",
             fontSizeTitle: 20,
@@ -20,7 +22,7 @@ export const cardStyle = defineStore({
             fontSizePrice: 30,
             priceBold: true,
             colorOldPrice: "#000000",
-            OldPriceSize: 20,
+            oldPriceSize: 20,
             //botton
             buttonBg: "#ff0000",
             buttonPadding: 10,
@@ -28,7 +30,8 @@ export const cardStyle = defineStore({
             buttonTextColor: "#ffffff",
             buttonFontSize: 18,
             buttonBold: true,
-            buttonRounded: true
+            buttonRounded: true,
+            buttonPosition: "center"
         }
     },
     actions: {
@@ -85,6 +88,18 @@ export const cardStyle = defineStore({
         },
         setButtonFontSize(size) {
             this.buttonFontSize = size;
-        }
+        },
+        setOldPriceSize(size) {
+            this.oldPriceSize = size;
+        },
+        setCardHeight(height) {
+            this.cardHeight = height;
+        },
+        setPriceInvert(status) {
+            this.priceInvert = status;
+        },
+        setButtonPosition(position) {
+            this.buttonPosition = position;
+        },
     }
 })
