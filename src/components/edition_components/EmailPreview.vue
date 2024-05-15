@@ -4,7 +4,7 @@ import EmailHeader from "../email_components/EmailHeader.vue";
 import BottomSection from "../email_components/BottomSection.vue";
 import NewBanner from "./block_editing_components/mini_components/Banner.vue";
 import EmailFooter from "../email_components/EmailFooter.vue";
-import { defineProps, watch, ref, computed } from "vue";
+import { defineProps, watch, ref, provide } from "vue";
 import { useBannerVars } from "../../store/BannerVars";
 import { useEmailVars } from "../../store/EmailVars";
 import { underBannerTextVars } from "../../store/UnderBannerText";
@@ -84,6 +84,12 @@ const downloadHTMLPrueba = () => {
   a.click();
   URL.revokeObjectURL(url);
 };
+
+const getEmailContentHTML = () => {
+  const emailContentElement = document.getElementById("emailContent");
+  return emailContentElement ? emailContentElement.outerHTML : '';
+};
+
 </script>
 
 

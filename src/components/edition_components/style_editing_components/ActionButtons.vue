@@ -9,6 +9,10 @@ import { useEmailVars } from "../../../store/EmailVars";
 import { gridVars } from "../../../store/GridVars";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
 import ProductService from "../../../api/ProductService";
+import html2canvas from 'html2canvas';
+
+
+
 
 const store = documentActions();
 
@@ -71,10 +75,15 @@ const saveTemplate = () => {
     }
   }
   data = JSON.stringify(data);
-  console.log(data)
-  ProductService.uploadStylesData(data).then((res) => {
-    console.log(res);
+  //ProductService.uploadStylesData(data).then((res) => {
+  //});
+  var img = null
+  html2canvas(document.getElementById("emailContainer")).then(function (canvas) {
+    img = canvas.toDataURL("image/png");
+    console.log(img);
+
   });
+
 }
 </script>
 

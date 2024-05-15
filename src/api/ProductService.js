@@ -30,7 +30,6 @@ export default class ProductService {
     }
   }
   static async uploadStylesData(data) {
-    console.log(`${BASE_URL}/products/styles-upload`)
     try {
 
       const response = await axios.post(`${BASE_URL}/products/styles-upload`, { data: data }, {
