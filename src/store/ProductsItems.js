@@ -14,7 +14,8 @@ export const productItems = defineStore({
       this.productsList[id] = product;
     },
     setProductTitle(id, title) {
-      product = getProductById(id);
+      console.log(this.productsList.find((product) => product.id === id));
+      let product = this.productsList.find((product) => product.id === id);
       product.titulo = title;
     },
     getLastProduct() {
