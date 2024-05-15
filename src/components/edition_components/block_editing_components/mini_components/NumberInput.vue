@@ -2,7 +2,7 @@
 import { ref, defineProps, watch } from "vue";
 
 const props = defineProps({
-  value: { type: Number, default: 16 },
+  value: { type: Number, default: 0 },
   valueUpdate: { type: Function, default: () => {} },
 });
 

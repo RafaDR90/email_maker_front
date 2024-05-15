@@ -73,7 +73,7 @@ function isImageValid(imageURL) {
     }"
   >
     <img
-      v-if=" isImageValid(props.bannerImageUrl)"
+      v-if="isImageValid(props.bannerImageUrl)"
       style="width: 100%"
       :src="props.bannerImageUrl"
       alt="imagen banner"
