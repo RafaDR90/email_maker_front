@@ -88,12 +88,8 @@ const downloadHTMLPrueba = () => {
 
 
 <template>
-  <div
-    class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start"
-  >
-    <div
-      id="emailContainer"
-      style="
+  <div class="min-w-[649px] bg-indigo-50 min-h-full w-[50%] py-16 flex flex-col place-items-center justify-start">
+    <div id="emailContainer" style="
         width: 649px;
         height: fit-content;
         background-color: transparent;
@@ -101,23 +97,16 @@ const downloadHTMLPrueba = () => {
         flex-direction: column;
         align-items: start;
         align-content: center;
-      "
-    >
+      ">
       <!-- Asunto -->
-      <div
-        id="emailSubject"
-        class="selectable-block"
+      <div id="emailSubject" class="selectable-block"
         style="color: #718096; width: 100%; font-size: 0.875rem; overflow: clip"
         :class="{ fontFamily: emailVarsStore.emailSubjectFont.fontFamily }"
-        @click="updateSelectedBlock('emailSubject')"
-      >
+        @click="updateSelectedBlock('emailSubject')">
         <p>
           {{ emailVarsStore.emailSubject }}
         </p>
-        <div
-          v-if="emailVarsStore.emailSubject.length <= 0"
-          style="display: flex; justify-content: center"
-        >
+        <div v-if="emailVarsStore.emailSubject.length <= 0" style="display: flex; justify-content: center">
           <p>**Aquí va el asunto del email**</p>
         </div>
       </div>
@@ -127,40 +116,28 @@ const downloadHTMLPrueba = () => {
         <EmailHeader />
 
         <!-- Contenido del email -->
-        <div
-          id="emailContent"
-          style="
+        <div id="emailContent" style="
             width: 100%;
             min-height: 5rem;
             padding-bottom: 2rem;
             display: flex;
             flex-direction: column;
             height: max-content;
-          "
-          :style="{
+          " :style="{
             backgroundColor: emailVarsStore.bgColor || '#FFFFFF',
-          }"
-        >
+          }">
           <!-- Top Banner -->
-          <NewBanner
-            :bannerImageUrl="bannerStore.bannerUrl"
-            :bannerBackgroundColor="bannerStore.bannerColor"
-            :bannerBottomMargin="bannerStore.marginBottom"
-            @click="updateSelectedBlock('banner')"
-            class="selectable-block"
-          />
+          <NewBanner :bannerImageUrl="bannerStore.bannerUrl" :bannerBackgroundColor="bannerStore.bannerColor"
+            :bannerBottomMargin="bannerStore.marginBottom" @click="updateSelectedBlock('banner')"
+            class="selectable-block" />
 
           <!-- Top Banner Text-->
-          <div
-            @click="updateSelectedBlock('underBannerText')"
-            class="selectable-block"
-            style="
+          <div @click="updateSelectedBlock('underBannerText')" class="selectable-block" style="
               min-height: max-content;
               display: flex;
               justify-content: center;
               align-items: center;
-            "
-            :style="{
+            " :style="{
               minHeight:
                 underBannerTextStore.height === 0
                   ? 'max-content'
@@ -170,16 +147,11 @@ const downloadHTMLPrueba = () => {
               fontFamily: underBannerTextStore.font.fontFamily,
               color: underBannerTextStore.color,
               backgroundColor: underBannerTextStore.bgColor,
-            }"
-          >
-            <p
-              class="text-center w-full"
-              v-if="underBannerTextStore.text"
-              style="text-align: center; width: 100%"
+            }">
+            <p class="text-center w-full" v-if="underBannerTextStore.text" style="text-align: center; width: 100%"
               :style="{
                 fontSize: underBannerTextStore.fontSize + 'px',
-              }"
-            >
+              }">
               {{ underBannerTextStore.text }}
             </p>
           </div>
@@ -190,16 +162,13 @@ const downloadHTMLPrueba = () => {
 
         <!-- Bottom Section -->
         <BottomSection>
-          <NewBanner
-            class="selectable-block"
-            :bannerImageUrl="bannerStore.bottomBannerUrl"
+          <NewBanner class="selectable-block" :bannerImageUrl="bannerStore.bottomBannerUrl"
             :bannerBackgroundColor="bannerStore.bottomBannerColor"
-            :bannerBottomMargin="bannerStore.bottomBannerMarginBottom"
-            @click="updateSelectedBlock('bottomBanner')"
-          />
+            :bannerBottomMargin="bannerStore.bottomBannerMarginBottom" @click="updateSelectedBlock('bottomBanner')" />
         </BottomSection>
         <EmailFooter />
       </div>
     </div>
   </div>
 </template>
+

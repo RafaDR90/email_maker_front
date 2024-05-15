@@ -4,8 +4,24 @@ import { documentActions } from "../../../store/DocumentActions";
 
 const store = documentActions();
 
+let downloadTimeOut = null;
+let toggleModalTimeOut = null;
 const downloadHTML = () => {
-  store.downloadHtml();
+  store.setAddProductModal(false);
+
+  if (downloadTimeOut) {
+    clearTimeout(downloadTimeOut);
+  }
+  downloadTimeOut = setTimeout(() => {
+    store.downloadHtml()
+  }, 5);
+  if (toggleModalTimeOut) {
+    clearTimeout(toggleModalTimeOut);
+  }
+  toggleModalTimeOut = setTimeout(() => {
+    store.setAddProductModal(true);
+  }, 10);
+  
 };
 </script>
 
