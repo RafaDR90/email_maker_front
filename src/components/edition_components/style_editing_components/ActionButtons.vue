@@ -8,7 +8,7 @@ import { useBannerVars } from "../../../store/BannerVars";
 import { useEmailVars } from "../../../store/EmailVars";
 import { gridVars } from "../../../store/GridVars";
 import { underBannerTextVars } from "../../../store/UnderBannerText";
-
+import ProductService from "../../../api/ProductService";
 
 const store = documentActions();
 
@@ -70,7 +70,11 @@ const saveTemplate = () => {
       data.underBannerTextVars.push({ key: key, value: underBannerTextVarsStore[key] });
     }
   }
-
+  data = JSON.stringify(data);
+  console.log(data)
+  ProductService.uploadStylesData(data).then((res) => {
+    console.log(res);
+  });
 }
 </script>
 
