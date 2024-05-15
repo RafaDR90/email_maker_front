@@ -24,7 +24,7 @@ const roundPvp = (pvp) => {
     cardStyleStore.cardBgActive ? { 'background-color': cardStyleStore.cardBg } : {},
     cardStyleStore.border ? { 'border': '1px solid ' + cardStyleStore.borderColor } : {},
   ]">
-    <div style="display: flex; justify-content: center; height: 200px; position: relative; ">
+    <div style="display: flex; justify-content: center; height: 200px; position: relative;  ">
       <div v-if="props.product.oferta" style="display: flex; align-items: center; position: absolute; width: 100%;">
         <p
           style="
@@ -37,6 +37,7 @@ const roundPvp = (pvp) => {
             margin-left: 1.25rem;
             margin-right: 1.25rem;
             margin-top: 0.25rem;
+            margin-bottom: 0px;
           "
         >
           ¡OFERTA!
@@ -65,14 +66,14 @@ const roundPvp = (pvp) => {
         <div style="display: flex; gap: 0.75rem; justify-content: space-around; margin-top: 1rem;" :style="[
           cardStyleStore.priceInvert ? { flexDirection: 'column-reverse' } : { flexDirection: 'column' },
         ]">
-          <p v-if="props.product.oferta" style="margin-left: 1.5rem; margin-right: 1.5rem;" :style="[
+          <p v-if="props.product.oferta" style="margin-left: 1.5rem; margin-right: 1.5rem; margin-top: 0px; margin-bottom: 0px;" :style="[
             { fontSize: cardStyleStore.fontSizePrice + 'px' },
             { color: cardStyleStore.priceColor },
             cardStyleStore.priceBold ? { fontWeight: 'bold' } : {}
           ]">{{ roundPvp(props.product.pvd) }}</p>
           <p :style="[
             props.product.oferta ? { color: cardStyleStore.colorOldPrice, textDecoration: 'line-through', fontSize: cardStyleStore.oldPriceSize + 'px' } : { color: cardStyleStore.priceColor, fontSize: cardStyleStore.fontSizePrice + 'px' },
-            cardStyleStore.priceBold ? { fontWeight: 'bold' } : {}]" style=" margin-left: 1.5rem; margin-right: 1.5rem;">
+            cardStyleStore.priceBold ? { fontWeight: 'bold' } : {}]" style=" margin-left: 1.5rem; margin-right: 1.5rem; margin-top: 0px; margin-bottom: 0px;">
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div  :style="[
