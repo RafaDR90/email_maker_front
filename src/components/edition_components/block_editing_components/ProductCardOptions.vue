@@ -22,9 +22,11 @@ const documentActionsStore = documentActions();
 const productsItemsStore = productItems();
 const selectedProduct = ref(null);
 
-/** */
+/** Variables Cards **/
 const productTitle = ref("");
-const productPvdEstandar = ref(selectedProduct.pvd_estandar || 0);
+console.log("1", selectedProduct.value);
+const productPvdEstandar = ref(0);
+console.log("3", productPvdEstandar.value);
 const productPvd = ref(selectedProduct.pvd || 0);
 
 watch(documentActionsStore, () => {
@@ -33,13 +35,17 @@ watch(documentActionsStore, () => {
 });
 
 const setProduct = (product) => {
-  console.log(product);
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
+  productPvdEstandar.value = selectedProduct.value.pvd_estandar;
+  console.log(selectedProduct.value);
 };
 
 const data = ref({
-  title: "",
+  title:
+    selectedProduct.value && selectedProduct.value.titulo_small
+      ? selectedProduct.value.titulo_small
+      : "",
   placeholder: "Introduce texto",
 });
 
@@ -52,9 +58,15 @@ watch(selectedProduct, () => {
   if (!hasMultipleFields(selectedProduct)) {
     return false;
   }
+  if (selectedProduct.value && selectedProduct.value.titulo_small) {
+    console.log("Perro");
+    console.log(selectedProduct.value.titulo_small);
+    data.value.title = selectedProduct.value.titulo_small;
+    productTitle.value = selectedProduct.value.titulo_small;
+    console.log(data.value.title);
+  }
 
-  productTitle.value = selectedProduct.value.titulo_small;
-  data.title = productTitle.value;
+  data.value.title = productTitle.value;
 });
 
 function updateProductCardTitle(title) {
@@ -62,16 +74,14 @@ function updateProductCardTitle(title) {
 }
 
 function updatePrice(newVal) {
-  if (!newVal && !selectedProduct.value) {
+  if (!newVal || !selectedProduct.value) {
     return null;
   }
 
-  if (selectedProduct.value.id) {
+  if (selectedProduct.value.id || selectedProduct.value.id >= 0) {
     let p = selectedProduct.value;
     console.log("P", p);
-
     p.pvd_estandar = newVal.toString();
-
     productsItemsStore.editProduct(p.id, p);
   }
 }
@@ -82,8 +92,6 @@ function updateOfferPrice(newVal) {
   }
 
   if (selectedProduct.value.id) {
-    console.log("1", p.pvd);
-    console.log("2", newVal);
     let p = selectedProduct.value;
     if (p.oferta == 1) {
       if (newVal > p.pvd) {

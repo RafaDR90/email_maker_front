@@ -8,7 +8,6 @@ import { documentActions } from "../../store/DocumentActions";
 import { watch, ref } from "vue";
 
 const documentActionsStore = documentActions();
-
 const productItemsStore = productItems();
 const productVarsStore = useProductVars();
 

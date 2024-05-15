@@ -1,37 +1,37 @@
 <script setup>
-import {ref, defineProps, watch} from 'vue';
+import { ref, defineProps, watch } from "vue";
 import closeIcon from "../../../../assets/img/x.png";
 
-
 const props = defineProps({
-    textList : {
-        type: Object,
-        default: {}
-    },
-    onChange : {
-        type:Function,
-        default: () => {}
-    }
+  textList: {
+    type: Object,
+    default: {title:""},
+  },
+  onChange: {
+    type: Function,
+    default: () => {},
+  },
 });
 
 const model = defineModel();
 
 const userPlaceholder = ref(props.placeholder);
 
-const title = ref(props.textList.title || "");
-
+const title = ref(props.textList.title);
+watch(props.textList, () => {
+  console.log("Perrazo");
+  console.log(props.textList.title);
+  title.value = props.textList.title;
+});
 let timeoutId = null;
-watch(title,
-  (newValue) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      props.onChange(newValue);
-    }, 250);
+watch(title, (newValue) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
   }
-);
-
+  timeoutId = setTimeout(() => {
+    props.onChange(newValue);
+  }, 250);
+});
 </script>
 
 <template>
