@@ -62,7 +62,7 @@ const roundPvp = (pvp) => {
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
         <div  :style="[
-          cardStyleStore.buttonPosition !== 'center' ? {display: 'flex', alingItems: 'center'} : {}
+          cardStyleStore.buttonPosition !== 'center' ? {display: 'flex', alignItems: 'center'} : {}
         ]">
           <div  style="display: flex; justify-content: center; height: min-content;">
             <a :href="'https://www.megasur.es' + props.product.url_product" target="_blank" :style="[
