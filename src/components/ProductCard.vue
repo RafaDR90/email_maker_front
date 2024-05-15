@@ -62,8 +62,8 @@ const roundPvp = (pvp) => {
             <a :href="'https://www.megasur.es'+props.product.url_product"  target="_blank" :style="[
               {backgroundColor: cardStyleStore.buttonBg},
               {padding: cardStyleStore.buttonPadding+'px'},
-          {paddingLeft: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*70))+'px'},
-          {paddingRight: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*70))+'px'},
+          {paddingLeft: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*40))+'px'},
+          {paddingRight: (cardStyleStore.buttonPadding+(cardStyleStore.buttonPadding/100*40))+'px'},
           {color: cardStyleStore.buttonTextColor},
           {fontSize: cardStyleStore.buttonFontSize+'px'},
           cardStyleStore.buttonBold ? {fontWeight: 'bold'} : {},

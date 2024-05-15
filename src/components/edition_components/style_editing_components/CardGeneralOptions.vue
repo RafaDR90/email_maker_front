@@ -4,6 +4,7 @@ import colorPicker from "../block_editing_components/mini_components/ColorPicker
 import DropDownComp from "../block_editing_components/mini_components/DropDownComp.vue";
 import NumberInput from "../block_editing_components/mini_components/NumberInput.vue";
 import Checkbox from "../block_editing_components/mini_components/CheckBox.vue";
+import Slider from "../block_editing_components/mini_components/Slider.vue";
 import { cardStyle } from "../../../store/CardStyle";
 import { watch, ref } from "vue";
 
@@ -83,6 +84,42 @@ watch(
       <NumberInput
         :value="cardStyleStore.fontSizePrice"
         :valueUpdate="cardStyleStore.setFontSizePrice"
+      />
+      <h3>Color del precio:</h3>
+      <ColorPicker
+        :value="cardStyleStore.priceColor"
+        :valueUpdate="cardStyleStore.setPriceColor"
+      />
+      <h3>Color de precio cancelado:</h3>
+      <ColorPicker
+        :value="cardStyleStore.colorOldPrice"
+        :valueUpdate="cardStyleStore.setColorOldPrice"
+      />
+    </div>
+    <div class="styleEditItem">
+      <h2>Boton</h2>
+      <div class="divider" />
+      <h3>Color del boton:</h3>
+      <ColorPicker
+        :value="cardStyleStore.buttonBg"
+        :valueUpdate="cardStyleStore.setButtonBg"
+      />
+      <h3>Color de texto:</h3>
+      <ColorPicker
+        :value="cardStyleStore.buttonTextColor"
+        :valueUpdate="cardStyleStore.setButtonTextColor"
+      />
+      <h3>Tamaño del texto:</h3>
+      <NumberInput
+        :value="cardStyleStore.buttonFontSize"
+        :valueUpdate="cardStyleStore.setButtonFontSize"
+      />
+      <h3>Padding</h3>
+      <Slider
+        :value="cardStyleStore.buttonPadding"
+        :valueUpdate="cardStyleStore.setButtonPadding"
+        :minValue="0"
+        :maxValue="14"
       />
     </div>
   </DropDownComp>
