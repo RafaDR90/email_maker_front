@@ -24,6 +24,7 @@ const selectedProduct = ref(null);
 
 /** */
 const productTitle = ref("");
+const productPvdEstandar = ref(selectedProduct.pvd_estandar || 0);
 const productPvd = ref(selectedProduct.pvd || 0);
 
 watch(documentActionsStore, () => {
@@ -32,6 +33,7 @@ watch(documentActionsStore, () => {
 });
 
 const setProduct = (product) => {
+  console.log(product);
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
 };
@@ -59,18 +61,38 @@ function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
 }
 
-function newFun(newVal) {
-  console.log("NewVal", newVal);
-  console.log("NEWFUN PRODUCT", selectedProduct.value);
-  let p = productsItemsStore.getProductById(selectedProduct.value.id);
-  console.log("P", p);
-  if (p.oferta == 1) {
-    p.pvd = newVal.toString();
-  } else {
-    p.pvd_estandar = newVal.toString();
+function updatePrice(newVal) {
+  if (!newVal && !selectedProduct.value) {
+    return null;
   }
-  productsItemsStore.editProduct(p.id, p);
-  //selectedProduct.pvd = newVal;
+
+  if (selectedProduct.value.id) {
+    let p = selectedProduct.value;
+    console.log("P", p);
+
+    p.pvd_estandar = newVal.toString();
+
+    productsItemsStore.editProduct(p.id, p);
+  }
+}
+
+function updateOfferPrice(newVal) {
+  if (!newVal && !selectedProduct.value) {
+    return null;
+  }
+
+  if (selectedProduct.value.id) {
+    console.log("1", p.pvd);
+    console.log("2", newVal);
+    let p = selectedProduct.value;
+    if (p.oferta == 1) {
+      if (newVal > p.pvd) {
+        newVal = p.pvd;
+      }
+      p.pvd = newVal.toString();
+    }
+    productsItemsStore.editProduct(p.id, p);
+  }
 }
 </script>
 
@@ -86,8 +108,13 @@ function newFun(newVal) {
     <h3>Título:</h3>
     <RegularInput :textList="data" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
-    <NumberInput :value="productPvd" :valueUpdate="newFun" />
+    <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
-    <NumberInput :value="0" />
+    <NumberInput
+      v-if="selectedProduct && selectedProduct.oferta >= 1"
+      :value="productPvd"
+      :valueUpdate="updateOfferPrice"
+    />
+    <p class="text-gray-500" v-else>Este producto no está en oferta</p>
   </div>
 </template>

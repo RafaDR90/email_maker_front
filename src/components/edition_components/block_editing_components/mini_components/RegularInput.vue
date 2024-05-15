@@ -18,7 +18,7 @@ const model = defineModel();
 
 const userPlaceholder = ref(props.placeholder);
 
-const title = ref(props.value);
+const title = ref(props.textList.title || "");
 
 let timeoutId = null;
 watch(title,
