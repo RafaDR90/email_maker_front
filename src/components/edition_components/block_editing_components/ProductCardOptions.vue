@@ -105,7 +105,7 @@ function updateOfferPrice(newVal) {
 </script>
 
 <template>
-  <div id="container" class="flex flex-col w-full items-center">
+  <div id="container" class="flex flex-col w-full items-start">
     <h2>Producto {{ documentActionsStore.selectedCard + 1 }}</h2>
     <div class="divider" />
     <AutocompleteForm

@@ -46,12 +46,12 @@ const exportResult = (result) => {
     type="text"
     v-model="input"
     placeholder="Inserte referencia"
-    class="w-full m-0 p-0 custom-input"
+    class="w-full m-0 p-0 custom-input "
     @blur="hideResults"
   />
   <div
     v-if="showResults"
-    class="relative w-full bg-white border border-gray-300 top-full left-0 rounded max-h-[30vh] overflow-auto"
+    class="relative w-full bg-white border border-orange-400 top-full left-0 rounded max-h-[30vh] overflow-auto"
   >
     <div v-if="props.foundProducts.length > 0">
       <div
