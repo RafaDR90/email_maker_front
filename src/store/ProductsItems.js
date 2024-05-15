@@ -13,8 +13,16 @@ export const productItems = defineStore({
       product.id = id;
       this.productsList[id] = product;
     },
-    getLastProduct(){
-      return this.productsList[this.productsList.length-1];
-    }
+    setProductTitle(id, title) {
+      console.log(this.productsList.find((product) => product.id === id));
+      let product = this.productsList.find((product) => product.id === id);
+      product.titulo = title;
+    },
+    getLastProduct() {
+      return this.productsList[this.productsList.length - 1];
+    },
+    getProductById(id) {
+      return this.productsList.find((product) => product.id === id);
+    },
   },
 });

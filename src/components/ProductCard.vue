@@ -3,7 +3,6 @@ import ProductModel from "../model/ProductModel";
 import { defineProps } from "vue";
 import { cardStyle } from "../store/CardStyle";
 
-
 const cardStyleStore = cardStyle();
 
 const props = defineProps({
@@ -16,7 +15,6 @@ const roundPvp = (pvp) => {
   const formattedPrice = roundedPvp.toFixed(2);
   return formattedPrice;
 };
-
 </script>
 
 <template>
@@ -29,10 +27,26 @@ const roundPvp = (pvp) => {
     <div style="display: flex; justify-content: center; height: 200px; position: relative; ">
       <div v-if="props.product.oferta" style="display: flex; align-items: center; position: absolute; width: 100%;">
         <p
-          style="padding: 0.5rem; color: white; font-size: 1.25rem; background-color: red; font-weight: bold; width: min-content; margin-left: 1.25rem; margin-right: 1.25rem; margin-top: 0.25rem;">
-          ¡OFERTA!</p>
+          style="
+            padding: 0.5rem;
+            color: white;
+            font-size: 1.25rem;
+            background-color: red;
+            font-weight: bold;
+            width: min-content;
+            margin-left: 1.25rem;
+            margin-right: 1.25rem;
+            margin-top: 0.25rem;
+          "
+        >
+          ¡OFERTA!
+        </p>
       </div>
-      <img :src="props.product.url_imagen_compress" alt="Imagen del producto" style="height: 100%;">
+      <img
+        :src="props.product.url_imagen_compress"
+        alt="Imagen del producto"
+        style="height: 100%"
+      />
     </div>
     <div style="height: 300px; display: flex; flex-direction: column;">
       <div style="display: flex; justify-content: center; height: 60px; align-items: center;">

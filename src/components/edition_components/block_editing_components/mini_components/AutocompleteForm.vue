@@ -40,7 +40,7 @@ const exportResult = (result) => {
 </script>
 
 <template>
-  <label for="search" class="text-md">Referencia:</label>
+  <h3>Referencia:</h3>
   <!--<div class="relative border w-11/12 rounded p-2 bg-white custom-input">-->
   <input
     type="text"
