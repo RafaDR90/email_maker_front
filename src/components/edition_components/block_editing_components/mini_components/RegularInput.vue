@@ -3,9 +3,13 @@ import { ref, defineProps, watch } from "vue";
 import closeIcon from "../../../../assets/img/x.png";
 
 const props = defineProps({
-  textList: {
-    type: Object,
-    default: {title:""},
+  text: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
+    type: String,
+    default: "",
   },
   onChange: {
     type: Function,
@@ -13,13 +17,10 @@ const props = defineProps({
   },
 });
 
-const model = defineModel();
-
 const userPlaceholder = ref(props.placeholder);
-
-const title = ref(props.textList.title);
-watch(props.textList, () => {
-  title.value = props.textList.title;
+const title = ref(props.text);
+watch(props, () => {
+  title.value = props.text;
 });
 let timeoutId = null;
 watch(title, (newValue) => {
@@ -37,7 +38,7 @@ watch(title, (newValue) => {
     <input
       type="text"
       class="custom-input text-sm"
-      :placeholder="textList[1] || ' '"
+      :placeholder="userPlaceholder || ' '"
       v-model="title"
       onfocus="this.select()"
     />

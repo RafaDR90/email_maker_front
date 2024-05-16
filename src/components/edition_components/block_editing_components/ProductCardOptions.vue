@@ -46,21 +46,8 @@ const data = ref({
   placeholder: "Introduce texto",
 });
 
-function hasMultipleFields(selectedProduct) {
-  return Object.keys(selectedProduct.value).length > 1;
-}
 
-watch(selectedProduct, () => {
-  if (!hasMultipleFields(selectedProduct)) {
-    return false;
-  }
-  if (selectedProduct.value && selectedProduct.value.titulo_small) {
-    data.value.title = selectedProduct.value.titulo_small;
-    productTitle.value = selectedProduct.value.titulo_small;
-  }
 
-  data.value.title = productTitle.value;
-});
 
 function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
@@ -96,10 +83,11 @@ function updateOfferPrice(newVal) {
 }
 
 const reference = ref(null);
-watch(() => selectedProduct.value, () => {
+watch(selectedProduct, () => {
   reference.value = selectedProduct.value.referencia;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
   productPvd.value = selectedProduct.value.pvd;
+  productTitle.value = selectedProduct.value.titulo_small;
 });
 
 
@@ -111,13 +99,15 @@ watch(() => selectedProduct.value, () => {
     <div class="divider" />
     <AutocompleteForm :value="reference" :foundProducts="foundProductsRef" @search="searchProducts"
       @exportResult="setProduct" />
+    <h3>Url de la imagen:</h3>
     <h3>Título:</h3>
-    <RegularInput :textList="data" :onChange="updateProductCardTitle" />
+    <RegularInput :text="productTitle" :placeholder="'Inserte título'" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
     <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
     <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
       :valueUpdate="updateOfferPrice" />
     <p class="text-gray-500" v-else>Este producto no está en oferta</p>
+    <h3>Url del boton:</h3>
   </div>
 </template>
