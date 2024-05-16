@@ -103,8 +103,8 @@ function deleteProductCard() {
 </script>
 
 <template>
-  <div id="container" class="flex flex-col w-full items-start justify-between">
-    <div class="w-full h-full">
+  <div id="container" class="flex flex-col h-full w-full items-start justify-between">
+    <div class="w-full">
       <h2 class="text-center">
         Producto {{ documentActionsStore.selectedCard + 1 }}
       </h2>
