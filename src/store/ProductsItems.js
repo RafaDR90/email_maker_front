@@ -4,6 +4,26 @@ export const productItems = defineStore({
   id: "productItems",
   state: () => ({
     productsList: [],
+    defaultProductList: [{
+      id: 0,
+      oferta: 0,
+      oferta_pvd: '31.50',
+      pvd_estandar: '31.50',
+      referencia: "REF-Ejemplo",
+      titulo_small: "Titulo ejemplo 2829e wifi color",
+      url_imagen_compress: null,
+      url_product: "#",
+    },
+    {
+      id: 1,
+      oferta: 1,
+      oferta_pvd: '27.50',
+      pvd_estandar: '33',
+      referencia: "REF-Ejemplo-2",
+      titulo_small: "Titulo ejemplo 1113 14.6 pulgadas 16gb ssd512gb",
+      url_imagen_compress: null,
+      url_product: "#",
+    }]
   }),
   actions: {
     addProduct() {

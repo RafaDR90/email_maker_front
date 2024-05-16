@@ -46,6 +46,9 @@ const data = ref({
   placeholder: "Introduce texto",
 });
 
+watch (productsItemsStore, ()=>{
+  console.log(productsItemsStore.productsList)
+})
 
 
 
@@ -120,7 +123,7 @@ watch(selectedProduct, () => {
     <h3>Precio:</h3>
     <NumberInput :numberValue="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
-    <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
+    <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :numberValue="productPvd"
       :valueUpdate="updateOfferPrice" />
     <p class="text-gray-500" v-else>Este producto no está en oferta</p>
     <h3>Url del boton:</h3>
