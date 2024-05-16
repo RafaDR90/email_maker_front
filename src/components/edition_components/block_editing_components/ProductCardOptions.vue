@@ -85,7 +85,7 @@ function updateProductUrlButton(url) {
 
 const reference = ref(null);
 const urlImagen = ref(null);
-const urlButton = ref(null);
+const urlButt on = ref(null);
 
 watch(selectedProduct, () => {
   reference.value = selectedProduct.value.referencia;
