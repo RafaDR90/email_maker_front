@@ -96,6 +96,7 @@ watch(selectedProduct, () => {
 });
 
 function deleteProductCard() {
+  console.log(selectedProduct);
   productsItemsStore.removeProductById(selectedProduct.value.id);
   documentActionsStore.updateSelectedBlock(null);
 }
