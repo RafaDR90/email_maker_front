@@ -57,7 +57,8 @@ const exportResult = (result) => {
 </script>
 
 <template>
-  <h3>Referencia:</h3>
+  <div>
+    <h3>Referencia:</h3>
   <!--<div class="relative border w-11/12 rounded p-2 bg-white custom-input">-->
   <input
     type="text"
@@ -98,5 +99,7 @@ const exportResult = (result) => {
       No hay existen productos con esta referencia
     </div>
   </div>
+  </div>
+  
   <!-- </div>-->
 </template>
