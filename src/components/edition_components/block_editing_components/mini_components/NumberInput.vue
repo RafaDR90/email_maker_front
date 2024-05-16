@@ -25,7 +25,8 @@ watch(text, (newValue) => {
 });
 
 watch(props, ()=>{
-  text.value = props.value;
+  number.value = props.numberValue;
+  console.log(props.numberValue);
 })
 </script>
 

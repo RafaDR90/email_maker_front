@@ -72,12 +72,25 @@ function updateOfferPrice(newVal) {
   }
 }
 
+function updateProductCardImg(img) {
+  productsItemsStore.setProductImgUrl(documentActionsStore.selectedCard, img);
+}
+
+function updateProductUrlButton(url) {
+  productsItemsStore.setProductButtonUrl(documentActionsStore.selectedCard, url);
+}
+
 const reference = ref(null);
+const urlImagen = ref(null);
+const urlButton = ref(null);
+
 watch(selectedProduct, () => {
   reference.value = selectedProduct.value.referencia;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
   productPvd.value = selectedProduct.value.pvd;
   productTitle.value = selectedProduct.value.titulo_small;
+  urlImagen.value = selectedProduct.value.url_imagen_compress;
+  urlButton.value = selectedProduct.value.url_product;
 });
 
 function deleteProductCard() {
@@ -103,6 +116,7 @@ function deleteProductCard() {
         @exportResult="setProduct"
       />
       <h3>Url de la imagen:</h3>
+    <RegularInput :text="urlImagen" :placeholder="'Inserte url de la imagen'" :onChange="updateProductCardImg" />
       <h3>Título:</h3>
       <RegularInput
         :text="productTitle"
@@ -114,11 +128,12 @@ function deleteProductCard() {
       <h3>Oferta:</h3>
       <NumberInput
         v-if="selectedProduct && selectedProduct.oferta >= 1"
-        :value="productPvd"
+        :numberValue="productPvd"
         :valueUpdate="updateOfferPrice"
       />
       <p class="text-gray-500" v-else>Este producto no está en oferta</p>
       <h3>Url del boton:</h3>
+    <RegularInput :text="urlButton" :placeholder="'Url del boton'" :onChange="updateProductUrlButton" />
     </div>
     <div class="w-full flex justify-center self-end content-end items-end mb-3">
       <button
