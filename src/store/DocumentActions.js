@@ -5,7 +5,7 @@ export const documentActions = defineStore({
     state: () => {
         return {
             downloadHtmlEmit: true,
-            selectedBlock: 'banner',
+            selectedBlock: null,
             selectedCard: null,
             addProductModal: true,
             creatingSvg: false,

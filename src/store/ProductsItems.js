@@ -55,7 +55,7 @@ export const productItems = defineStore({
       return this.productsList.find((product) => product.id === id);
     },
     removeProductById(id) {
-      if (id <= this.productsList.length) {
+      if (id < this.productsList.length) {
         this.productsList.splice(id, 1);
         for (let i = 0; i < this.productsList.length; i++) {
           this.productsList[i].id = i;

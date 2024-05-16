@@ -60,5 +60,8 @@ const fontSelectedUpdate = (newFont) => {
     <ProductCardOptions
       v-else-if="documentActionsStore.selectedBlock == 'card'"
     />
+    <h3 v-else-if="documentActionsStore.selectedBlock == null">
+      No hay seleecionado
+    </h3>
   </div>
 </template>
