@@ -26,6 +26,9 @@ const selectedProduct = ref(null);
 const productTitle = ref("");
 const productPvdEstandar = ref(0);
 const productPvd = ref(0);
+const reference = ref(null);
+const urlImagen = ref(null);
+const urlButton = ref(null);
 
 watch(documentActionsStore, () => {
   selectedProduct.value =
@@ -83,10 +86,6 @@ function updateProductUrlButton(url) {
   );
 }
 
-const reference = ref(null);
-const urlImagen = ref(null);
-const urlButton = ref(null);
-
 watch(selectedProduct, () => {
   reference.value = selectedProduct.value.referencia;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
@@ -97,13 +96,16 @@ watch(selectedProduct, () => {
 });
 
 function deleteProductCard() {
-  console.log(selectedProduct.value.id);
-  productsItemsStore.removeProductById(selectedProduct.value.id);
+  productsItemsStore.removeProductById(documentActionsStore.selectedCard);
+  documentActionsStore.updateSelectedBlock(null);
 }
 </script>
 
 <template>
-  <div id="container" class="flex flex-col h-full w-full items-start justify-between">
+  <div
+    id="container"
+    class="flex flex-col h-full w-full items-start justify-between"
+  >
     <div class="w-full">
       <h2 class="text-center">
         Producto {{ documentActionsStore.selectedCard + 1 }}
@@ -128,10 +130,7 @@ function deleteProductCard() {
         :onChange="updateProductCardTitle"
       />
       <h3>Precio:</h3>
-      <NumberInput
-        :value="productPvdEstandar"
-        :valueUpdate="updatePrice"
-      />
+      <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
       <h3>Oferta:</h3>
       <NumberInput
         v-if="selectedProduct && selectedProduct.oferta >= 1"

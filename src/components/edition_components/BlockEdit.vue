@@ -3,6 +3,7 @@ import EmailSubjectOptions from "./block_editing_components/EmailSubjectOptions.
 import BannerOptions from "./block_editing_components/BannerOptions.vue";
 import FontOptions from "./block_editing_components/UnderBannerOptions.vue";
 import ProductCardOptions from "./block_editing_components/ProductCardOptions.vue";
+import NotSelectedOptions from "./block_editing_components/NotSelectedOptions.vue";
 import { documentActions } from "../../store/DocumentActions";
 import { useBannerVars } from "../../store/BannerVars";
 
@@ -59,6 +60,9 @@ const fontSelectedUpdate = (newFont) => {
     />
     <ProductCardOptions
       v-else-if="documentActionsStore.selectedBlock == 'card'"
+    />
+    <NotSelectedOptions
+      v-else-if="documentActionsStore.selectedBlock == null"
     />
   </div>
 </template>
