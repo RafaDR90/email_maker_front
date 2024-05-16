@@ -4,26 +4,28 @@ export const productItems = defineStore({
   id: "productItems",
   state: () => ({
     productsList: [],
-    defaultProductList: [{
-      id: 0,
-      oferta: 0,
-      oferta_pvd: '31.50',
-      pvd_estandar: '31.50',
-      referencia: "REF-Ejemplo",
-      titulo_small: "Titulo ejemplo 2829e wifi color",
-      url_imagen_compress: null,
-      url_product: "#",
-    },
-    {
-      id: 1,
-      oferta: 1,
-      oferta_pvd: '27.50',
-      pvd_estandar: '33',
-      referencia: "REF-Ejemplo-2",
-      titulo_small: "Titulo ejemplo 1113 14.6 pulgadas 16gb ssd512gb",
-      url_imagen_compress: null,
-      url_product: "#",
-    }]
+    defaultProductList: [
+      {
+        id: 0,
+        oferta: 0,
+        oferta_pvd: "31.50",
+        pvd_estandar: "31.50",
+        referencia: "REF-Ejemplo",
+        titulo_small: "Titulo ejemplo 2829e wifi color",
+        url_imagen_compress: null,
+        url_product: "#",
+      },
+      {
+        id: 1,
+        oferta: 1,
+        oferta_pvd: "27.50",
+        pvd_estandar: "33",
+        referencia: "REF-Ejemplo-2",
+        titulo_small: "Titulo ejemplo 1113 14.6 pulgadas 16gb ssd512gb",
+        url_imagen_compress: null,
+        url_product: "#",
+      },
+    ],
   }),
   actions: {
     addProduct() {
@@ -38,10 +40,13 @@ export const productItems = defineStore({
         title;
     },
     setProductImgUrl(id, imgUrl) {
-      this.productsList.find((product) => product.id === id).url_imagen_compress = imgUrl;
+      this.productsList.find(
+        (product) => product.id === id
+      ).url_imagen_compress = imgUrl;
     },
     setProductButtonUrl(id, buttonUrl) {
-      this.productsList.find((product) => product.id === id).url_product = buttonUrl;
+      this.productsList.find((product) => product.id === id).url_product =
+        buttonUrl;
     },
     getLastProduct() {
       return this.productsList[this.productsList.length - 1];
@@ -50,8 +55,11 @@ export const productItems = defineStore({
       return this.productsList.find((product) => product.id === id);
     },
     removeProductById(id) {
-      if (id < this.productsList.length) {
+      if (id <= this.productsList.length) {
         this.productsList.splice(id, 1);
+        for (let i = 0; i < this.productsList.length; i++) {
+          this.productsList[i].id = i;
+        }
       }
     },
   },
