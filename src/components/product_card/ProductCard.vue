@@ -41,8 +41,8 @@ const roundPvp = (pvp) => {
           ¡OFERTA!
         </p>
       </div>
-      <!--src="@/assets/img/imagen_producto_defecto.png"-->
-      <img :src="props.product.url_imagen_compress" alt="Imagen del producto" style="height: 100%" />
+      <img v-if="props.product.url_imagen_compress" :src="props.product.url_imagen_compress" alt="Imagen del producto" style="height: 100%" />
+      <img v-else src="@/assets/img/imagen_producto_defecto.png" alt="Imagen del producto" style="height: 100%" />
     </div>
     <div style="height: 300px; display: flex; flex-direction: column;">
       <div style="display: flex; justify-content: center; height: 60px; align-items: center;">
