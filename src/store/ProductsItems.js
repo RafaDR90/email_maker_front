@@ -17,6 +17,12 @@ export const productItems = defineStore({
       this.productsList.find((product) => product.id === id).titulo_small =
         title;
     },
+    setProductImgUrl(id, imgUrl) {
+      this.productsList.find((product) => product.id === id).url_imagen_compress = imgUrl;
+    },
+    setProductButtonUrl(id, buttonUrl) {
+      this.productsList.find((product) => product.id === id).url_product = buttonUrl;
+    },
     getLastProduct() {
       return this.productsList[this.productsList.length - 1];
     },
