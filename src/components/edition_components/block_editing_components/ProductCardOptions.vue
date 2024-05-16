@@ -24,10 +24,8 @@ const selectedProduct = ref(null);
 
 /** Variables Cards **/
 const productTitle = ref("");
-console.log("1", selectedProduct.value);
 const productPvdEstandar = ref(0);
-console.log("3", productPvdEstandar.value);
-const productPvd = ref(selectedProduct.pvd || 0);
+const productPvd = ref(0);
 
 watch(documentActionsStore, () => {
   selectedProduct.value =
@@ -38,7 +36,7 @@ const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
-  console.log(selectedProduct.value);
+  productPvd.value = selectedProduct.value.pvd;
 };
 
 const data = ref({
@@ -58,12 +56,19 @@ watch(selectedProduct, () => {
   if (!hasMultipleFields(selectedProduct)) {
     return false;
   }
-  if (selectedProduct.value && selectedProduct.value.titulo_small) {
-    console.log("Perro");
-    console.log(selectedProduct.value.titulo_small);
+
+  if (!selectedProduct.value) {
+    return false;
+  }
+
+  // TITULO_SMALL
+  if (selectedProduct.value.titulo_small) {
     data.value.title = selectedProduct.value.titulo_small;
     productTitle.value = selectedProduct.value.titulo_small;
-    console.log(data.value.title);
+  }
+  // PVD_ESTANDAR
+  if (selectedProduct.value.pvd_estandar) {
+    productPvdEstandar.value = selectedProduct.value.pvd_estandar;
   }
 
   data.value.title = productTitle.value;
@@ -78,10 +83,12 @@ function updatePrice(newVal) {
     return null;
   }
 
-  if (selectedProduct.value.id || selectedProduct.value.id >= 0) {
+  if (selectedProduct.value.id) {
     let p = selectedProduct.value;
-    console.log("P", p);
-    p.pvd_estandar = newVal.toString();
+    if (newVal > p.pvd) {
+      newVal = p.pvd;
+    }
+    p.pvd_estandar = newVal;
     productsItemsStore.editProduct(p.id, p);
   }
 }
@@ -94,10 +101,11 @@ function updateOfferPrice(newVal) {
   if (selectedProduct.value.id) {
     let p = selectedProduct.value;
     if (p.oferta == 1) {
-      if (newVal > p.pvd) {
-        newVal = p.pvd;
+      if (newVal > p.pvd_estandar) {
+        p.pvd = p.pvd_estandar;
+      } else {
+        p.pvd = newVal;
       }
-      p.pvd = newVal.toString();
     }
     productsItemsStore.editProduct(p.id, p);
   }
@@ -116,11 +124,11 @@ function updateOfferPrice(newVal) {
     <h3>Título:</h3>
     <RegularInput :textList="data" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
-    <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
+    <NumberInput :numberValue="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
     <NumberInput
       v-if="selectedProduct && selectedProduct.oferta >= 1"
-      :value="productPvd"
+      :numberValue="productPvd"
       :valueUpdate="updateOfferPrice"
     />
     <p class="text-gray-500" v-else>Este producto no está en oferta</p>

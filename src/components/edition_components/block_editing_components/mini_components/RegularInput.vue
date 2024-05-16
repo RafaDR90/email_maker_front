@@ -13,16 +13,13 @@ const props = defineProps({
   },
 });
 
-const model = defineModel();
-
 const userPlaceholder = ref(props.placeholder);
 
 const title = ref(props.textList.title);
 watch(props.textList, () => {
-  console.log("Perrazo");
-  console.log(props.textList.title);
   title.value = props.textList.title;
 });
+
 let timeoutId = null;
 watch(title, (newValue) => {
   if (timeoutId) {
@@ -39,7 +36,7 @@ watch(title, (newValue) => {
     <input
       type="text"
       class="custom-input text-sm"
-      :placeholder="textList[1] || ' '"
+      :placeholder="userPlaceholder || 'Inserte título'"
       v-model="title"
       onfocus="this.select()"
     />
