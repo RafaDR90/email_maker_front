@@ -85,11 +85,6 @@ const downloadHTMLPrueba = () => {
   URL.revokeObjectURL(url);
 };
 
-const getEmailContentHTML = () => {
-  const emailContentElement = document.getElementById("emailContent");
-  return emailContentElement ? emailContentElement.outerHTML : '';
-};
-
 </script>
 
 

@@ -3,8 +3,13 @@ import { ref, watch, defineEmits, defineProps } from "vue";
 
 const props = defineProps({
   foundProducts: Array,
+  value: {
+    type: String,
+    default: "",
+  },
 });
 
+const preventOpen= ref(false);
 const input = ref("");
 const showResults = ref(false);
 
@@ -23,8 +28,20 @@ watch(input, (newVal) => {
 });
 
 watch(
+  () => props.value,
+  () => {
+    preventOpen.value = true;
+    input.value = props.value;
+  }
+);
+
+watch(
   () => props.foundProducts,
   () => {
+    if(preventOpen.value) {
+      preventOpen.value = false;
+      return;
+    }
     showResults.value = true;
   }
 );

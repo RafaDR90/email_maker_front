@@ -19,8 +19,6 @@ const userPlaceholder = ref(props.placeholder);
 
 const title = ref(props.textList.title);
 watch(props.textList, () => {
-  console.log("Perrazo");
-  console.log(props.textList.title);
   title.value = props.textList.title;
 });
 let timeoutId = null;

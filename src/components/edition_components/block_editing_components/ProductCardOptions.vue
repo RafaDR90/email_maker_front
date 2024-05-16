@@ -24,9 +24,7 @@ const selectedProduct = ref(null);
 
 /** Variables Cards **/
 const productTitle = ref("");
-console.log("1", selectedProduct.value);
-const productPvdEstandar = ref(0);
-console.log("3", productPvdEstandar.value);
+const productPvdEstandar = ref(10);
 const productPvd = ref(selectedProduct.pvd || 0);
 
 watch(documentActionsStore, () => {
@@ -38,7 +36,6 @@ const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
-  console.log(selectedProduct.value);
 };
 
 const data = ref({
@@ -54,16 +51,12 @@ function hasMultipleFields(selectedProduct) {
 }
 
 watch(selectedProduct, () => {
-  console.log("SELECTED PRODUCT", selectedProduct.value);
   if (!hasMultipleFields(selectedProduct)) {
     return false;
   }
   if (selectedProduct.value && selectedProduct.value.titulo_small) {
-    console.log("Perro");
-    console.log(selectedProduct.value.titulo_small);
     data.value.title = selectedProduct.value.titulo_small;
     productTitle.value = selectedProduct.value.titulo_small;
-    console.log(data.value.title);
   }
 
   data.value.title = productTitle.value;
@@ -80,7 +73,6 @@ function updatePrice(newVal) {
 
   if (selectedProduct.value.id || selectedProduct.value.id >= 0) {
     let p = selectedProduct.value;
-    console.log("P", p);
     p.pvd_estandar = newVal.toString();
     productsItemsStore.editProduct(p.id, p);
   }
@@ -102,27 +94,30 @@ function updateOfferPrice(newVal) {
     productsItemsStore.editProduct(p.id, p);
   }
 }
+
+const reference = ref(null);
+watch(() => selectedProduct.value, () => {
+  reference.value = selectedProduct.value.referencia;
+  productPvdEstandar.value = selectedProduct.value.pvd_estandar;
+  productPvd.value = selectedProduct.value.pvd;
+});
+
+
 </script>
 
 <template>
   <div id="container" class="flex flex-col w-full items-start">
     <h2>Producto {{ documentActionsStore.selectedCard + 1 }}</h2>
     <div class="divider" />
-    <AutocompleteForm
-      :foundProducts="foundProductsRef"
-      @search="searchProducts"
-      @exportResult="setProduct"
-    />
+    <AutocompleteForm :value="reference" :foundProducts="foundProductsRef" @search="searchProducts"
+      @exportResult="setProduct" />
     <h3>Título:</h3>
     <RegularInput :textList="data" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
     <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
-    <NumberInput
-      v-if="selectedProduct && selectedProduct.oferta >= 1"
-      :value="productPvd"
-      :valueUpdate="updateOfferPrice"
-    />
+    <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
+      :valueUpdate="updateOfferPrice" />
     <p class="text-gray-500" v-else>Este producto no está en oferta</p>
   </div>
 </template>
