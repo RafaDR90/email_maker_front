@@ -1,6 +1,7 @@
 <script setup>
 import { gridVars } from "../../store/GridVars";
-import ProductCard from "../ProductCard.vue";
+import ProductCard from "../product_card/ProductCard.vue";
+import ProductCardFrame from "../product_card/ProductCardFrame.vue";
 import { useProductVars } from "../../store/ProductVars";
 import Banner from "../../assets/img/boton-agregar.png";
 import { productItems } from "../../store/ProductsItems";
@@ -10,8 +11,14 @@ import { watch, ref } from "vue";
 const documentActionsStore = documentActions();
 const productItemsStore = productItems();
 const productVarsStore = useProductVars();
-
 const gridConfiguration = gridVars();
+
+const productCardHover = ref(false);
+
+const handleHover = () => {
+  productCardHover.value = !productCardHover.value;
+  console.log(productCardHover.value);
+};
 
 const updateStyle = () => {
   return {

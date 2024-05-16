@@ -38,17 +38,6 @@ const setProduct = (product) => {
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
 };
 
-const data = ref({
-  title:
-    selectedProduct.value && selectedProduct.value.titulo_small
-      ? selectedProduct.value.titulo_small
-      : "",
-  placeholder: "Introduce texto",
-});
-
-
-
-
 function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
 }
@@ -91,24 +80,59 @@ watch(selectedProduct, () => {
   productTitle.value = selectedProduct.value.titulo_small;
 });
 
-
+function deleteProductCard() {
+  console.log(selectedProduct.value.id);
+  productsItemsStore.removeProductById(selectedProduct.value.id);
+}
 </script>
 
 <template>
-  <div id="container" class="flex flex-col w-full items-start">
-    <h2>Producto {{ documentActionsStore.selectedCard + 1 }}</h2>
-    <div class="divider" />
-    <AutocompleteForm :value="reference" :foundProducts="foundProductsRef" @search="searchProducts"
-      @exportResult="setProduct" />
-    <h3>Url de la imagen:</h3>
-    <h3>Título:</h3>
-    <RegularInput :text="productTitle" :placeholder="'Inserte título'" :onChange="updateProductCardTitle" />
-    <h3>Precio:</h3>
-    <NumberInput :numberValue="productPvdEstandar" :valueUpdate="updatePrice" />
-    <h3>Oferta:</h3>
-    <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
-      :valueUpdate="updateOfferPrice" />
-    <p class="text-gray-500" v-else>Este producto no está en oferta</p>
-    <h3>Url del boton:</h3>
+  <div
+    id="container"
+    class="flex flex-col w-full items-start justify-between"
+  >
+    <div class="w-full h-full">
+      <h2 class="text-center">
+        Producto {{ documentActionsStore.selectedCard + 1 }}
+      </h2>
+      <div class="divider" />
+      <AutocompleteForm
+        :value="reference"
+        :foundProducts="foundProductsRef"
+        @search="searchProducts"
+        @exportResult="setProduct"
+      />
+      <h3>Url de la imagen:</h3>
+      <h3>Título:</h3>
+      <RegularInput
+        :text="productTitle"
+        :placeholder="'Inserte título'"
+        :onChange="updateProductCardTitle"
+      />
+      <h3>Precio:</h3>
+      <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
+      <h3>Oferta:</h3>
+      <NumberInput
+        v-if="selectedProduct && selectedProduct.oferta >= 1"
+        :value="productPvd"
+        :valueUpdate="updateOfferPrice"
+      />
+      <p class="text-gray-500" v-else>Este producto no está en oferta</p>
+      <h3>Url del boton:</h3>
+    </div>
+    <div class="w-full flex justify-center self-end content-end items-end mb-3">
+      <button
+        class="button bg-red-600 rounded hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400"
+        @click="deleteProductCard"
+      >
+        Quitar producto
+      </button>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.button {
+  @apply px-4 py-2 text-slate-50 shadow-md focus:ring-opacity-50 transition duration-150 ease-in-out me-3 ms-3;
+}
+</style>

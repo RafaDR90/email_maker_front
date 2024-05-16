@@ -23,5 +23,10 @@ export const productItems = defineStore({
     getProductById(id) {
       return this.productsList.find((product) => product.id === id);
     },
+    removeProductById(id) {
+      if (id < this.productsList.length) {
+        this.productsList.splice(id, 1);
+      }
+    },
   },
 });

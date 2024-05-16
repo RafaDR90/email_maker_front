@@ -1,7 +1,7 @@
 <script setup>
-import ProductModel from "../model/ProductModel";
+import ProductModel from "../../model/ProductModel";
 import { defineProps } from "vue";
-import { cardStyle } from "../store/CardStyle";
+import { cardStyle } from "../../store/CardStyle";
 
 const cardStyleStore = cardStyle();
 
