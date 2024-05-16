@@ -36,7 +36,6 @@ const setProduct = (product) => {
   productsItemsStore.editProduct(documentActionsStore.selectedCard, product);
   selectedProduct.value = product;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
-  productPvd.value = selectedProduct.value.pvd;
 };
 
 const data = ref({
@@ -47,32 +46,8 @@ const data = ref({
   placeholder: "Introduce texto",
 });
 
-function hasMultipleFields(selectedProduct) {
-  return Object.keys(selectedProduct.value).length > 1;
-}
 
-watch(selectedProduct, () => {
-  console.log("SELECTED PRODUCT", selectedProduct.value);
-  if (!hasMultipleFields(selectedProduct)) {
-    return false;
-  }
 
-  if (!selectedProduct.value) {
-    return false;
-  }
-
-  // TITULO_SMALL
-  if (selectedProduct.value.titulo_small) {
-    data.value.title = selectedProduct.value.titulo_small;
-    productTitle.value = selectedProduct.value.titulo_small;
-  }
-  // PVD_ESTANDAR
-  if (selectedProduct.value.pvd_estandar) {
-    productPvdEstandar.value = selectedProduct.value.pvd_estandar;
-  }
-
-  data.value.title = productTitle.value;
-});
 
 function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
@@ -85,10 +60,7 @@ function updatePrice(newVal) {
 
   if (selectedProduct.value.id) {
     let p = selectedProduct.value;
-    if (newVal > p.pvd) {
-      newVal = p.pvd;
-    }
-    p.pvd_estandar = newVal;
+    p.pvd_estandar = newVal.toString();
     productsItemsStore.editProduct(p.id, p);
   }
 }
@@ -110,27 +82,33 @@ function updateOfferPrice(newVal) {
     productsItemsStore.editProduct(p.id, p);
   }
 }
+
+const reference = ref(null);
+watch(selectedProduct, () => {
+  reference.value = selectedProduct.value.referencia;
+  productPvdEstandar.value = selectedProduct.value.pvd_estandar;
+  productPvd.value = selectedProduct.value.pvd;
+  productTitle.value = selectedProduct.value.titulo_small;
+});
+
+
 </script>
 
 <template>
   <div id="container" class="flex flex-col w-full items-start">
     <h2>Producto {{ documentActionsStore.selectedCard + 1 }}</h2>
     <div class="divider" />
-    <AutocompleteForm
-      :foundProducts="foundProductsRef"
-      @search="searchProducts"
-      @exportResult="setProduct"
-    />
+    <AutocompleteForm :value="reference" :foundProducts="foundProductsRef" @search="searchProducts"
+      @exportResult="setProduct" />
+    <h3>Url de la imagen:</h3>
     <h3>Título:</h3>
-    <RegularInput :textList="data" :onChange="updateProductCardTitle" />
+    <RegularInput :text="productTitle" :placeholder="'Inserte título'" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
     <NumberInput :numberValue="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
-    <NumberInput
-      v-if="selectedProduct && selectedProduct.oferta >= 1"
-      :numberValue="productPvd"
-      :valueUpdate="updateOfferPrice"
-    />
+    <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
+      :valueUpdate="updateOfferPrice" />
     <p class="text-gray-500" v-else>Este producto no está en oferta</p>
+    <h3>Url del boton:</h3>
   </div>
 </template>

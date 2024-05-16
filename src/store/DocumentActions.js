@@ -8,6 +8,7 @@ export const documentActions = defineStore({
             selectedBlock: 'banner',
             selectedCard: null,
             addProductModal: true,
+            creatingSvg: false,
         }
     },
     actions: {

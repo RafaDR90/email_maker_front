@@ -23,6 +23,10 @@ watch(number, (newValue) => {
     props.valueUpdate(newValue);
   }, 250);
 });
+
+watch(props, ()=>{
+  text.value = props.value;
+})
 </script>
 
 <template>
