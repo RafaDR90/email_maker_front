@@ -77,7 +77,10 @@ function updateProductCardImg(img) {
 }
 
 function updateProductUrlButton(url) {
-  productsItemsStore.setProductButtonUrl(documentActionsStore.selectedCard, url);
+  productsItemsStore.setProductButtonUrl(
+    documentActionsStore.selectedCard,
+    url
+  );
 }
 
 const reference = ref(null);
@@ -100,10 +103,7 @@ function deleteProductCard() {
 </script>
 
 <template>
-  <div
-    id="container"
-    class="flex flex-col w-full items-start justify-between"
-  >
+  <div id="container" class="flex flex-col w-full items-start justify-between">
     <div class="w-full h-full">
       <h2 class="text-center">
         Producto {{ documentActionsStore.selectedCard + 1 }}
@@ -116,7 +116,11 @@ function deleteProductCard() {
         @exportResult="setProduct"
       />
       <h3>Url de la imagen:</h3>
-    <RegularInput :text="urlImagen" :placeholder="'Inserte url de la imagen'" :onChange="updateProductCardImg" />
+      <RegularInput
+        :text="urlImagen"
+        :placeholder="'Inserte url de la imagen'"
+        :onChange="updateProductCardImg"
+      />
       <h3>Título:</h3>
       <RegularInput
         :text="productTitle"
@@ -124,7 +128,10 @@ function deleteProductCard() {
         :onChange="updateProductCardTitle"
       />
       <h3>Precio:</h3>
-      <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
+      <NumberInput
+        :numberValue="productPvdEstandar"
+        :valueUpdate="updatePrice"
+      />
       <h3>Oferta:</h3>
       <NumberInput
         v-if="selectedProduct && selectedProduct.oferta >= 1"
@@ -133,7 +140,11 @@ function deleteProductCard() {
       />
       <p class="text-gray-500" v-else>Este producto no está en oferta</p>
       <h3>Url del boton:</h3>
-    <RegularInput :text="urlButton" :placeholder="'Url del boton'" :onChange="updateProductUrlButton" />
+      <RegularInput
+        :text="urlButton"
+        :placeholder="'Url del boton'"
+        :onChange="updateProductUrlButton"
+      />
     </div>
     <div class="w-full flex justify-center self-end content-end items-end mb-3">
       <button
