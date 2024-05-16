@@ -56,11 +56,20 @@ const updateSelectedCard = (id) => {
   documentActionsStore.updateSelectedCard(id);
   documentActionsStore.updateSelectedBlock("card");
 };
+
+const products = ref(productItemsStore.productsList);
+watch(documentActionsStore,()=>{
+  if(documentActionsStore.creatingSvg){
+    products.value = productItemsStore.defaultProductList;
+  }else{
+    products.value = productItemsStore.productsList;
+  }
+})
 </script>
 
 <template>
   <div :style="updateStyle()" style="display: grid; row-gap: 5px">
-    <button
+    <button v-if="!documentActionsStore.creatingSvg"
       class="selectable-block"
       v-for="(producto, key) in productItemsStore.productsList"
       :key="key"
@@ -68,6 +77,35 @@ const updateSelectedCard = (id) => {
       :style="
         gridConfiguration.selectedMode.childDistribution !== 'normal'
           ? key % 2 === 0
+            ? {
+                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
+              }
+            : {
+                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
+              }
+          : {}
+      "
+      style="
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: transparent;
+      "
+    >
+      <ProductCard
+        @click="updateSelectedCard(producto.id)"
+        :product="producto"
+        :cardDirection="getDirection(key)"
+      />
+    </button>
+    <button v-else
+      class="selectable-block"
+      v-for="(producto, keyy) in productItemsStore.defaultProductList"
+      :key="keyy"
+      ref="productsDiv"
+      :style="
+        gridConfiguration.selectedMode.childDistribution !== 'normal'
+          ? keyy % 2 === 0
             ? {
                 'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
               }

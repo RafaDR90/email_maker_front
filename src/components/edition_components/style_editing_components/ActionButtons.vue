@@ -16,6 +16,7 @@ import html2canvas from 'html2canvas';
 
 const store = documentActions();
 
+
 let downloadTimeOut = null;
 let toggleModalTimeOut = null;
 const downloadHTML = () => {
@@ -35,7 +36,12 @@ const downloadHTML = () => {
   }, 10);
 };
 
+let toggleSvgModelTimeOut = null;
+let timeOutSvgId = null;
 const saveTemplate = () => {
+  if (timeOutSvgId || toggleSvgModelTimeOut) {
+    return;
+  }
   const cardStyleStore = cardStyle();
   const bannerVars = useBannerVars();
   const emailVars = useEmailVars();
@@ -78,11 +84,18 @@ const saveTemplate = () => {
   //ProductService.uploadStylesData(data).then((res) => {
   //});
   var img = null
-  html2canvas(document.getElementById("emailContainer")).then(function (canvas) {
-    img = canvas.toDataURL("image/png");
-    console.log(img);
+  store.setCreatingSvg(true);
+  timeOutSvgId = setTimeout(() => {
+    html2canvas(document.getElementById("emailContainer")).then(function (canvas) {
+      img = canvas.toDataURL("image/png");
+      console.log(img);
+    });
+    toggleSvgModelTimeOut = setTimeout(() => {
+      store.setCreatingSvg(false);
+    }, 10);
+  }, 5);
 
-  });
+
 
 }
 </script>
