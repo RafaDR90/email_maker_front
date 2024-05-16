@@ -22,6 +22,7 @@ const title = ref(props.text);
 watch(props, () => {
   title.value = props.text;
 });
+
 let timeoutId = null;
 watch(title, (newValue) => {
   if (timeoutId) {
@@ -38,7 +39,7 @@ watch(title, (newValue) => {
     <input
       type="text"
       class="custom-input text-sm"
-      :placeholder="userPlaceholder || ' '"
+      :placeholder="userPlaceholder || 'Inserte título'"
       v-model="title"
       onfocus="this.select()"
     />

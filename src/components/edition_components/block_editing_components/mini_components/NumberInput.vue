@@ -2,14 +2,20 @@
 import { ref, defineProps, watch } from "vue";
 
 const props = defineProps({
-  value: { type: Number, default: 0 },
+  numberValue: { type: Number, default: ref(0) },
   valueUpdate: { type: Function, default: () => {} },
 });
 
-const text = ref(props.value);
+const number = ref(props.numberValue);
+
+watch(props.numberValue, (newVal) => {
+  number.value = props.numberValue;
+  console.log(props.numberValue);
+  console.log(newVal);
+});
 
 let timeoutId = null;
-watch(text, (newValue) => {
+watch(number, (newValue) => {
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
@@ -25,6 +31,6 @@ watch(props, ()=>{
 
 <template>
   <div class="w-full">
-    <input type="number" class="custom-input text-center" v-model="text" />
+    <input type="number" class="custom-input text-center" v-model="number" />
   </div>
 </template>

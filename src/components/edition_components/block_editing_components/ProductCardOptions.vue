@@ -24,8 +24,8 @@ const selectedProduct = ref(null);
 
 /** Variables Cards **/
 const productTitle = ref("");
-const productPvdEstandar = ref(10);
-const productPvd = ref(selectedProduct.pvd || 0);
+const productPvdEstandar = ref(0);
+const productPvd = ref(0);
 
 watch(documentActionsStore, () => {
   selectedProduct.value =
@@ -58,7 +58,7 @@ function updatePrice(newVal) {
     return null;
   }
 
-  if (selectedProduct.value.id || selectedProduct.value.id >= 0) {
+  if (selectedProduct.value.id) {
     let p = selectedProduct.value;
     p.pvd_estandar = newVal.toString();
     productsItemsStore.editProduct(p.id, p);
@@ -73,10 +73,11 @@ function updateOfferPrice(newVal) {
   if (selectedProduct.value.id) {
     let p = selectedProduct.value;
     if (p.oferta == 1) {
-      if (newVal > p.pvd) {
-        newVal = p.pvd;
+      if (newVal > p.pvd_estandar) {
+        p.pvd = p.pvd_estandar;
+      } else {
+        p.pvd = newVal;
       }
-      p.pvd = newVal.toString();
     }
     productsItemsStore.editProduct(p.id, p);
   }
@@ -117,7 +118,7 @@ watch(selectedProduct, () => {
     <h3>Título:</h3>
     <RegularInput :text="productTitle" :placeholder="'Inserte título'" :onChange="updateProductCardTitle" />
     <h3>Precio:</h3>
-    <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
+    <NumberInput :numberValue="productPvdEstandar" :valueUpdate="updatePrice" />
     <h3>Oferta:</h3>
     <NumberInput v-if="selectedProduct && selectedProduct.oferta >= 1" :value="productPvd"
       :valueUpdate="updateOfferPrice" />
