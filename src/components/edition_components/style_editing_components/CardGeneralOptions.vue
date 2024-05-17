@@ -59,10 +59,10 @@ watch(
     <div class="styleEditItem">
       <h2 class="mt-4">Título</h2>
       <div class="divider" />
-      <h3 class="mt-0">Tamaño del titulo:</h3>
+      <h3 class="mt-0">Tamaño del título:</h3>
       <NumberInput :value="cardStyleStore.fontSizeTitle" :valueUpdate="cardStyleStore.setFontSizeTitle" />
 
-      <h3 class="">Color del titulo:</h3>
+      <h3 class="">Color del título:</h3>
       <ColorPicker :value="cardStyleStore.titleColor" :valueUpdate="cardStyleStore.setTitleColor" />
 
       <Checkbox :value="cardStyleStore.titleBold" :valueUpdate="cardStyleStore.setTitleBold" />
@@ -80,13 +80,13 @@ watch(
       <ColorPicker :value="cardStyleStore.colorOldPrice" :valueUpdate="cardStyleStore.setColorOldPrice" />
       <div class="flex items-center">
         <input class="custom-checkbox" type="checkbox" v-model="priceInvertOption" />
-        <h3 class="">Invertir posicion precio:</h3>
+        <h3 class="">Invertir posición precio:</h3>
       </div>
     </div>
     <div class="styleEditItem">
-      <h2>Boton</h2>
+      <h2>Botón</h2>
       <div class="divider" />
-      <h3>Posicion del boton:</h3>
+      <h3>Posicion del botón:</h3>
       <div class="flex gap-6">
         <div>
           <input type="radio" id="izquierda" value="left" name="posicion"
@@ -105,7 +105,7 @@ watch(
         </div>
       </div>
 
-      <h3>Color del boton:</h3>
+      <h3>Color del botón:</h3>
       <ColorPicker :value="cardStyleStore.buttonBg" :valueUpdate="cardStyleStore.setButtonBg" />
       <h3>Color de texto:</h3>
       <ColorPicker :value="cardStyleStore.buttonTextColor" :valueUpdate="cardStyleStore.setButtonTextColor" />
