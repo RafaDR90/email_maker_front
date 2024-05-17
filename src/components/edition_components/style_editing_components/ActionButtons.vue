@@ -98,24 +98,34 @@ const saveTemplate = () => {
       formData.append('image', blob, emailVars.emailSubject);
 
       ProductService.uploadSvg(formData).then((res) => {
-        console.log(res);
-        res == '409' ? store.setError('Ya existe una plantilla con el mismo asunto') : null
+        if(res == '409') {
+          store.setError('Ya existe una plantilla con el mismo asunto');
+          store.setCreatingSvg(false);
+          if (timeOutSvgId) {
+            clearTimeout(timeOutSvgId);
+            timeOutSvgId=null;
+          }
+          return;
+        }
 
         if (res.filename) {
-          /*ProductService.uploadStylesData(data, res.filename).then((res) => {
-            console.log(res);
-          });*/
+          ProductService.uploadStylesData(data, res.filename).then((res) => {
+            timeOutSvgId = null;
+          });
         }
       });
 
     });
+    if(toggleSvgModelTimeOut) {
+      clearTimeout(toggleSvgModelTimeOut);
+      toggleSvgModelTimeOut=null;
+    }
     toggleSvgModelTimeOut = setTimeout(() => {
       store.setCreatingSvg(false);
-    }, 10);
+    }, 10).then(() => {
+      toggleSvgModelTimeOut = null;
+    });
   }, 5);
-
-
-
 }
 </script>
 

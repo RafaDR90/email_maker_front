@@ -30,10 +30,10 @@ export default class ProductService {
       throw error;
     }
   }
-  static async uploadStylesData(data) {
+  static async uploadStylesData(data, filename) {
     try {
 
-      const response = await axios.post(`${BASE_URL}/products/styles-upload`, { data: data }, {
+      const response = await axios.post(`${BASE_URL}/products/styles-upload`, { data: data, filename: filename }, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -47,7 +47,7 @@ export default class ProductService {
   static async uploadSvg(img) {
     try {
       // Crear un objeto FormData y añadir la imagen como un archivo
-      
+
 
       const response = await axios.post(`${BASE_URL}/upload/svg`, img, {
         headers: {
