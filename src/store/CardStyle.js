@@ -5,7 +5,7 @@ export const cardStyle = defineStore({
     state: () => {
         return {
             //generales
-            cardHeight: 400,
+            cardHeight: 460,
             cardBgActive: false,
             cardBg: "#FFFFFF",
             border: false,
