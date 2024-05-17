@@ -154,7 +154,6 @@ function deleteProductCard() {
         class="custom-input"
         v-model="productDescription"
         :placeholder="'Inserte descripción del producto'"
-        @input="updateProductCardDescription"
       />
 
       <h3>Precio:</h3>

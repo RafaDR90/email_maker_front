@@ -41,8 +41,6 @@ const cardCssStyle = computed(() => {
 });
 
 function removeAndReplaceHTMLTags(text) {
-  console.log(text);
-  // Expresión regular para encontrar todas las etiquetas HTML y <br>
   const regex = /<(?:.|\n)*?>/gm;
 
   const withLineBreaks = text.replace(/<br\s*[\/]?>/gi, " ");
