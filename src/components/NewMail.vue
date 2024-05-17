@@ -2,8 +2,10 @@
 import BlockEdit from "./edition_components/BlockEdit.vue";
 import StyleEdit from "./edition_components/StyleEdit.vue";
 import EmailPreview from "./edition_components/EmailPreview.vue";
+import { documentActions } from "../store/DocumentActions";
 import { ref } from "vue";
 
+const documentActionsStore = documentActions();
 /*----------------------------
             BLOCK EDIT
 ----------------------------*/
@@ -45,7 +47,8 @@ const underBannerFontUpdate = (newFont) => {
 </script>
 
 <template>
-  <div class="w-full min-h-full flex">
+  <div class="w-full min-h-full flex relative">
+    <p v-if="documentActionsStore.error" class=" absolute w-full bg-red-300 bg-opacity-80 text-red-800  font-bold z-50 py-5 border-y border-red-800 text-center">{{documentActionsStore.error}}</p>
     <StyleEdit />
     <EmailPreview class="h-[calc(100vh-4rem)] overflow-y-auto" @update:selectedBlock="updateSelectedBlock" :selectedBlock="selectedBlock" 
       :underBannerSelectedFont="underBannerSelectedFont" />

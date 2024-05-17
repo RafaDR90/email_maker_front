@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
+    "canvas2image": "^1.0.5",
     "html2canvas": "^1.4.1",
     "pinia": "^2.1.7",
     "v-click-outside": "^3.2.0",
