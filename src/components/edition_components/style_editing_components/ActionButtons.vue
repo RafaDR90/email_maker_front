@@ -13,7 +13,6 @@ import html2canvas from 'html2canvas';
 
 
 
-
 const store = documentActions();
 
 
@@ -83,12 +82,32 @@ const saveTemplate = () => {
   data = JSON.stringify(data);
   //ProductService.uploadStylesData(data).then((res) => {
   //});
-  var img = null
   store.setCreatingSvg(true);
   timeOutSvgId = setTimeout(() => {
     html2canvas(document.getElementById("emailContainer")).then(function (canvas) {
-      img = canvas.toDataURL("image/png");
-      console.log(img);
+      var dataUrl = canvas.toDataURL("image/png");
+      var byteString = atob(dataUrl.split(',')[1]);
+      var mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0]
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      var blob = new Blob([ab], { type: mimeString });
+      var formData = new FormData();
+      formData.append('image', blob, emailVars.emailSubject);
+
+      ProductService.uploadSvg(formData).then((res) => {
+        console.log(res);
+        res == '409' ? store.setError('Ya existe una plantilla con el mismo asunto') : null
+
+        if (res.filename) {
+          /*ProductService.uploadStylesData(data, res.filename).then((res) => {
+            console.log(res);
+          });*/
+        }
+      });
+
     });
     toggleSvgModelTimeOut = setTimeout(() => {
       store.setCreatingSvg(false);

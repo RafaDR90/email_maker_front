@@ -9,6 +9,8 @@ export const documentActions = defineStore({
             selectedCard: null,
             addProductModal: true,
             creatingSvg: false,
+            error: null,
+            errorTimeout: null
         }
     },
     actions: {
@@ -26,6 +28,15 @@ export const documentActions = defineStore({
         },
         setCreatingSvg(status){
             this.creatingSvg = status;
+        },
+        setError(error){
+            if(this.errorTimeout){
+                clearTimeout(this.errorTimeout);
+            }
+            this.error = error;
+            this.errorTimeout = setTimeout(() => {
+                this.error = null;
+            }, 6000);
         }
     }
 })
