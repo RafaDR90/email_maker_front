@@ -65,11 +65,11 @@ const roundPvp = (pvp) => {
             style="margin-left: 1.5rem; margin-right: 1.5rem; margin-top: 0px; margin-bottom: 0px;" :style="[
               { fontSize: cardStyleStore.fontSizePrice + 'px' },
               { color: cardStyleStore.priceColor },
-              cardStyleStore.priceBold ? { fontWeight: 'bold' } : {}
+              cardStyleStore.priceBold ? { fontWeight: 900 } : {}
             ]">{{ roundPvp(props.product.pvd) }}</p>
           <p :style="[
             props.product.oferta ? { color: cardStyleStore.colorOldPrice, textDecoration: 'line-through', fontSize: cardStyleStore.oldPriceSize + 'px' } : { color: cardStyleStore.priceColor, fontSize: cardStyleStore.fontSizePrice + 'px' },
-            cardStyleStore.priceBold ? { fontWeight: 'bold' } : {}]"
+            cardStyleStore.priceBold ? { fontWeight: 900 } : {}]"
             style=" margin-left: 1.5rem; margin-right: 1.5rem; margin-top: 0px; margin-bottom: 0px;">
             {{ roundPvp(props.product.pvd_estandar) }}</p>
         </div>
