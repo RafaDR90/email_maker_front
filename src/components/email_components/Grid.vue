@@ -1,8 +1,6 @@
 <script setup>
 import { gridVars } from "../../store/GridVars";
 import ProductCard from "../product_card/ProductCard.vue";
-import ProductCardFrame from "../product_card/ProductCardFrame.vue";
-import { useProductVars } from "../../store/ProductVars";
 import Banner from "../../assets/img/boton-agregar.png";
 import { productItems } from "../../store/ProductsItems";
 import { documentActions } from "../../store/DocumentActions";
@@ -10,15 +8,8 @@ import { watch, ref } from "vue";
 
 const documentActionsStore = documentActions();
 const productItemsStore = productItems();
-const productVarsStore = useProductVars();
 const gridConfiguration = gridVars();
 
-const productCardHover = ref(false);
-
-const handleHover = () => {
-  productCardHover.value = !productCardHover.value;
-  console.log(productCardHover.value);
-};
 
 const updateStyle = () => {
   return {
@@ -56,11 +47,20 @@ const updateSelectedCard = (id) => {
   documentActionsStore.updateSelectedCard(id);
   documentActionsStore.updateSelectedBlock("card");
 };
+
+const products = ref(productItemsStore.productsList);
+watch(documentActionsStore,()=>{
+  if(documentActionsStore.creatingSvg){
+    products.value = productItemsStore.defaultProductList;
+  }else{
+    products.value = productItemsStore.productsList;
+  }
+})
 </script>
 
 <template>
   <div :style="updateStyle()" style="display: grid; row-gap: 5px">
-    <button
+    <button v-if="!documentActionsStore.creatingSvg"
       class="selectable-block"
       v-for="(producto, key) in productItemsStore.productsList"
       :key="key"
@@ -89,8 +89,37 @@ const updateSelectedCard = (id) => {
         :cardDirection="getDirection(key)"
       />
     </button>
+    <button v-else
+      class="selectable-block"
+      v-for="(producto, keyy) in productItemsStore.defaultProductList"
+      :key="keyy"
+      ref="productsDiv"
+      :style="
+        gridConfiguration.selectedMode.childDistribution !== 'normal'
+          ? keyy % 2 === 0
+            ? {
+                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
+              }
+            : {
+                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
+              }
+          : {}
+      "
+      style="
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: transparent;
+      "
+    >
+      <ProductCard
+        @click="updateSelectedCard(producto.id)"
+        :product="producto"
+        :cardDirection="getDirection(key)"
+      />
+    </button>
     <div
-      v-if="documentActionsStore.addProductModal"
+      v-if="documentActionsStore.addProductModal && !documentActionsStore.creatingSvg"
       style="
         width: 100%;
         display: flex;

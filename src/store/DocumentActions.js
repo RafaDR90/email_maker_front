@@ -23,6 +23,9 @@ export const documentActions = defineStore({
         },
         setAddProductModal(status){
             this.addProductModal = status;
+        },
+        setCreatingSvg(status){
+            this.creatingSvg = status;
         }
     }
 })
