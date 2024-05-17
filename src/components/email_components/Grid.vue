@@ -10,7 +10,6 @@ const documentActionsStore = documentActions();
 const productItemsStore = productItems();
 const gridConfiguration = gridVars();
 
-
 const updateStyle = () => {
   return {
     "grid-template-columns": `repeat(${gridConfiguration.selectedMode.columns}, 1fr)`,
@@ -19,7 +18,11 @@ const updateStyle = () => {
 
 const getDirection = (key) => {
   if (gridConfiguration.selectedMode.childDistribution == "normal") {
-    return "col";
+    if (gridConfiguration.selectedMode.columns === 1) {
+      return "row";
+    } else {
+      return "col";
+    }
   }
   if (
     key % 2 == 0 &&
@@ -31,6 +34,16 @@ const getDirection = (key) => {
     gridConfiguration.selectedMode.childDistribution[1] == 1
   ) {
     return "col";
+  } else {
+    return "row";
+  }
+};
+
+const getDistribution = (key) => {
+  if (
+    key % 2 != 0 && gridConfiguration.selectedMode.columns === 1
+  ) {
+    return "row-reverse";
   } else {
     return "row";
   }
@@ -49,18 +62,19 @@ const updateSelectedCard = (id) => {
 };
 
 const products = ref(productItemsStore.productsList);
-watch(documentActionsStore,()=>{
-  if(documentActionsStore.creatingSvg){
+watch(documentActionsStore, () => {
+  if (documentActionsStore.creatingSvg) {
     products.value = productItemsStore.defaultProductList;
-  }else{
+  } else {
     products.value = productItemsStore.productsList;
   }
-})
+});
 </script>
 
 <template>
   <div :style="updateStyle()" style="display: grid; row-gap: 5px">
-    <button v-if="!documentActionsStore.creatingSvg"
+    <button
+      v-if="!documentActionsStore.creatingSvg"
       class="selectable-block"
       v-for="(producto, key) in productItemsStore.productsList"
       :key="key"
@@ -87,9 +101,11 @@ watch(documentActionsStore,()=>{
         @click="updateSelectedCard(producto.id)"
         :product="producto"
         :cardDirection="getDirection(key)"
+        :cardInverted="getDistribution(key)"
       />
     </button>
-    <button v-else
+    <button
+      v-else
       class="selectable-block"
       v-for="(producto, keyy) in productItemsStore.defaultProductList"
       :key="keyy"
@@ -119,7 +135,10 @@ watch(documentActionsStore,()=>{
       />
     </button>
     <div
-      v-if="documentActionsStore.addProductModal && !documentActionsStore.creatingSvg"
+      v-if="
+        documentActionsStore.addProductModal &&
+        !documentActionsStore.creatingSvg
+      "
       style="
         width: 100%;
         display: flex;
