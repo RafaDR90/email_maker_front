@@ -36,10 +36,12 @@ const fontSelectedUpdate = (newFont) => {
     <BannerOptions
       v-else-if="documentActionsStore.selectedBlock == 'banner'"
       :title="'Banner superior'"
-      :bannerUrl="bannerVarsStore.bannerUrl"
+      :bannerUrl="bannerVarsStore.topBannerUrl"
+      :bannerImgUrl="bannerVarsStore.topImgBannerUrl"
       :bannerColor="bannerVarsStore.bannerColor"
       :marginBottom="bannerVarsStore.marginBottom"
-      :setBannerUrl="bannerVarsStore.setBannerUrl"
+      :setBannerUrl="bannerVarsStore.setTopBannerUrl"
+      :setBannerImgUrl="bannerVarsStore.setTopImgBannerUrl"
       :setBannerColor="bannerVarsStore.setBannerColor"
       :setMarginBottomBanner="bannerVarsStore.setMarginBottom"
     />
@@ -47,9 +49,11 @@ const fontSelectedUpdate = (newFont) => {
       v-else-if="documentActionsStore.selectedBlock == 'bottomBanner'"
       :title="'Banner inferior'"
       :bannerUrl="bannerVarsStore.bottomBannerUrl"
+      :bannerImgUrl="bannerVarsStore.bottomImgBannerUrl"
       :bannerColor="bannerVarsStore.bottomBannerColor"
       :marginBottom="bannerVarsStore.bottomBannerMarginBottom"
       :setBannerUrl="bannerVarsStore.setBottomBannerUrl"
+      :setBannerImgUrl="bannerVarsStore.setBottomImgBannerUrl"
       :setBannerColor="bannerVarsStore.setBottomBannerColor"
       :setMarginBottomBanner="bannerVarsStore.setBottomBannerMarginBottom"
     />

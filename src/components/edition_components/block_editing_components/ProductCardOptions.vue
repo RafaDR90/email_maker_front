@@ -120,7 +120,7 @@ function deleteProductCard() {
       <h3>Url de la imagen:</h3>
       <RegularInput
         :text="urlImagen"
-        :placeholder="'Inserte url de la imagen'"
+        :placeholder="'Inserte URL de la imagen'"
         :onChange="updateProductCardImg"
       />
       <h3>Título:</h3>
@@ -141,7 +141,7 @@ function deleteProductCard() {
       <h3>Url del boton:</h3>
       <RegularInput
         :text="urlButton"
-        :placeholder="'Url del boton'"
+        :placeholder="'URL de redireccionamiento del boton'"
         :onChange="updateProductUrlButton"
       />
     </div>

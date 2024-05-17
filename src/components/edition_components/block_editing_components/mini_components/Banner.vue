@@ -3,6 +3,7 @@ import { defineProps } from "vue";
 import addBannerImg from "../../../../assets/img/boton-agregar.png";
 
 const props = defineProps({
+  bannerUrl: { type: String, default: "" },
   bannerImageUrl: { type: String, default: "" },
   bannerBackgroundColor: { type: String, default: "#FFFFFF" },
   bannerBottomMargin: { type: Number, default: 0 },
@@ -59,7 +60,7 @@ function isImageValid(imageURL) {
       <img
         style="width: 5rem; height: 5rem"
         :src="addBannerImg"
-        alt="imagen banner"
+        alt="Insertar"
       />
 
       <p style="font-size: 2.25rem; color: #6b7280">Inserte imagen</p>
@@ -85,5 +86,6 @@ function isImageValid(imageURL) {
     >
       <p style="color: darkred; font-weight: bold">¡Imagen no encontrada!</p>
     </div>
+    <slot/>
   </div>
 </template>

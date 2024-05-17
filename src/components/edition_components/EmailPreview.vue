@@ -128,10 +128,18 @@ const downloadHTMLPrueba = () => {
             backgroundColor: emailVarsStore.bgColor || '#FFFFFF',
           }">
           <!-- Top Banner -->
-          <NewBanner v-if="!documentActionsStore.creatingSvg" :bannerImageUrl="bannerStore.bannerUrl"
+          <a v-if="!documentActionsStore.creatingSvg && !documentActionsStore.addProductModal" :href="bannerStore.topBannerUrl">
+          <NewBanner  :bannerImageUrl="bannerStore.topImgBannerUrl"
             :bannerBackgroundColor="bannerStore.bannerColor" :bannerBottomMargin="bannerStore.marginBottom"
-            @click="updateSelectedBlock('banner')" class="selectable-block" />
-
+            @click="updateSelectedBlock('banner')" class="selectable-block" >
+          </NewBanner>
+          </a>
+          <div v-else-if="!documentActionsStore.creatingSvg && documentActionsStore.addProductModal">
+          <NewBanner  :bannerImageUrl="bannerStore.topImgBannerUrl"
+            :bannerBackgroundColor="bannerStore.bannerColor" :bannerBottomMargin="bannerStore.marginBottom"
+            @click="updateSelectedBlock('banner')" class="selectable-block" >
+          </NewBanner>
+          </div>
 
           <div v-else :style="{
             backgroundColor: bannerStore.bannerColor,
@@ -139,8 +147,6 @@ const downloadHTMLPrueba = () => {
           }">
             <img style="width: 100%" src="@/assets/img/defaultBanner.png" alt="imagen banner" />
           </div>
-
-
 
           <!-- Top Banner Text-->
           <div @click="updateSelectedBlock('underBannerText')" class="selectable-block" style="
@@ -173,9 +179,17 @@ const downloadHTMLPrueba = () => {
 
         <!-- Bottom Section -->
         <BottomSection v-if="!documentActionsStore.creatingSvg">
-          <NewBanner class="selectable-block" :bannerImageUrl="bannerStore.bottomBannerUrl"
+          <a v-if="!documentActionsStore.creatingSvg && !documentActionsStore.addProductModal" :href="bannerStore.bottomBannerUrl">
+            <NewBanner class="selectable-block" :bannerImageUrl="bannerStore.bottomImgBannerUrl"
             :bannerBackgroundColor="bannerStore.bottomBannerColor"
             :bannerBottomMargin="bannerStore.bottomBannerMarginBottom" @click="updateSelectedBlock('bottomBanner')" />
+          </a>
+          <div v-else-if="!documentActionsStore.creatingSvg && documentActionsStore.addProductModal">
+            <NewBanner class="selectable-block" :bannerImageUrl="bannerStore.bottomImgBannerUrl"
+            :bannerBackgroundColor="bannerStore.bottomBannerColor"
+            :bannerBottomMargin="bannerStore.bottomBannerMarginBottom" @click="updateSelectedBlock('bottomBanner')" />
+          </div>
+          
         </BottomSection>
         <EmailFooter v-if="!documentActionsStore.creatingSvg" />
       </div>

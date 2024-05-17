@@ -11,6 +11,7 @@ export const cardStyle = defineStore({
             border: false,
             borderColor: "#000000",
             priceInvert: false,
+            cardInverted: false,
             //titulo
             titleFont: "la fuente la pones tu------------------------------------------------------------------------------------------------",
             fontSizeTitle: 20,
@@ -40,6 +41,9 @@ export const cardStyle = defineStore({
         },
         setCardBg(color) {
             this.cardBg = color;
+        },
+        setInvertedCard(inverted) {
+            this.cardInverted = inverted;
         },
         setBorder(border) {
             this.border = border;

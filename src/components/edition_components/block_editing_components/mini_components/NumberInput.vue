@@ -10,8 +10,6 @@ const number = ref(props.value);
 
 watch(props, (newVal) => {
   number.value = props.value;
-  console.log(props.value);
-  console.log(newVal);
 });
 
 let timeoutId = null;
