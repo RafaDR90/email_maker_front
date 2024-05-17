@@ -1,8 +1,6 @@
 <script setup>
 import { gridVars } from "../../store/GridVars";
 import ProductCard from "../product_card/ProductCard.vue";
-import ProductCardFrame from "../product_card/ProductCardFrame.vue";
-import { useProductVars } from "../../store/ProductVars";
 import Banner from "../../assets/img/boton-agregar.png";
 import { productItems } from "../../store/ProductsItems";
 import { documentActions } from "../../store/DocumentActions";
@@ -10,15 +8,8 @@ import { watch, ref } from "vue";
 
 const documentActionsStore = documentActions();
 const productItemsStore = productItems();
-const productVarsStore = useProductVars();
 const gridConfiguration = gridVars();
 
-const productCardHover = ref(false);
-
-const handleHover = () => {
-  productCardHover.value = !productCardHover.value;
-  console.log(productCardHover.value);
-};
 
 const updateStyle = () => {
   return {
@@ -128,7 +119,7 @@ watch(documentActionsStore,()=>{
       />
     </button>
     <div
-      v-if="documentActionsStore.addProductModal"
+      v-if="documentActionsStore.addProductModal && !documentActionsStore.creatingSvg"
       style="
         width: 100%;
         display: flex;
