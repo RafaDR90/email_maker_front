@@ -10,6 +10,9 @@ const documentActionsStore = documentActions();
 const productItemsStore = productItems();
 const gridConfiguration = gridVars();
 
+const productsDiv = ref(null);
+const products = ref(productItemsStore.productsList);
+
 const updateStyle = () => {
   return {
     "grid-template-columns": `repeat(${gridConfiguration.selectedMode.columns}, 1fr)`,
@@ -49,8 +52,6 @@ const getDistribution = (key) => {
   }
 };
 
-const productsDiv = ref(null);
-
 const addProductsToArray = () => {
   productItemsStore.addProduct();
   updateSelectedCard(productItemsStore.getLastProduct().id);
@@ -61,7 +62,7 @@ const updateSelectedCard = (id) => {
   documentActionsStore.updateSelectedBlock("card");
 };
 
-const products = ref(productItemsStore.productsList);
+
 watch(documentActionsStore, () => {
   if (documentActionsStore.creatingSvg) {
     products.value = productItemsStore.defaultProductList;
@@ -69,6 +70,7 @@ watch(documentActionsStore, () => {
     products.value = productItemsStore.productsList;
   }
 });
+
 </script>
 
 <template>
@@ -102,6 +104,7 @@ watch(documentActionsStore, () => {
         :product="producto"
         :cardDirection="getDirection(key)"
         :cardInverted="getDistribution(key)"
+        :cardDescription="gridConfiguration.selectedMode.columns === 1 || false"
       />
     </button>
     <button

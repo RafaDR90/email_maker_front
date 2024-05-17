@@ -24,6 +24,7 @@ const selectedProduct = ref(null);
 
 /** Variables Cards **/
 const productTitle = ref("");
+const productDescription = ref("");
 const productPvdEstandar = ref(0);
 const productPvd = ref(0);
 const reference = ref(null);
@@ -43,6 +44,13 @@ const setProduct = (product) => {
 
 function updateProductCardTitle(title) {
   productsItemsStore.setProductTitle(documentActionsStore.selectedCard, title);
+}
+
+function updateProductCardDescription(description) {
+  productsItemsStore.setProductDescription(
+    documentActionsStore.selectedCard,
+    description
+  );
 }
 
 function updatePrice(newVal) {
@@ -91,6 +99,7 @@ watch(selectedProduct, () => {
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
   productPvd.value = selectedProduct.value.pvd;
   productTitle.value = selectedProduct.value.titulo_small;
+  productDescription.value = selectedProduct.value.descripcion;
   urlImagen.value = selectedProduct.value.url_imagen_compress;
   urlButton.value = selectedProduct.value.url_product;
 });
@@ -126,9 +135,18 @@ function deleteProductCard() {
       <h3>Título:</h3>
       <RegularInput
         :text="productTitle"
-        :placeholder="'Inserte título'"
-        :onChange="updateProductCardTitle"
+        :placeholder="'Inserte descripción del producto'"
+        :onChange="updateProductCardDescription"
       />
+
+      <h3>Descripción:</h3>
+      <textarea
+        class="custom-input"
+        v-model="productDescription"
+        :placeholder="'Inserte título'"
+        @input="updateProductCardDescription"
+      />
+
       <h3>Precio:</h3>
       <NumberInput :value="productPvdEstandar" :valueUpdate="updatePrice" />
       <h3>Oferta:</h3>
