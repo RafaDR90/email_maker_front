@@ -12,6 +12,7 @@ export const productItems = defineStore({
         pvd_estandar: "31.50",
         referencia: "REF-Ejemplo",
         titulo_small: "Titulo ejemplo 2829e wifi color",
+        descripcion: "Ejemplo descripción 2829e",
         url_imagen_compress: null,
         url_product: "#",
       },
@@ -22,6 +23,7 @@ export const productItems = defineStore({
         pvd_estandar: "33",
         referencia: "REF-Ejemplo-2",
         titulo_small: "Titulo ejemplo 1113 14.6 pulgadas 16gb",
+        descripcion: "Ejemplo descripción 1113",
         url_imagen_compress: null,
         url_product: "#",
       },
@@ -38,6 +40,10 @@ export const productItems = defineStore({
     setProductTitle(id, title) {
       this.productsList.find((product) => product.id === id).titulo_small =
         title;
+    },
+    setProductDescription(id, description) {
+      this.productsList.find((product) => product.id === id).descripcion =
+      description;
     },
     setProductImgUrl(id, imgUrl) {
       this.productsList.find(

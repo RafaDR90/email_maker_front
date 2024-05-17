@@ -9,6 +9,7 @@ const props = defineProps({
   product: ProductModel,
   cardDirection: String,
   cardInverted: String,
+  cardDescription: Boolean,
 });
 
 const roundPvp = (pvp) => {
@@ -30,19 +31,30 @@ const cardCssStyle = computed(() => {
     style["border"] = "1px solid " + cardStyleStore.borderColor;
   }
 
-  if (props.cardDirection.value === "col") {
+  if (props.cardDirection == "col") {
     style["flex-direction"] = "column";
   } else {
-      style["flex-direction"] = props.cardInverted || "row";
+    style["flex-direction"] = props.cardInverted || "row";
   }
+
   return style;
 });
+
+function removeAndReplaceHTMLTags(text) {
+  const regex = /<(?:.|\n)*?>/gm;
+
+  const withLineBreaks = text.replace(/<br\s*[\/]?>/gi, " ");
+  const withoutTags = withLineBreaks.replace(regex, " ");
+  const formattedText = withoutTags.replace(/\n{2,}/g, "\n");
+
+  return formattedText;
+}
 </script>
 
 <template>
   <!-- Product Card -->
   <div
-    style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.5rem"
+    style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem"
     :style="cardCssStyle"
   >
     <!-- Texto de oferta e imagen del producto -->
@@ -97,7 +109,9 @@ const cardCssStyle = computed(() => {
     </div>
 
     <!-- Cuerpo de ProductCard -->
-    <div style="height: 300px; display: flex; flex-direction: column">
+    <div
+      style="height: 300px; width: 100%; display: flex; flex-direction: column"
+    >
       <!-- Título_small del producto -->
       <div
         style="
@@ -117,6 +131,21 @@ const cardCssStyle = computed(() => {
         >
           {{ props.product.titulo_small }}
         </p>
+      </div>
+
+      <!-- Descripción del producto -->
+      <div
+        v-if="cardDescription && props.product.descripcion"
+        style="
+          height: 100px;
+          width: 100%;
+          text-align: justify;
+          overflow: hidden;
+          padding-left: 2.1rem;
+          padding-right: 2.1rem;
+        "
+      >
+        <p>{{ removeAndReplaceHTMLTags(props.product.descripcion) }}</p>
       </div>
 
       <!-- Sección de botones y precios -->

@@ -1,5 +1,6 @@
 <script setup>
 import { gridVars } from "../../store/GridVars";
+import { cardStyle } from "../../store/CardStyle";
 import ProductCard from "../product_card/ProductCard.vue";
 import Banner from "../../assets/img/boton-agregar.png";
 import { productItems } from "../../store/ProductsItems";
@@ -7,8 +8,12 @@ import { documentActions } from "../../store/DocumentActions";
 import { watch, ref } from "vue";
 
 const documentActionsStore = documentActions();
+const cardStyleStore = cardStyle();
 const productItemsStore = productItems();
 const gridConfiguration = gridVars();
+
+const productsDiv = ref(null);
+const products = ref(productItemsStore.productsList);
 
 const updateStyle = () => {
   return {
@@ -19,10 +24,14 @@ const updateStyle = () => {
 const getDirection = (key) => {
   if (gridConfiguration.selectedMode.childDistribution == "normal") {
     if (gridConfiguration.selectedMode.columns === 1) {
+      cardStyleStore.setCardHeight(380);
       return "row";
     } else {
+      cardStyleStore.setCardHeight(460);
       return "col";
     }
+  } else {
+    cardStyleStore.setCardHeight(460);
   }
   if (
     key % 2 == 0 &&
@@ -35,21 +44,17 @@ const getDirection = (key) => {
   ) {
     return "col";
   } else {
-    return "row";
+    return "col";
   }
 };
 
 const getDistribution = (key) => {
-  if (
-    key % 2 != 0 && gridConfiguration.selectedMode.columns === 1
-  ) {
+  if (key % 2 != 0 && gridConfiguration.selectedMode.columns === 1) {
     return "row-reverse";
   } else {
     return "row";
   }
 };
-
-const productsDiv = ref(null);
 
 const addProductsToArray = () => {
   productItemsStore.addProduct();
@@ -61,7 +66,6 @@ const updateSelectedCard = (id) => {
   documentActionsStore.updateSelectedBlock("card");
 };
 
-const products = ref(productItemsStore.productsList);
 watch(documentActionsStore, () => {
   if (documentActionsStore.creatingSvg) {
     products.value = productItemsStore.defaultProductList;
@@ -102,6 +106,7 @@ watch(documentActionsStore, () => {
         :product="producto"
         :cardDirection="getDirection(key)"
         :cardInverted="getDistribution(key)"
+        :cardDescription="gridConfiguration.selectedMode.columns === 1 || false"
       />
     </button>
     <button
