@@ -31,7 +31,7 @@ const cardCssStyle = computed(() => {
     style["border"] = "1px solid " + cardStyleStore.borderColor;
   }
 
-  if (props.cardDirection.value === "col") {
+  if (props.cardDirection == "col") {
     style["flex-direction"] = "column";
   } else {
     style["flex-direction"] = props.cardInverted || "row";
@@ -41,6 +41,7 @@ const cardCssStyle = computed(() => {
 });
 
 function removeAndReplaceHTMLTags(text) {
+  console.log(text);
   // Expresión regular para encontrar todas las etiquetas HTML y <br>
   const regex = /<(?:.|\n)*?>/gm;
 
@@ -142,6 +143,8 @@ function removeAndReplaceHTMLTags(text) {
           width: 100%;
           text-align: justify;
           overflow: hidden;
+          padding-left: 2.1rem;
+          padding-right: 2.1rem;
         "
       >
         <p>{{ removeAndReplaceHTMLTags(props.product.descripcion) }}</p>

@@ -94,6 +94,16 @@ function updateProductUrlButton(url) {
   );
 }
 
+let timeoutId = null;
+watch(productDescription, (newValue) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    updateProductCardDescription(newValue);
+  }, 250);
+});
+
 watch(selectedProduct, () => {
   reference.value = selectedProduct.value.referencia;
   productPvdEstandar.value = selectedProduct.value.pvd_estandar;
@@ -135,15 +145,15 @@ function deleteProductCard() {
       <h3>Título:</h3>
       <RegularInput
         :text="productTitle"
-        :placeholder="'Inserte descripción del producto'"
-        :onChange="updateProductCardDescription"
+        :placeholder="'Inserte título'"
+        :onChange="updateProductCardTitle"
       />
 
       <h3>Descripción:</h3>
       <textarea
         class="custom-input"
         v-model="productDescription"
-        :placeholder="'Inserte título'"
+        :placeholder="'Inserte descripción del producto'"
         @input="updateProductCardDescription"
       />
 
