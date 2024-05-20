@@ -19,7 +19,7 @@ export const gridVars = defineStore({
                 childDistribution: 'normal',
                 imgUrl: "/src/assets/img/columns_dist/3columnas_light.png"
             },
-            mode3:{
+           /* mode3:{
                 columns:3,
                 childDistribution: [1,2],
                 imgUrl: "/src/assets/img/columns_dist/1_2_columnas_light.png"
@@ -28,7 +28,7 @@ export const gridVars = defineStore({
                 columns:3,
                 childDistribution: [2,1],
                 imgUrl: "/src/assets/img/columns_dist/2_1_columnas_light.png"
-            },
+            },*/
         };
 
         return {
@@ -40,6 +40,14 @@ export const gridVars = defineStore({
         setSelectedMode(mode){
             if (this.modes[mode]) {
                 this.selectedMode = this.modes[mode];
+            }
+        },
+        setModeWhereImgUrl(imgUrl){
+            for (const mode in this.modes) {
+                if (this.modes[mode].imgUrl === imgUrl) {
+                    this.selectedMode = this.modes[mode];
+                    return;
+                }
             }
         }
     }

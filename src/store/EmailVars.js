@@ -18,6 +18,9 @@ export const useEmailVars = defineStore({
     addFont(font) {
       this.fonts.add(font);
     },
+    setFonts(font) {
+      this.fonts.add(font);
+    },
     setGeneralFont(font) {
       this.generalFont = font.value;
       this.emailSubjectFont = font.value;

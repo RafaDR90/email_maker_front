@@ -42,7 +42,7 @@ export const cardStyle = defineStore({
         setCardBg(color) {
             this.cardBg = color;
         },
-        setInvertedCard(inverted) {
+        setCardInverted(inverted) {
             this.cardInverted = inverted;
         },
         setBorder(border) {
@@ -105,5 +105,11 @@ export const cardStyle = defineStore({
         setButtonPosition(position) {
             this.buttonPosition = position;
         },
+        setButtonBold(bold) {
+            this.buttonBold = bold;
+        },
+        setButtonRounded(rounded) {
+            this.buttonRounded = rounded;
+        }
     }
 })

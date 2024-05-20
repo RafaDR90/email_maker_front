@@ -10,7 +10,8 @@ export const documentActions = defineStore({
             addProductModal: true,
             creatingSvg: false,
             error: null,
-            errorTimeout: null
+            errorTimeout: null,
+            exito: null,
         }
     },
     actions: {
@@ -36,6 +37,15 @@ export const documentActions = defineStore({
             this.error = error;
             this.errorTimeout = setTimeout(() => {
                 this.error = null;
+            }, 6000);
+        },
+        setExito(exito){
+            if(this.errorTimeout){
+                clearTimeout(this.errorTimeout);
+            }
+            this.exito = exito;
+            this.errorTimeout = setTimeout(() => {
+                this.exito = null;
             }, 6000);
         }
     }
