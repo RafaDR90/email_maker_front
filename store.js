@@ -18,7 +18,7 @@ export default createStore({
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const response = await fetch('http://10.10.2.58:8000/api/show', {
+                    const response = await fetch('http://127.0.0.1:8000/api/show', {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,

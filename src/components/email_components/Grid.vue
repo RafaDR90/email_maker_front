@@ -77,103 +77,71 @@ watch(documentActionsStore, () => {
 
 <template>
   <div :style="updateStyle()" style="display: grid; row-gap: 5px">
-    <button
-      v-if="!documentActionsStore.creatingSvg"
-      class="selectable-block"
-      v-for="(producto, key) in productItemsStore.productsList"
-      :key="key"
-      ref="productsDiv"
-      :style="
-        gridConfiguration.selectedMode.childDistribution !== 'normal'
-          ? key % 2 === 0
-            ? {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
-              }
-            : {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
-              }
-          : {}
-      "
-      style="
+    <button v-if="!documentActionsStore.creatingSvg" class="selectable-block"
+      v-for="(producto, key) in productItemsStore.productsList" :key="key" ref="productsDiv" :style="gridConfiguration.selectedMode.childDistribution !== 'normal'
+        ? key % 2 === 0
+          ? {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
+          }
+          : {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
+          }
+        : {}
+        " style="
+      border: none;
         width: 95%;
         margin-left: auto;
         margin-right: auto;
         background-color: transparent;
-      "
-    >
-      <ProductCard
-        @click="updateSelectedCard(producto.id)"
-        :product="producto"
-        :cardDirection="getDirection(key)"
-        :cardInverted="getDistribution(key)"
-        :cardDescription="gridConfiguration.selectedMode.columns === 1 || false"
-      />
+      ">
+      <ProductCard @click="updateSelectedCard(producto.id)" :product="producto" :cardDirection="getDirection(key)"
+        :cardInverted="getDistribution(key)" :cardDescription="gridConfiguration.selectedMode.columns === 1 || false" />
     </button>
-    <button
-      v-else
-      class="selectable-block"
-      v-for="(producto, keyy) in productItemsStore.defaultProductList"
-      :key="keyy"
-      ref="productsDiv"
-      :style="
-        gridConfiguration.selectedMode.childDistribution !== 'normal'
-          ? keyy % 2 === 0
-            ? {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
-              }
-            : {
-                'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
-              }
-          : {}
-      "
-      style="
+    <button v-else class="selectable-block" v-for="(producto, keyy) in productItemsStore.defaultProductList" :key="keyy"
+      ref="productsDiv" :style="gridConfiguration.selectedMode.childDistribution !== 'normal'
+        ? keyy % 2 === 0
+          ? {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[0]}`,
+          }
+          : {
+            'grid-column': `span ${gridConfiguration.selectedMode.childDistribution[1]}`,
+          }
+        : {}
+        " style="
         width: 95%;
         margin-left: auto;
         margin-right: auto;
         background-color: transparent;
-      "
-    >
-      <ProductCard
-        @click="updateSelectedCard(producto.id)"
-        :product="producto"
-        :cardDirection="getDirection(key)"
-      />
+        
+      ">
+      <ProductCard @click="updateSelectedCard(producto.id)" :product="producto" :cardDirection="getDirection(key)" />
     </button>
-    <div
-      v-if="
-        documentActionsStore.addProductModal &&
-        !documentActionsStore.creatingSvg
-      "
-      style="
+    <div v-if="
+      documentActionsStore.addProductModal &&
+      !documentActionsStore.creatingSvg
+    " style="
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 11rem;
-      "
-    >
-      <div
-        class="selectable-block"
-        @click="addProductsToArray"
-        style="
+      ">
+      <div class="selectable-block" @click="addProductsToArray" style="
           width: 90%;
           height: 90%;
           display: flex;
           justify-content: center;
           align-items: center;
           background-color: #d1d5db;
-        "
-      >
-        <button
-          style="
+        ">
+        <button style="
             width: max-content;
             height: max-content;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-          "
-        >
+          ">
           <p style="width: 100%; text-align: center">Añade producto</p>
           <img :src="Banner" alt="banner" style="width: 5rem; height: 5rem" />
         </button>

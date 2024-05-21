@@ -34,7 +34,6 @@ const closeSession = () => {
       </div>
     </button>
     <div v-if="store.state.AuthUser" class="dropdown-content">
-      <p>Mi perfil</p>
       <p @click="closeSession">Cerrar sesión</p>
     </div>
   </div>

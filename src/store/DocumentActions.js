@@ -33,6 +33,7 @@ export const documentActions = defineStore({
         setError(error){
             if(this.errorTimeout){
                 clearTimeout(this.errorTimeout);
+                this.exito = null;
             }
             this.error = error;
             this.errorTimeout = setTimeout(() => {
@@ -42,6 +43,7 @@ export const documentActions = defineStore({
         setExito(exito){
             if(this.errorTimeout){
                 clearTimeout(this.errorTimeout);
+                this.error = null;
             }
             this.exito = exito;
             this.errorTimeout = setTimeout(() => {

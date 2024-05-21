@@ -14,7 +14,7 @@ const router = useRouter();
     <div class="size-4 md:size-7 mx-3">
       <img :src="newEmailIcon" />
     </div>
-    <p class="text-slate-50 font-semibold">Nuevo</p>
+    <p class="text-slate-50 font-semibold">Editar Email</p>
   </button>
 </template>
 

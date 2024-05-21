@@ -106,6 +106,8 @@ const saveTemplate = () => {
             timeOutSvgId=null;
           }
           return;
+        }else if(res && res.filename){
+          store.setExito('Plantilla guardada con éxito');
         }
 
         if (res.filename) {
@@ -120,10 +122,12 @@ const saveTemplate = () => {
       clearTimeout(toggleSvgModelTimeOut);
       toggleSvgModelTimeOut=null;
     }
+    
     toggleSvgModelTimeOut = setTimeout(() => {
       store.setCreatingSvg(false);
     }, 10).then(() => {
       toggleSvgModelTimeOut = null;
+      store.setExito('Plantilla guardada con éxito');
     });
   }, 5);
 }

@@ -24,9 +24,6 @@ function goToHome() {
       <div class="navBarButton" @click="goToHome">
         <p>Inicio</p>
       </div>
-      <div class="navBarButton" @click="() => {router.push('/my-projects')}">
-        <p>Mis proyectos</p>
-      </div>
     </div>
 
     <Dropdown v-if="store.state.AuthUser" />
