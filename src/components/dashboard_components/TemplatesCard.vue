@@ -86,7 +86,7 @@ const deleteTemplate = async (item) => {
         <div v-if="items" v-for="item in items" @click="useTemplate(item)"
             class=" w-40 border-4  border-transparent hover:border-orange-400 p-2 cursor-pointer relative">
             <p>{{ formatName(item.img_name) }}</p>
-            <img :src="'http://127.0.0.1:8000/storage/images/' + item.img_name" alt="Miniatura del estilo"
+            <img :src="'http://10.10.2.58:8000/storage/images/' + item.img_name" alt="Miniatura del estilo"
                 class="w-full">
             <div class="absolute w-full bottom-2 right-0 text-center h-12   flex justify-center items-center">
                 <p class="bg-red-500 w-11/12 h-full flex justify-center items-center rounded border-4 border-red-600 text-white font-bold hover:border-orange-400 hover:text-orange-300"
