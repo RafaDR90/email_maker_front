@@ -10,8 +10,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  server: {
-    host:'0.0.0.0'
-  },
-  base: '/email_maker_vue3/dist/' 
 })

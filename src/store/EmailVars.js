@@ -67,7 +67,11 @@ function getAvailableFonts() {
   }
 
   // Convertir el conjunto de fuentes a un array y ordenarlo alfabéticamente
-  return Array.from(fontFamilies).sort((a, b) =>
-    a.fontFamily.localeCompare(b.fontFamily)
-  );
+  return Array.from(fontFamilies).sort((a, b) => {
+    if (a && b && a.fontFamily && b.fontFamily) {
+      return a.fontFamily.localeCompare(b.fontFamily);
+    } else {
+      return 0;
+    }
+  });
 }
