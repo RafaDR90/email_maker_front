@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import router from './src/Router';
+import { BASE_URL } from './src/api/ApiConstants';
 
 export default createStore({
     state: {
@@ -15,10 +16,11 @@ export default createStore({
     },
     actions: {
         async checkToken({ commit }) {
+            console.log(BASE_URL)
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const response = await fetch('http://127.0.0.1:8000/api/show', {
+                    const response = await fetch(BASE_URL+'api/show', {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,

@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { BASE_URL } from '../../api/ApiConstants';
 
 const store = useStore();
 
@@ -34,7 +35,7 @@ const registrarse = async () => {
 
   try {
 
-    const response = await fetch('http://127.0.0.1:8000/api/register',
+    const response = await fetch(BASE_URL+'api/register',
       {
         method: 'POST',
         headers: {

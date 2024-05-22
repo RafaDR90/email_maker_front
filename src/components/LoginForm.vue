@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { BASE_URL } from "../api/ApiConstants";
 
 const store = useStore();
 
@@ -12,7 +13,7 @@ const error = ref(null);
 
 const submitForm = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/login", {
+    const response = await fetch(BASE_URL+"api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

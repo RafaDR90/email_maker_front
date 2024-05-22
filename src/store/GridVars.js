@@ -7,17 +7,17 @@ export const gridVars = defineStore({
             mode0:{
                 columns:1,
                 childDistribution: 'normal',
-                imgUrl: "/src/assets/img/columns_dist/1columna_light.png"
+                imgUrl: "/src/assets/img/1columna_light.png"
             },
             mode1:{
                 columns:2,
                 childDistribution: 'normal',
-                imgUrl:"/src/assets/img/columns_dist/2columnas_light.png"
+                imgUrl:"/src/assets/img/2columnas_light.png"
             },
             mode2:{
                 columns:3,
                 childDistribution: 'normal',
-                imgUrl: "/src/assets/img/columns_dist/3columnas_light.png"
+                imgUrl: "/src/assets/img/3columnas_light.png"
             },
            /* mode3:{
                 columns:3,

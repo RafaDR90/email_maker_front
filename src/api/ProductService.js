@@ -23,7 +23,7 @@ export default class ProductService {
   }
   static async fetch10ProductsWithRef(ref) {
     try {
-      const response = await axios.post(`${BASE_URL}/products/search`, { reference: ref });
+      const response = await axios.post(`${BASE_URL}api/products/search`, { reference: ref });
       return response.data;
     } catch (error) {
       console.error("Error al cargar los productos:", error);

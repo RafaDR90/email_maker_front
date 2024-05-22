@@ -11,7 +11,7 @@ const documentActionsStore = documentActions();
 const isButtonVisible = ref(true);
 const templates = ref([]);
 const getTemplates = async () => {
-  const response = await fetch(BASE_URL+"/get-templates", {
+  const response = await fetch(BASE_URL+"api/get-templates", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
