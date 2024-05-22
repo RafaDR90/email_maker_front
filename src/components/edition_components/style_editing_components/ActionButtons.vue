@@ -125,10 +125,8 @@ const saveTemplate = () => {
     
     toggleSvgModelTimeOut = setTimeout(() => {
       store.setCreatingSvg(false);
-    }, 10).then(() => {
       toggleSvgModelTimeOut = null;
-      store.setExito('Plantilla guardada con éxito');
-    });
+    }, 10)
   }, 5);
 }
 </script>

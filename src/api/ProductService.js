@@ -33,7 +33,7 @@ export default class ProductService {
   static async uploadStylesData(data, filename) {
     try {
 
-      const response = await axios.post(`${BASE_URL}/products/styles-upload`, { data: data, filename: filename }, {
+      const response = await axios.post(`${BASE_URL}api/products/styles-upload`, { data: data, filename: filename }, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -49,7 +49,7 @@ export default class ProductService {
       // Crear un objeto FormData y añadir la imagen como un archivo
 
 
-      const response = await axios.post(`${BASE_URL}/upload/svg`, img, {
+      const response = await axios.post(`${BASE_URL}api/upload/svg`, img, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + localStorage.getItem('token')
